@@ -1,0 +1,37 @@
+{
+  "title": "Datafold API Vocabulary",
+  "description": "Domain terms and concepts from the Datafold data reliability platform API",
+  "source": "https://docs.datafold.com/openapi-public.json",
+  "domains": {
+    "Data Diff": "A comparison operation between two versions of a dataset that identifies added, removed, and changed rows and values",
+    "Data Source": "A configured database connection (Snowflake, BigQuery, Redshift, Postgres, etc.) used as input for diffs and monitors",
+    "CI Run": "A Continuous Integration pipeline run that triggers automated data diff validation before deployment",
+    "Monitor": "An automated data quality check that detects anomalies, schema changes, and data regressions on a schedule",
+    "Audit Log": "A record of user and system actions taken within the Datafold platform for compliance and traceability",
+    "Column Lineage": "A graph tracing how data flows and transforms through columns across tables and pipelines",
+    "Data Regression": "A degradation in data quality or schema detected by comparing pipeline output before and after a change",
+    "Anomaly Detection": "Automated identification of unexpected statistical deviations in data metrics over time",
+    "BI Integration": "Connection between Datafold and Business Intelligence tools (Looker, Tableau, etc.) for lineage tracking",
+    "Data Diff Summary": "An aggregate report of differences found between two table versions including row counts, schema changes, and value diffs",
+    "Column Profile": "Statistical summary of a column including null rates, cardinality, min/max values, and distribution",
+    "Data Migration": "The process of moving data between systems, validated by comparing source and target datasets with Datafold",
+    "PR/MR Run": "A Pull Request or Merge Request triggered CI run that validates data pipeline changes before merging code"
+  },
+  "api_tags": [
+    "Audit Logs",
+    "BI",
+    "CI",
+    "Data diffs",
+    "Data sources",
+    "Explore",
+    "Monitors",
+    "bi_added",
+    "bi_deleted",
+    "bi_modified",
+    "bolt",
+    "data_source_added",
+    "diff_created"
+  ],
+  "schema_count": 196,
+  "path_count": 47
+}

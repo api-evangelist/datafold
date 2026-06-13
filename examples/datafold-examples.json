@@ -1,0 +1,1279 @@
+{
+  "title": "Datafold API Examples",
+  "description": "Request/response examples extracted from the Datafold OpenAPI specification",
+  "baseURL": "https://app.datafold.com",
+  "authentication": {
+    "type": "apiKey",
+    "in": "header",
+    "name": "Authorization"
+  },
+  "examples": [
+    {
+      "operationId": "get_org_spend_api_internal_bolt_org_spend_get",
+      "method": "GET",
+      "path": "/api/internal/bolt/org/spend",
+      "summary": "Get Org Spend",
+      "tags": [
+        "bolt"
+      ],
+      "parameters": [],
+      "description": "Daily/monthly LLM spend + effective caps for the caller's org."
+    },
+    {
+      "operationId": "get_audit_logs_api_v1_audit_logs_get",
+      "method": "GET",
+      "path": "/api/v1/audit_logs",
+      "summary": "Get Audit Logs",
+      "tags": [
+        "Audit Logs"
+      ],
+      "parameters": [],
+      "description": ""
+    },
+    {
+      "operationId": "get_ci_api_v1_ci__ci_config_id__runs_get",
+      "method": "GET",
+      "path": "/api/v1/ci/{ci_config_id}/runs",
+      "summary": "List CI runs",
+      "tags": [
+        "CI"
+      ],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "ci_config_id",
+          "required": true,
+          "schema": {
+            "title": "CI config id",
+            "type": "integer"
+          }
+        },
+        {
+          "in": "query",
+          "name": "pr_sha",
+          "required": false,
+          "schema": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pr Sha"
+          }
+        },
+        {
+          "in": "query",
+          "name": "pr_num",
+          "required": false,
+          "schema": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pr Num"
+          }
+        },
+        {
+          "in": "query",
+          "name": "limit",
+          "required": false,
+          "schema": {
+            "default": 100,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        {
+          "in": "query",
+          "name": "offset",
+          "required": false,
+          "schema": {
+            "default": 0,
+            "title": "Offset",
+            "type": "integer"
+          }
+        }
+      ],
+      "description": ""
+    },
+    {
+      "operationId": "trigger_ci_api_v1_ci__ci_config_id__trigger_post",
+      "method": "POST",
+      "path": "/api/v1/ci/{ci_config_id}/trigger",
+      "summary": "Trigger a PR/MR run",
+      "tags": [
+        "CI"
+      ],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "ci_config_id",
+          "required": true,
+          "schema": {
+            "title": "CI config id",
+            "type": "integer"
+          }
+        }
+      ],
+      "description": "",
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/APIPrDetails"
+            }
+          }
+        },
+        "required": true
+      }
+    },
+    {
+      "operationId": "upload_changes_api_v1_ci__ci_config_id___pr_num__post",
+      "method": "POST",
+      "path": "/api/v1/ci/{ci_config_id}/{pr_num}",
+      "summary": "Upload PR/MR changes",
+      "tags": [
+        "CI"
+      ],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "ci_config_id",
+          "required": true,
+          "schema": {
+            "title": "CI config id",
+            "type": "integer"
+          }
+        },
+        {
+          "in": "path",
+          "name": "pr_num",
+          "required": true,
+          "schema": {
+            "title": "Pull request/Merge request number",
+            "type": "integer"
+          }
+        }
+      ],
+      "description": "",
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "items": {
+                "$ref": "#/components/schemas/CiDiff"
+              },
+              "title": "Diffs",
+              "type": "array"
+            }
+          }
+        },
+        "required": true
+      }
+    },
+    {
+      "operationId": "list_data_sources_api_v1_data_sources_get",
+      "method": "GET",
+      "path": "/api/v1/data_sources",
+      "summary": "List data sources",
+      "tags": [
+        "Data sources"
+      ],
+      "parameters": [],
+      "description": "Retrieves all data sources for the organization, annotated with an `accessible` boolean.\n\nReturns active data sources (not deleted, hidden, or draft). Each DS includes `accessible=True`\nif the user is admin or the user's groups overlap with the DS's groups."
+    },
+    {
+      "operationId": "create_new_datasource_api_v1_data_sources_post",
+      "method": "POST",
+      "path": "/api/v1/data_sources",
+      "summary": "Create a data source",
+      "tags": [
+        "Data sources",
+        "data_source_added"
+      ],
+      "parameters": [],
+      "description": "",
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiDataSourceForm"
+            }
+          }
+        },
+        "required": true
+      }
+    },
+    {
+      "operationId": "get_data_source_test_result_api_v1_data_sources_test__job_id__get",
+      "method": "GET",
+      "path": "/api/v1/data_sources/test/{job_id}",
+      "summary": "Get data source testing results",
+      "tags": [
+        "Data sources"
+      ],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "job_id",
+          "required": true,
+          "schema": {
+            "title": "Data source testing task id",
+            "type": "integer"
+          }
+        }
+      ],
+      "description": ""
+    },
+    {
+      "operationId": "get_data_source_types_api_v1_data_sources_types_get",
+      "method": "GET",
+      "path": "/api/v1/data_sources/types",
+      "summary": "List data source types",
+      "tags": [
+        "Data sources"
+      ],
+      "parameters": [],
+      "description": ""
+    },
+    {
+      "operationId": "get_data_source_api_v1_data_sources__data_source_id__get",
+      "method": "GET",
+      "path": "/api/v1/data_sources/{data_source_id}",
+      "summary": "Get a data source",
+      "tags": [
+        "Data sources"
+      ],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "data_source_id",
+          "required": true,
+          "schema": {
+            "title": "Data source id",
+            "type": "integer"
+          }
+        }
+      ],
+      "description": ""
+    },
+    {
+      "operationId": "execute_query_api_v1_data_sources__data_source_id__query_post",
+      "method": "POST",
+      "path": "/api/v1/data_sources/{data_source_id}/query",
+      "summary": "Execute a SQL query against a data source",
+      "tags": [
+        "Data sources"
+      ],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "data_source_id",
+          "required": true,
+          "schema": {
+            "title": "Data source ID",
+            "type": "integer"
+          }
+        },
+        {
+          "description": "Stream results as JSON",
+          "in": "query",
+          "name": "stream",
+          "required": false,
+          "schema": {
+            "default": false,
+            "description": "Stream results as JSON",
+            "title": "Stream",
+            "type": "boolean"
+          }
+        },
+        {
+          "in": "header",
+          "name": "X-Stream-Response",
+          "required": false,
+          "schema": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "X-Stream-Response"
+          }
+        }
+      ],
+      "description": "Executes a SQL query against the specified data source and returns the results.\n\nThis endpoint allows you to run ad-hoc SQL queries for data exploration, validation, or analysis.\nThe query is executed using the data source's native query runner with the appropriate credentials.\n\n**Streaming mode**: Use query parameter `?stream=true` or set `X-Stream-Response: true` header.\nStreaming is only supported for certain data sources (e.g., Databricks).\nWhen streaming, results are sent incrementally as valid JSON for memory efficiency.\n\nReturns:\n- Query results as rows with column metadata (name, type, description)\n- Limited to a reasonable number of rows for performance",
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiQueryRequest"
+            }
+          }
+        },
+        "required": true
+      }
+    },
+    {
+      "operationId": "get_data_source_summary_api_v1_data_sources__data_source_id__summary_get",
+      "method": "GET",
+      "path": "/api/v1/data_sources/{data_source_id}/summary",
+      "summary": "Get a data source summary",
+      "tags": [
+        "Data sources"
+      ],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "data_source_id",
+          "required": true,
+          "schema": {
+            "title": "Data source id",
+            "type": "integer"
+          }
+        }
+      ],
+      "description": ""
+    },
+    {
+      "operationId": "test_data_source_api_v1_data_sources__data_source_id__test_post",
+      "method": "POST",
+      "path": "/api/v1/data_sources/{data_source_id}/test",
+      "summary": "Test a data source connection",
+      "tags": [
+        "Data sources"
+      ],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "data_source_id",
+          "required": true,
+          "schema": {
+            "title": "Data source id",
+            "type": "integer"
+          }
+        }
+      ],
+      "description": ""
+    },
+    {
+      "operationId": "list_datadiffs_api_v1_datadiffs_get",
+      "method": "GET",
+      "path": "/api/v1/datadiffs",
+      "summary": "List data diffs",
+      "tags": [
+        "Data diffs"
+      ],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "page",
+          "required": false,
+          "schema": {
+            "default": 1,
+            "title": "Page",
+            "type": "integer"
+          }
+        },
+        {
+          "in": "query",
+          "name": "page_size",
+          "required": false,
+          "schema": {
+            "default": 100,
+            "title": "Page Size",
+            "type": "integer"
+          }
+        },
+        {
+          "in": "query",
+          "name": "sort_order",
+          "required": false,
+          "schema": {
+            "$ref": "#/components/schemas/ApiSortOrder",
+            "default": "asc"
+          }
+        },
+        {
+          "in": "query",
+          "name": "order_by",
+          "required": false,
+          "schema": {
+            "$ref": "#/components/schemas/ApiSortFilters",
+            "default": "id"
+          }
+        },
+        {
+          "in": "query",
+          "name": "accessible_only",
+          "required": false,
+          "schema": {
+            "default": false,
+            "title": "Accessible Only",
+            "type": "boolean"
+          }
+        }
+      ],
+      "description": "All fields support multiple items, using just comma delimiter\nDate fields also support ranges using the following syntax:\n\n- ``<DATETIME`` = before DATETIME\n- ``>DATETIME`` = after DATETIME\n- ``DATETIME`` = between DATETIME and DATETIME + 1 MINUTE\n- ``DATE`` = start of that DATE until DATE + 1 DAY\n- ``DATETIME1<<DATETIME2`` = between DATETIME1 and DATETIME2\n- ``DATE1<<DATE2`` = between DATE1 and DATE2"
+    },
+    {
+      "operationId": "create_datadiff_api_v1_datadiffs_post",
+      "method": "POST",
+      "path": "/api/v1/datadiffs",
+      "summary": "Create a data diff",
+      "tags": [
+        "Data diffs",
+        "diff_created"
+      ],
+      "parameters": [],
+      "description": "Launches a new data diff to compare two datasets (tables or queries).\n\nA data diff identifies differences between two datasets by comparing:\n- Row-level changes (added, removed, modified rows)\n- Schema differences\n- Column-level statistics\n\nThe diff runs asynchronously. Use the returned diff ID to poll for status and retrieve results.",
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiDataDiffData"
+            }
+          }
+        },
+        "required": true
+      }
+    },
+    {
+      "operationId": "get_datadiff_api_v1_datadiffs__datadiff_id__get",
+      "method": "GET",
+      "path": "/api/v1/datadiffs/{datadiff_id}",
+      "summary": "Get a data diff",
+      "tags": [
+        "Data diffs"
+      ],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "datadiff_id",
+          "required": true,
+          "schema": {
+            "title": "Data diff id",
+            "type": "integer"
+          }
+        },
+        {
+          "in": "query",
+          "name": "poll",
+          "required": false,
+          "schema": {
+            "title": "Poll"
+          }
+        }
+      ],
+      "description": ""
+    },
+    {
+      "operationId": "cancel_diff_api_v1_datadiffs__datadiff_id__cancel_post",
+      "method": "POST",
+      "path": "/api/v1/datadiffs/{datadiff_id}/cancel",
+      "summary": "Cancel a running data diff",
+      "tags": [
+        "Data diffs"
+      ],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "datadiff_id",
+          "required": true,
+          "schema": {
+            "title": "Data diff id",
+            "type": "integer"
+          }
+        }
+      ],
+      "description": "Cancels a data diff that is currently queued or running.\n\nThis operation stops the diff execution and marks it as cancelled. If the diff has already\ncompleted or been cancelled, this operation has no effect and returns the current status.\n\nUse this to stop long-running diffs that are no longer needed or were started with incorrect parameters."
+    },
+    {
+      "operationId": "get_diff_summary_api_v1_datadiffs__datadiff_id__summary_get",
+      "method": "GET",
+      "path": "/api/v1/datadiffs/{datadiff_id}/summary",
+      "summary": "Get a human-readable summary of a DataDiff comparison",
+      "tags": [
+        "Data diffs"
+      ],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "datadiff_id",
+          "required": true,
+          "schema": {
+            "title": "Data diff id",
+            "type": "integer"
+          }
+        }
+      ],
+      "description": "Retrieves a comprehensive, human-readable summary of a completed data diff.\n\nThis endpoint provides the most useful information for understanding diff results:\n- Overall status and result (success/failure)\n- Human-readable feedback explaining the differences found\n- Key statistics (row counts, differences, match rates)\n- Configuration details (tables compared, primary keys used)\n- Error messages if the diff failed\n\nUse this after a diff completes to get actionable insights. For diffs still running,\ncheck status with get_datadiff first."
+    },
+    {
+      "operationId": "get_diff_summary_v1_api_v1_datadiffs__datadiff_id__summary_results_get",
+      "method": "GET",
+      "path": "/api/v1/datadiffs/{datadiff_id}/summary_results",
+      "summary": "Get a data diff summary",
+      "tags": [
+        "Data diffs"
+      ],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "datadiff_id",
+          "required": true,
+          "schema": {
+            "title": "Data diff id",
+            "type": "integer"
+          }
+        }
+      ],
+      "description": ""
+    },
+    {
+      "operationId": "db_column_downstreams_api_v1_explore_db__data_connection_id__columns__column_path__downstreams_get",
+      "method": "GET",
+      "path": "/api/v1/explore/db/{data_connection_id}/columns/{column_path}/downstreams",
+      "summary": "Get column downstreams",
+      "tags": [
+        "Explore"
+      ],
+      "parameters": [
+        {
+          "description": "Unique ID for the Data Connection. Can be found in the Datafold app under Settings > Integrations > Data Connections.",
+          "in": "path",
+          "name": "data_connection_id",
+          "required": true,
+          "schema": {
+            "description": "Unique ID for the Data Connection. Can be found in the Datafold app under Settings > Integrations > Data Connections.",
+            "minimum": 1,
+            "title": "Data Connection ID",
+            "type": "integer"
+          }
+        },
+        {
+          "description": "Path to the column, e.g. `db.schema.table.column`. The path is case sensitive. If components of the path contain periods, they must be quoted: `db.my_schema.\"www.mysite.com visits\".\"visit.id\"`.",
+          "in": "path",
+          "name": "column_path",
+          "required": true,
+          "schema": {
+            "description": "Path to the column, e.g. `db.schema.table.column`. The path is case sensitive. If components of the path contain periods, they must be quoted: `db.my_schema.\"www.mysite.com visits\".\"visit.id\"`.",
+            "title": "Table Column Path",
+            "type": "string"
+          }
+        },
+        {
+          "description": "Maximum depth of the lineage to retrieve.",
+          "in": "query",
+          "name": "max_depth",
+          "required": false,
+          "schema": {
+            "default": 10,
+            "description": "Maximum depth of the lineage to retrieve.",
+            "exclusiveMaximum": 100,
+            "minimum": 1,
+            "title": "Max depth",
+            "type": "integer"
+          }
+        },
+        {
+          "description": "Include Tables in the lineage calculation and in the output.",
+          "in": "query",
+          "name": "include_tabular_nodes",
+          "required": false,
+          "schema": {
+            "default": true,
+            "description": "Include Tables in the lineage calculation and in the output.",
+            "title": "Include tabular nodes",
+            "type": "boolean"
+          }
+        }
+      ],
+      "description": "Retrieve a list of columns or tables which depend on the given column."
+    },
+    {
+      "operationId": "db_column_upstreams_api_v1_explore_db__data_connection_id__columns__column_path__upstreams_get",
+      "method": "GET",
+      "path": "/api/v1/explore/db/{data_connection_id}/columns/{column_path}/upstreams",
+      "summary": "Get column upstreams",
+      "tags": [
+        "Explore"
+      ],
+      "parameters": [
+        {
+          "description": "Unique ID for the Data Connection. Can be found in the Datafold app under Settings > Integrations > Data Connections.",
+          "in": "path",
+          "name": "data_connection_id",
+          "required": true,
+          "schema": {
+            "description": "Unique ID for the Data Connection. Can be found in the Datafold app under Settings > Integrations > Data Connections.",
+            "minimum": 1,
+            "title": "Data Connection ID",
+            "type": "integer"
+          }
+        },
+        {
+          "description": "Path to the column, e.g. `db.schema.table.column`. The path is case sensitive. If components of the path contain periods, they must be quoted: `db.my_schema.\"www.mysite.com visits\".\"visit.id\"`.",
+          "in": "path",
+          "name": "column_path",
+          "required": true,
+          "schema": {
+            "description": "Path to the column, e.g. `db.schema.table.column`. The path is case sensitive. If components of the path contain periods, they must be quoted: `db.my_schema.\"www.mysite.com visits\".\"visit.id\"`.",
+            "title": "Table Column Path",
+            "type": "string"
+          }
+        },
+        {
+          "description": "Maximum depth of the lineage to retrieve.",
+          "in": "query",
+          "name": "max_depth",
+          "required": false,
+          "schema": {
+            "default": 10,
+            "description": "Maximum depth of the lineage to retrieve.",
+            "exclusiveMaximum": 100,
+            "minimum": 1,
+            "title": "Max depth",
+            "type": "integer"
+          }
+        },
+        {
+          "description": "Include Tables in the lineage calculation and in the output.",
+          "in": "query",
+          "name": "include_tabular_nodes",
+          "required": false,
+          "schema": {
+            "default": true,
+            "description": "Include Tables in the lineage calculation and in the output.",
+            "title": "Include tabular nodes",
+            "type": "boolean"
+          }
+        }
+      ],
+      "description": "Retrieve a list of columns or tables which the given column depends on."
+    },
+    {
+      "operationId": "db_table_downstreams_api_v1_explore_db__data_connection_id__tables__table_path__downstreams_get",
+      "method": "GET",
+      "path": "/api/v1/explore/db/{data_connection_id}/tables/{table_path}/downstreams",
+      "summary": "Get table downstreams",
+      "tags": [
+        "Explore"
+      ],
+      "parameters": [
+        {
+          "description": "Unique ID for the Data Connection. Can be found in the Datafold app under Settings > Integrations > Data Connections.",
+          "in": "path",
+          "name": "data_connection_id",
+          "required": true,
+          "schema": {
+            "description": "Unique ID for the Data Connection. Can be found in the Datafold app under Settings > Integrations > Data Connections.",
+            "minimum": 1,
+            "title": "Data Connection ID",
+            "type": "integer"
+          }
+        },
+        {
+          "description": "Path to the table, e.g. `db.schema.table`. The path is case sensitive. If components of the path contain periods, they must be quoted: `db.\"my.schema\".\"www.mysite.com visits\"`.",
+          "in": "path",
+          "name": "table_path",
+          "required": true,
+          "schema": {
+            "description": "Path to the table, e.g. `db.schema.table`. The path is case sensitive. If components of the path contain periods, they must be quoted: `db.\"my.schema\".\"www.mysite.com visits\"`.",
+            "title": "Table Path",
+            "type": "string"
+          }
+        },
+        {
+          "description": "Maximum depth of the lineage to retrieve.",
+          "in": "query",
+          "name": "max_depth",
+          "required": false,
+          "schema": {
+            "default": 10,
+            "description": "Maximum depth of the lineage to retrieve.",
+            "exclusiveMaximum": 100,
+            "minimum": 1,
+            "title": "Max depth",
+            "type": "integer"
+          }
+        }
+      ],
+      "description": "Retrieve a list of tables which depend on the given table."
+    },
+    {
+      "operationId": "db_table_upstreams_api_v1_explore_db__data_connection_id__tables__table_path__upstreams_get",
+      "method": "GET",
+      "path": "/api/v1/explore/db/{data_connection_id}/tables/{table_path}/upstreams",
+      "summary": "Get table upstreams",
+      "tags": [
+        "Explore"
+      ],
+      "parameters": [
+        {
+          "description": "Unique ID for the Data Connection. Can be found in the Datafold app under Settings > Integrations > Data Connections.",
+          "in": "path",
+          "name": "data_connection_id",
+          "required": true,
+          "schema": {
+            "description": "Unique ID for the Data Connection. Can be found in the Datafold app under Settings > Integrations > Data Connections.",
+            "minimum": 1,
+            "title": "Data Connection ID",
+            "type": "integer"
+          }
+        },
+        {
+          "description": "Path to the table, e.g. `db.schema.table`. The path is case sensitive. If components of the path contain periods, they must be quoted: `db.\"my.schema\".\"www.mysite.com visits\"`.",
+          "in": "path",
+          "name": "table_path",
+          "required": true,
+          "schema": {
+            "description": "Path to the table, e.g. `db.schema.table`. The path is case sensitive. If components of the path contain periods, they must be quoted: `db.\"my.schema\".\"www.mysite.com visits\"`.",
+            "title": "Table Path",
+            "type": "string"
+          }
+        },
+        {
+          "description": "Maximum depth of the lineage to retrieve.",
+          "in": "query",
+          "name": "max_depth",
+          "required": false,
+          "schema": {
+            "default": 10,
+            "description": "Maximum depth of the lineage to retrieve.",
+            "exclusiveMaximum": 100,
+            "minimum": 1,
+            "title": "Max depth",
+            "type": "integer"
+          }
+        }
+      ],
+      "description": "Retrieve a list of tables which the given table depends on."
+    },
+    {
+      "operationId": "get_all_integrations_api_v1_lineage_bi__get",
+      "method": "GET",
+      "path": "/api/v1/lineage/bi/",
+      "summary": "List all integrations",
+      "tags": [
+        "BI"
+      ],
+      "parameters": [],
+      "description": "Return all integrations for Mode/Tableau/Looker"
+    },
+    {
+      "operationId": "create_dbt_integration_api_v1_lineage_bi_dbt__post",
+      "method": "POST",
+      "path": "/api/v1/lineage/bi/dbt/",
+      "summary": "Create a DBT BI integration",
+      "tags": [
+        "BI",
+        "bi_added"
+      ],
+      "parameters": [],
+      "description": "",
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DbtDataSourceConfig"
+            }
+          }
+        },
+        "required": true
+      }
+    },
+    {
+      "operationId": "create_hightouch_integration_api_v1_lineage_bi_hightouch__post",
+      "method": "POST",
+      "path": "/api/v1/lineage/bi/hightouch/",
+      "summary": "Create a Hightouch integration",
+      "tags": [
+        "BI",
+        "bi_added"
+      ],
+      "parameters": [],
+      "description": "",
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HighTouchDataSourceConfig"
+            }
+          }
+        },
+        "required": true
+      }
+    },
+    {
+      "operationId": "create_looker_integration_api_v1_lineage_bi_looker__post",
+      "method": "POST",
+      "path": "/api/v1/lineage/bi/looker/",
+      "summary": "Create a Looker integration",
+      "tags": [
+        "BI",
+        "bi_added"
+      ],
+      "parameters": [],
+      "description": "",
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/LookerDataSourceConfig"
+            }
+          }
+        },
+        "required": true
+      }
+    },
+    {
+      "operationId": "create_mode_integration_api_v1_lineage_bi_mode__post",
+      "method": "POST",
+      "path": "/api/v1/lineage/bi/mode/",
+      "summary": "Create a Mode Analytics integration",
+      "tags": [
+        "BI",
+        "bi_added"
+      ],
+      "parameters": [],
+      "description": "",
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ModeDataSourceConfig"
+            }
+          }
+        },
+        "required": true
+      }
+    },
+    {
+      "operationId": "create_powerbi_integration_api_v1_lineage_bi_powerbi__post",
+      "method": "POST",
+      "path": "/api/v1/lineage/bi/powerbi/",
+      "summary": "Create a Power BI integration",
+      "tags": [
+        "BI",
+        "BI",
+        "bi_added"
+      ],
+      "parameters": [],
+      "description": "",
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/PowerBIDataSourceConfig"
+            }
+          }
+        },
+        "required": true
+      }
+    },
+    {
+      "operationId": "create_tableau_integration_api_v1_lineage_bi_tableau__post",
+      "method": "POST",
+      "path": "/api/v1/lineage/bi/tableau/",
+      "summary": "Create a Tableau integration",
+      "tags": [
+        "BI",
+        "bi_added"
+      ],
+      "parameters": [],
+      "description": "",
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TableauDataSourceConfig"
+            }
+          }
+        },
+        "required": true
+      }
+    },
+    {
+      "operationId": "get_integration_api_v1_lineage_bi__bi_datasource_id___get",
+      "method": "GET",
+      "path": "/api/v1/lineage/bi/{bi_datasource_id}/",
+      "summary": "Get an integration",
+      "tags": [
+        "BI"
+      ],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "bi_datasource_id",
+          "required": true,
+          "schema": {
+            "title": "BI integration id",
+            "type": "integer"
+          }
+        }
+      ],
+      "description": "Returns the integration for Mode/Tableau/Looker/HighTouch by its id."
+    },
+    {
+      "operationId": "resync_integration_api_v1_lineage_bi__bi_datasource_id__sync__get",
+      "method": "GET",
+      "path": "/api/v1/lineage/bi/{bi_datasource_id}/sync/",
+      "summary": "Sync a BI integration",
+      "tags": [
+        "BI"
+      ],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "bi_datasource_id",
+          "required": true,
+          "schema": {
+            "title": "BI integration id",
+            "type": "integer"
+          }
+        }
+      ],
+      "description": "Start an unscheduled synchronization of the integration."
+    },
+    {
+      "operationId": "list_monitors_api_v1_monitors_get",
+      "method": "GET",
+      "path": "/api/v1/monitors",
+      "summary": "List Monitors",
+      "tags": [
+        "Monitors"
+      ],
+      "parameters": [
+        {
+          "description": "The page number to retrieve.",
+          "in": "query",
+          "name": "page",
+          "required": false,
+          "schema": {
+            "default": 1,
+            "description": "The page number to retrieve.",
+            "title": "Page",
+            "type": "integer"
+          }
+        },
+        {
+          "description": "The number of items to retrieve per page.",
+          "in": "query",
+          "name": "page_size",
+          "required": false,
+          "schema": {
+            "default": 20,
+            "description": "The number of items to retrieve per page.",
+            "title": "Page Size",
+            "type": "integer"
+          }
+        },
+        {
+          "description": "Field to order the monitors by.",
+          "in": "query",
+          "name": "order_by",
+          "required": false,
+          "schema": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SortableFields"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Field to order the monitors by.",
+            "title": "Order By"
+          }
+        },
+        {
+          "description": "Specify the order direction for the monitors.",
+          "in": "query",
+          "name": "sort_order",
+          "required": false,
+          "schema": {
+            "default": "desc",
+            "description": "Specify the order direction for the monitors.",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "title": "Sort Order",
+            "type": "string"
+          }
+        },
+        {
+          "description": "Comma-separated tags to filter monitors by.",
+          "in": "query",
+          "name": "tags",
+          "required": false,
+          "schema": {
+            "description": "Comma-separated tags to filter monitors by.",
+            "title": "Tags",
+            "type": "string"
+          }
+        }
+      ],
+      "description": ""
+    },
+    {
+      "operationId": "create_monitor_diff_api_v1_monitors_create_diff_post",
+      "method": "POST",
+      "path": "/api/v1/monitors/create/diff",
+      "summary": "Create a Data Diff Monitor",
+      "tags": [
+        "Monitors"
+      ],
+      "parameters": [],
+      "description": "",
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DataDiffMonitorSpecPublic"
+            }
+          }
+        },
+        "required": true
+      }
+    },
+    {
+      "operationId": "create_monitor_metric_api_v1_monitors_create_metric_post",
+      "method": "POST",
+      "path": "/api/v1/monitors/create/metric",
+      "summary": "Create a Metric Monitor",
+      "tags": [
+        "Monitors"
+      ],
+      "parameters": [],
+      "description": "",
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/MetricMonitorSpecPublic"
+            }
+          }
+        },
+        "required": true
+      }
+    },
+    {
+      "operationId": "create_monitor_schema_api_v1_monitors_create_schema_post",
+      "method": "POST",
+      "path": "/api/v1/monitors/create/schema",
+      "summary": "Create a Schema Change Monitor",
+      "tags": [
+        "Monitors"
+      ],
+      "parameters": [],
+      "description": "",
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SchemaChangeMonitorSpecPublic"
+            }
+          }
+        },
+        "required": true
+      }
+    },
+    {
+      "operationId": "create_monitor_test_api_v1_monitors_create_test_post",
+      "method": "POST",
+      "path": "/api/v1/monitors/create/test",
+      "summary": "Create a Data Test Monitor",
+      "tags": [
+        "Monitors"
+      ],
+      "parameters": [],
+      "description": "",
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DataTestMonitorSpecPublic"
+            }
+          }
+        },
+        "required": true
+      }
+    },
+    {
+      "operationId": "get_monitor_api_v1_monitors__id__get",
+      "method": "GET",
+      "path": "/api/v1/monitors/{id}",
+      "summary": "Get Monitor",
+      "tags": [
+        "Monitors"
+      ],
+      "parameters": [
+        {
+          "description": "The unique identifier of the monitor.",
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema": {
+            "description": "The unique identifier of the monitor.",
+            "title": "Id",
+            "type": "integer"
+          }
+        }
+      ],
+      "description": ""
+    },
+    {
+      "operationId": "start_monitor_run_api_v1_monitors__id__run_post",
+      "method": "POST",
+      "path": "/api/v1/monitors/{id}/run",
+      "summary": "Trigger a run",
+      "tags": [
+        "Monitors"
+      ],
+      "parameters": [
+        {
+          "description": "The unique identifier of the monitor for which to start the run.",
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema": {
+            "description": "The unique identifier of the monitor for which to start the run.",
+            "title": "Id",
+            "type": "integer"
+          }
+        }
+      ],
+      "description": ""
+    },
+    {
+      "operationId": "list_monitor_runs_api_v1_monitors__id__runs_get",
+      "method": "GET",
+      "path": "/api/v1/monitors/{id}/runs",
+      "summary": "List Monitor Runs",
+      "tags": [
+        "Monitors"
+      ],
+      "parameters": [
+        {
+          "description": "The unique identifier of the monitor.",
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema": {
+            "description": "The unique identifier of the monitor.",
+            "title": "Id",
+            "type": "integer"
+          }
+        },
+        {
+          "description": "The page number to retrieve.",
+          "in": "query",
+          "name": "page",
+          "required": false,
+          "schema": {
+            "default": 1,
+            "description": "The page number to retrieve.",
+            "title": "Page",
+            "type": "integer"
+          }
+        },
+        {
+          "description": "The number of items to retrieve per page.",
+          "in": "query",
+          "name": "page_size",
+          "required": false,
+          "schema": {
+            "default": 10,
+            "description": "The number of items to retrieve per page.",
+            "title": "Page Size",
+            "type": "integer"
+          }
+        },
+        {
+          "description": "Include runs with a timestamp >= this value.",
+          "in": "query",
+          "name": "start_time",
+          "required": false,
+          "schema": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Include runs with a timestamp >= this value.",
+            "title": "Start Time"
+          }
+        },
+        {
+          "description": "Include runs with a timestamp <= this value.",
+          "in": "query",
+          "name": "end_time",
+          "required": false,
+          "schema": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Include runs with a timestamp <= this value.",
+            "title": "End Time"
+          }
+        }
+      ],
+      "description": ""
+    },
+    {
+      "operationId": "get_monitor_run_api_v1_monitors__id__runs__run_id__get",
+      "method": "GET",
+      "path": "/api/v1/monitors/{id}/runs/{run_id}",
+      "summary": "Get Monitor Run",
+      "tags": [
+        "Monitors"
+      ],
+      "parameters": [
+        {
+          "description": "The unique identifier of the run to retrieve.",
+          "in": "path",
+          "name": "run_id",
+          "required": true,
+          "schema": {
+            "description": "The unique identifier of the run to retrieve.",
+            "title": "Run Id",
+            "type": "integer"
+          }
+        },
+        {
+          "description": "The unique identifier of the monitor associated with the run.",
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema": {
+            "description": "The unique identifier of the monitor associated with the run.",
+            "title": "Id",
+            "type": "integer"
+          }
+        }
+      ],
+      "description": ""
+    }
+  ]
+}

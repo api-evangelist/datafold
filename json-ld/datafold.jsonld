@@ -1,0 +1,110 @@
+{
+  "@context": {
+    "@vocab": "https://schema.datafold.com/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "datafold": "https://docs.datafold.com/",
+    "DataDiff": {
+      "@id": "datafold:DataDiff",
+      "@type": "@id"
+    },
+    "DataSource": {
+      "@id": "datafold:DataSource",
+      "@type": "@id"
+    },
+    "Monitor": {
+      "@id": "datafold:Monitor",
+      "@type": "@id"
+    },
+    "CIRun": {
+      "@id": "datafold:CIRun",
+      "@type": "@id"
+    },
+    "AuditLog": {
+      "@id": "datafold:AuditLog",
+      "@type": "@id"
+    },
+    "ColumnProfile": {
+      "@id": "datafold:ColumnProfile",
+      "@type": "@id"
+    },
+    "id": "@id",
+    "type": "@type",
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "createdAt": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updatedAt": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "status": "datafold:status",
+    "dataSource1": {
+      "@id": "datafold:dataSource1",
+      "@type": "@id"
+    },
+    "dataSource2": {
+      "@id": "datafold:dataSource2",
+      "@type": "@id"
+    },
+    "table1": "datafold:table1",
+    "table2": "datafold:table2",
+    "rowsAdded": "datafold:rowsAdded",
+    "rowsRemoved": "datafold:rowsRemoved",
+    "rowsModified": "datafold:rowsModified",
+    "columnsModified": "datafold:columnsModified",
+    "connectionType": "datafold:connectionType",
+    "host": "datafold:host",
+    "port": "datafold:port",
+    "database": "datafold:database",
+    "schedule": "datafold:schedule",
+    "threshold": "datafold:threshold",
+    "anomalyScore": "datafold:anomalyScore",
+    "prNumber": "datafold:prNumber",
+    "branch": "datafold:branch",
+    "commitHash": "datafold:commitHash"
+  },
+  "@type": "schema:APIReference",
+  "schema:name": "Datafold API",
+  "schema:version": "latest",
+  "schema:description": "The Datafold API reference is a guide to our available endpoints and authentication methods.\nIf you're just getting started with Datafold, we recommend first checking out our [documentation](https://docs.datafold.com).\n\n:::info\n  To use the Datafold API, you should first create a Datafold API Key,\n  which should be stored as a local environment variable named DATAFOLD_API_KEY.\n  This can be set in your Datafold Cloud's Settings under the Account page.\n:::",
+  "schema:url": "https://docs.datafold.com/api-reference/introduction",
+  "schema:documentation": "https://docs.datafold.com",
+  "datafold:openApiSpec": "https://docs.datafold.com/openapi-public.json",
+  "datafold:baseUrl": "https://app.datafold.com",
+  "datafold:pathCount": 47,
+  "datafold:schemaCount": 196,
+  "datafold:apiEntities": [
+    {
+      "@type": "DataDiff",
+      "schema:name": "Data Diff",
+      "schema:description": "Comparison between two dataset versions"
+    },
+    {
+      "@type": "DataSource",
+      "schema:name": "Data Source",
+      "schema:description": "Database connection (Snowflake, BigQuery, Redshift, etc.)"
+    },
+    {
+      "@type": "Monitor",
+      "schema:name": "Monitor",
+      "schema:description": "Automated data quality check with anomaly detection"
+    },
+    {
+      "@type": "CIRun",
+      "schema:name": "CI Run",
+      "schema:description": "CI/CD pipeline validation run"
+    },
+    {
+      "@type": "AuditLog",
+      "schema:name": "Audit Log",
+      "schema:description": "Record of platform actions for compliance"
+    }
+  ]
+}
