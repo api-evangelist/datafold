@@ -1,0 +1,74 @@
+name: Datafold Plans and Pricing
+description: Datafold uses a quote-based pricing model tied to data sources, data volume, and deployment model rather than per-seat licensing. No free tier or free trial is available.
+url: https://www.datafold.com/contact-us
+plans:
+
+  - name: Datafold Cloud
+    description: Fully managed SaaS deployment of the Datafold data reliability platform including data diffs, column-level lineage, anomaly detection, CI/CD integration, and schema change alerts.
+    type: paid
+    pricing_model: quote_based
+    billing_cycle: annual
+    pricing_range:
+      low: 30000
+      high: 75000
+      currency: USD
+    features:
+      - Automated data diffs
+      - CI/CD integration
+      - Column-level lineage tracking
+      - Real-time anomaly detection
+      - Schema change alerts
+      - SOC 2 Type 2 compliance
+      - HIPAA and GDPR compliant
+      - REST API access
+      - Python SDK access
+      - Up to 5 API keys per individual user
+      - Up to 50 API keys per organization (service accounts)
+    api_access: true
+    notes: Multi-year commitments unlock 15–25% discounts. Premium support adds 15–25% to contract value.
+
+  - name: Datafold Self-Hosted
+    description: Self-hosted deployment on your own AWS, GCP, or Azure infrastructure with full data residency control.
+    type: paid
+    pricing_model: quote_based
+    billing_cycle: annual
+    pricing_range:
+      low: 50000
+      high: 120000
+      currency: USD
+    features:
+      - All Datafold Cloud features
+      - Full data residency control
+      - Single tenant/VPC deployment
+      - AWS, GCP, or Azure deployment
+      - Infrastructure management by your ops team
+      - Terraform modules available
+      - Helm charts for Kubernetes
+      - SOC 2 Type 2 compliance
+      - HIPAA and GDPR compliant
+      - REST API access
+      - Python SDK access
+    api_access: true
+    notes: Additional compute/storage costs of $10,000+ annually required. Migration agent available as a fixed-price add-on.
+
+  - name: Standalone Modules
+    description: Individual modules such as migration validation and column-level lineage available as standalone purchases.
+    type: paid
+    pricing_model: quote_based
+    billing_cycle: annual
+    features:
+      - Migration validation (standalone)
+      - Column-level lineage (standalone)
+      - AI-powered code translation
+    api_access: true
+    notes: Contact Datafold sales for standalone module pricing.
+
+market_range:
+  median_contract_value: 18000
+  typical_mid_market_range:
+    low: 10000
+    high: 30000
+    currency: USD
+  enterprise_range:
+    can_exceed: 150000
+    currency: USD

@@ -1,0 +1,29 @@
+name: Datafold Rate Limits
+description: Datafold REST API rate limit details. Datafold does not publicly document specific rate limits in their API reference documentation. Known limits relate to API key quotas per account type.
+url: https://docs.datafold.com/api-reference/introduction
+
+api_key_limits:
+  individual_users:
+    max_keys: 5
+    notes: Personal API keys for individual Datafold accounts
+  service_accounts:
+    max_keys_per_organization: 50
+    notes: Service accounts are recommended for CI pipelines, dbt jobs, and automation scripts. Keys persist when team members leave.
+
+authentication:
+  method: API Key
+  header: Authorization
+  format: "Key {API_KEY}"
+  base_url: https://app.datafold.com/api/v1/
+  key_storage: DATAFOLD_API_KEY environment variable recommended
+  key_creation: Settings > Account in Datafold app
+
+http_status_codes:
+  - code: 200
+    meaning: Successful request
+  - code: 422
+    meaning: Validation error in request parameters
+
+rate_limit_policy:
+  documented: false
+  notes: Datafold does not publicly publish specific per-minute or per-hour rate limits in their API documentation as of June 2026. Contact Datafold support for enterprise rate limit details.

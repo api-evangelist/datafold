@@ -1,0 +1,59 @@
+name: Datafold FinOps
+description: Financial operations guidance for managing Datafold API and platform costs. Datafold uses annual quote-based contracts; cost optimization focuses on contract negotiation, deployment choice, and data source scoping.
+url: https://www.datafold.com/contact-us
+
+cost_drivers:
+  - name: Number of Data Sources
+    description: Pricing scales with how many data sources (warehouses, databases) are connected to Datafold.
+    optimization: Limit connections to production-critical data sources; remove unused or test data sources.
+
+  - name: Data Volume Under Management
+    description: The volume of data being diffed, monitored, and tracked for lineage affects contract cost.
+    optimization: Use sampling_ratio parameter in data diff API calls to reduce compute costs for large tables during development.
+
+  - name: Deployment Model
+    description: Cloud-hosted vs. self-hosted has a significant cost differential.
+    optimization: Self-hosted ($50k–$120k/yr) has higher base cost but avoids data egress charges; cloud ($30k–$75k/yr) reduces operational overhead. Choose based on data residency requirements and team capacity.
+
+  - name: Contract Term
+    description: Annual contract length affects pricing.
+    optimization: Multi-year commitments (2–3 years) unlock 15–25% discounts from list price.
+
+  - name: Premium Support
+    description: Premium support tier adds 15–25% to base contract value.
+    optimization: Evaluate whether standard support meets your SLA needs before adding premium support.
+
+  - name: Additional Compute (Self-Hosted)
+    description: Self-hosted deployments require additional cloud compute and storage ($10,000+/yr).
+    optimization: Right-size Kubernetes cluster using Helm chart resource configurations; use spot/preemptible instances where possible.
+
+cost_optimization_strategies:
+  - name: API Key Governance
+    description: Use service accounts rather than individual API keys for automation to stay within limits and maintain access continuity.
+    impact: Operational continuity, no direct cost impact.
+
+  - name: Diff Sampling
+    description: Use the sampling_ratio parameter in the data diff API to sample subsets of large tables during development, reserving full diffs for production gates.
+    impact: Reduces query compute costs on connected data warehouses.
+
+  - name: Selective Column Comparison
+    description: Use columns_to_compare or exclude_columns parameters to scope diffs to business-critical columns only.
+    impact: Reduces compute time and warehouse costs for large tables.
+
+  - name: Materialization Control
+    description: Use materialize_dataset1/materialize_dataset2 flags strategically; avoid unnecessary pre-materialization of large datasets.
+    impact: Reduces warehouse compute costs.
+
+  - name: Standalone Module Evaluation
+    description: Evaluate whether standalone modules (migration validation, column-level lineage) meet your needs before purchasing the full platform.
+    impact: Potentially significant cost reduction for targeted use cases.
+
+  - name: Contract Negotiation
+    description: Median contract value ($18k) is well below the published range floor ($30k). Negotiate based on actual data source count and volume requirements.
+    impact: Potential 40–50% reduction from list price for smaller teams.
+
+billing_notes:
+  - Datafold pricing page redirects to a contact form; all pricing requires a sales conversation.
+  - No free trial or free tier is available.
+  - Individual modules (migration validation, column-level lineage) can be purchased separately.
+  - Pricing is based on data sources, volume, deployment model, and contract term.

@@ -1,0 +1,72 @@
+aid: datafold
+name: Datafold
+description: Datafold is a data reliability platform providing a REST API for running data diffs, monitoring column-level lineage, validating data pipelines, and detecting data regressions before deployment. It supports CI/CD integration, automated anomaly detection, schema change alerts, and cross-database comparison across major cloud data warehouses.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/datafold/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - Data Reliability
+  - Data Diff
+  - Data Quality
+  - Column-Level Lineage
+  - Data Pipelines
+  - CI/CD Integration
+  - Anomaly Detection
+  - Data Observability
+  - Data Migrations
+
+apis:
+
+  - aid: datafold:datafold-rest-api
+    name: Datafold REST API
+    description: The Datafold REST API provides programmatic access to data diffs, data sources, CI runs, BI integrations, audit logs, and monitors. Authenticate using an API key passed as a header. The API enables creating and retrieving data diffs, managing data sources, listing CI pipeline runs, and accessing audit logs.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://docs.datafold.com/developer/datafold-api
+    baseURL: https://app.datafold.com/api/v1/
+    tags:
+      - Data Diff
+      - Data Sources
+      - CI/CD
+      - Lineage
+      - Audit Logs
+      - BI Integration
+    properties:
+      - type: Documentation
+        url: https://docs.datafold.com/developer/datafold-api
+      - type: OpenAPI
+        url: https://docs.datafold.com/api-reference/introduction
+      - type: Authentication
+        url: https://docs.datafold.com/api-reference/introduction
+    contact:
+      - FN: Datafold Support
+        url: https://www.datafold.com/contact-us
+
+common:
+  - type: Website
+    url: https://www.datafold.com
+  - type: Documentation
+    url: https://docs.datafold.com
+  - type: GitHubOrg
+    url: https://github.com/datafold
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/datafold/
+  - type: Blog
+    url: https://www.datafold.com/blog
+  - type: Pricing
+    url: https://www.datafold.com/contact-us
+  - type: StatusPage
+    url: https://status.datafold.com
+  - type: X
+    url: https://x.com/datafoldcom
+  - type: Plans
+    url: plans/datafold-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/datafold-rate-limits.yml
+  - type: FinOps
+    url: finops/datafold-finops.yml
+
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
