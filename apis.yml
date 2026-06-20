@@ -1,7 +1,7 @@
 aid: datafold
 name: Datafold
 description: Datafold is a data reliability platform providing a REST API for running data diffs, monitoring column-level lineage, validating data pipelines, and detecting data regressions before deployment. It supports CI/CD integration, automated anomaly detection, schema change alerts, and cross-database comparison across major cloud data warehouses.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/datafold/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -22,7 +22,7 @@ apis:
   - aid: datafold:datafold-rest-api
     name: Datafold REST API
     description: The Datafold REST API provides programmatic access to data diffs, data sources, CI runs, BI integrations, audit logs, and monitors. Authenticate using an API key passed as a header. The API enables creating and retrieving data diffs, managing data sources, listing CI pipeline runs, and accessing audit logs.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://docs.datafold.com/developer/datafold-api
     baseURL: https://app.datafold.com/api/v1/
     tags:
