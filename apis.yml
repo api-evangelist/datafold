@@ -44,6 +44,12 @@ apis:
         url: https://www.datafold.com/contact-us
 
 common:
+  - type: TrustCenter
+    url: security/datafold-trust-center.yml
+  - type: DomainSecurity
+    url: security/datafold-domain-security.yml
+  - type: Authentication
+    url: authentication/datafold-authentication.yml
   - type: Website
     url: https://www.datafold.com
   - type: Documentation
