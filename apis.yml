@@ -44,6 +44,8 @@ apis:
         url: https://www.datafold.com/contact-us
 
 common:
+  - type: AgenticAccess
+    url: agentic-access/datafold-agentic-access.yml
   - type: TrustCenter
     url: security/datafold-trust-center.yml
   - type: DomainSecurity
