@@ -1,0 +1,75 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: support@datafold.com
+    name: API Support
+  description: "The Datafold API reference is a guide to our available endpoints and authentication methods.\nIf you're just getting started with Datafold, we recommend first checking out our [documentation](https://docs.datafold.com).\n\n:::info\n  To use the Datafold API, you should first create a Datafold API Key,\n  which should be stored as a local environment variable named DATAFOLD_API_KEY.\n  This can be set in your Datafold Cloud's Settings under the Account page.\n:::"
+  title: Datafold Audit Logs bolt API
+  version: latest
+servers:
+- description: Default server
+  url: https://app.datafold.com
+security:
+- ApiKeyAuth: []
+tags:
+- name: bolt
+paths:
+  /api/internal/bolt/org/spend:
+    get:
+      description: Daily/monthly LLM spend + effective caps for the caller's org.
+      operationId: get_org_spend_api_internal_bolt_org_spend_get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrgSpend'
+          description: Successful Response
+      summary: Get Org Spend
+      tags:
+      - bolt
+components:
+  schemas:
+    OrgSpend:
+      properties:
+        daily_cap_usd:
+          anyOf:
+          - type: number
+          - pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+            type: string
+          title: Daily Cap Usd
+        daily_spend_usd:
+          anyOf:
+          - type: number
+          - pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+            type: string
+          title: Daily Spend Usd
+        enforced:
+          title: Enforced
+          type: boolean
+        monthly_cap_usd:
+          anyOf:
+          - type: number
+          - pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+            type: string
+          title: Monthly Cap Usd
+        monthly_spend_usd:
+          anyOf:
+          - type: number
+          - pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+            type: string
+          title: Monthly Spend Usd
+      required:
+      - daily_spend_usd
+      - daily_cap_usd
+      - monthly_spend_usd
+      - monthly_cap_usd
+      - enforced
+      title: OrgSpend
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      description: Use the 'Authorization' header with the format 'Key <api-key>'
+      in: header
+      name: Authorization
+      type: apiKey

@@ -1,0 +1,2738 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: support@datafold.com
+    name: API Support
+  description: "The Datafold API reference is a guide to our available endpoints and authentication methods.\nIf you're just getting started with Datafold, we recommend first checking out our [documentation](https://docs.datafold.com).\n\n:::info\n  To use the Datafold API, you should first create a Datafold API Key,\n  which should be stored as a local environment variable named DATAFOLD_API_KEY.\n  This can be set in your Datafold Cloud's Settings under the Account page.\n:::"
+  title: Datafold Audit Logs Monitors API
+  version: latest
+servers:
+- description: Default server
+  url: https://app.datafold.com
+security:
+- ApiKeyAuth: []
+tags:
+- name: Monitors
+paths:
+  /api/v1/monitors:
+    get:
+      operationId: list_monitors_api_v1_monitors_get
+      parameters:
+      - description: The page number to retrieve.
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          description: The page number to retrieve.
+          title: Page
+          type: integer
+      - description: The number of items to retrieve per page.
+        in: query
+        name: page_size
+        required: false
+        schema:
+          default: 20
+          description: The number of items to retrieve per page.
+          title: Page Size
+          type: integer
+      - description: Field to order the monitors by.
+        in: query
+        name: order_by
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/SortableFields'
+          - type: 'null'
+          description: Field to order the monitors by.
+          title: Order By
+      - description: Specify the order direction for the monitors.
+        in: query
+        name: sort_order
+        required: false
+        schema:
+          default: desc
+          description: Specify the order direction for the monitors.
+          enum:
+          - asc
+          - desc
+          title: Sort Order
+          type: string
+      - description: Comma-separated tags to filter monitors by.
+        in: query
+        name: tags
+        required: false
+        schema:
+          description: Comma-separated tags to filter monitors by.
+          title: Tags
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPublicListMonitorsOut'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: List Monitors
+      tags:
+      - Monitors
+  /api/v1/monitors/create/diff:
+    post:
+      operationId: create_monitor_diff_api_v1_monitors_create_diff_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataDiffMonitorSpecPublic'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPublicCreateMonitorOut'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create a Data Diff Monitor
+      tags:
+      - Monitors
+  /api/v1/monitors/create/metric:
+    post:
+      operationId: create_monitor_metric_api_v1_monitors_create_metric_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetricMonitorSpecPublic'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPublicCreateMonitorOut'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create a Metric Monitor
+      tags:
+      - Monitors
+  /api/v1/monitors/create/schema:
+    post:
+      operationId: create_monitor_schema_api_v1_monitors_create_schema_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SchemaChangeMonitorSpecPublic'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPublicCreateMonitorOut'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create a Schema Change Monitor
+      tags:
+      - Monitors
+  /api/v1/monitors/create/test:
+    post:
+      operationId: create_monitor_test_api_v1_monitors_create_test_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataTestMonitorSpecPublic'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPublicCreateMonitorOut'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create a Data Test Monitor
+      tags:
+      - Monitors
+  /api/v1/monitors/{id}:
+    delete:
+      operationId: delete_monitor_api_v1_monitors__id__delete
+      parameters:
+      - description: The unique identifier of the monitor.
+        in: path
+        name: id
+        required: true
+        schema:
+          description: The unique identifier of the monitor.
+          title: Id
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Delete a Monitor
+      tags:
+      - Monitors
+    get:
+      operationId: get_monitor_api_v1_monitors__id__get
+      parameters:
+      - description: The unique identifier of the monitor.
+        in: path
+        name: id
+        required: true
+        schema:
+          description: The unique identifier of the monitor.
+          title: Id
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPublicGetMonitorOutFull'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Get Monitor
+      tags:
+      - Monitors
+  /api/v1/monitors/{id}/run:
+    post:
+      operationId: start_monitor_run_api_v1_monitors__id__run_post
+      parameters:
+      - description: The unique identifier of the monitor for which to start the run.
+        in: path
+        name: id
+        required: true
+        schema:
+          description: The unique identifier of the monitor for which to start the run.
+          title: Id
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPublicMonitorTriggerRunResultOut'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Trigger a run
+      tags:
+      - Monitors
+  /api/v1/monitors/{id}/runs:
+    get:
+      operationId: list_monitor_runs_api_v1_monitors__id__runs_get
+      parameters:
+      - description: The unique identifier of the monitor.
+        in: path
+        name: id
+        required: true
+        schema:
+          description: The unique identifier of the monitor.
+          title: Id
+          type: integer
+      - description: The page number to retrieve.
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          description: The page number to retrieve.
+          title: Page
+          type: integer
+      - description: The number of items to retrieve per page.
+        in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          description: The number of items to retrieve per page.
+          title: Page Size
+          type: integer
+      - description: Include runs with a timestamp >= this value.
+        in: query
+        name: start_time
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: Include runs with a timestamp >= this value.
+          title: Start Time
+      - description: Include runs with a timestamp <= this value.
+        in: query
+        name: end_time
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: Include runs with a timestamp <= this value.
+          title: End Time
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPublicListMonitorRunsOut'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: List Monitor Runs
+      tags:
+      - Monitors
+  /api/v1/monitors/{id}/runs/{run_id}:
+    get:
+      operationId: get_monitor_run_api_v1_monitors__id__runs__run_id__get
+      parameters:
+      - description: The unique identifier of the run to retrieve.
+        in: path
+        name: run_id
+        required: true
+        schema:
+          description: The unique identifier of the run to retrieve.
+          title: Run Id
+          type: integer
+      - description: The unique identifier of the monitor associated with the run.
+        in: path
+        name: id
+        required: true
+        schema:
+          description: The unique identifier of the monitor associated with the run.
+          title: Id
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPublicMonitorRunResultOut'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Get Monitor Run
+      tags:
+      - Monitors
+  /api/v1/monitors/{id}/toggle:
+    put:
+      operationId: toggle_monitor_on_off_api_v1_monitors__id__toggle_put
+      parameters:
+      - description: The unique identifier of the monitor.
+        in: path
+        name: id
+        required: true
+        schema:
+          description: The unique identifier of the monitor.
+          title: Id
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Body_toggle_monitor_on_off_api_v1_monitors__id__toggle_put'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Toggle a Monitor
+      tags:
+      - Monitors
+  /api/v1/monitors/{id}/update:
+    patch:
+      operationId: update_monitor_api_v1_monitors__id__update_patch
+      parameters:
+      - description: The unique identifier of the monitor.
+        in: path
+        name: id
+        required: true
+        schema:
+          description: The unique identifier of the monitor.
+          title: Id
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              discriminator:
+                mapping:
+                  diff: '#/components/schemas/DataDiffUpdateMonitorSpecPublic'
+                  metric: '#/components/schemas/MetricUpdateMonitorSpecPublic'
+                  schema: '#/components/schemas/SchemaChangeUpdateMonitorSpecPublic'
+                  test: '#/components/schemas/DataTestUpdateMonitorSpecPublic'
+                propertyName: type
+              oneOf:
+              - $ref: '#/components/schemas/DataDiffUpdateMonitorSpecPublic'
+              - $ref: '#/components/schemas/MetricUpdateMonitorSpecPublic'
+              - $ref: '#/components/schemas/SchemaChangeUpdateMonitorSpecPublic'
+              - $ref: '#/components/schemas/DataTestUpdateMonitorSpecPublic'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Update a Monitor
+      tags:
+      - Monitors
+components:
+  schemas:
+    CustomMetricMonitorConfig:
+      properties:
+        alert_on_missing_data:
+          default: false
+          description: Trigger alert if query returns unexpectedly few data points.
+          title: Alert On Missing Data
+          type: boolean
+        query:
+          description: The SQL query to be evaluated.
+          title: Query
+          type: string
+        type:
+          const: custom
+          default: custom
+          title: Type
+          type: string
+      required:
+      - query
+      title: Custom
+      type: object
+    SDTVariable:
+      properties:
+        quote:
+          default: true
+          title: Quote
+          type: boolean
+        value:
+          anyOf:
+          - type: string
+          - type: integer
+          - type: number
+          - items:
+              type: string
+            type: array
+          - items:
+              type: integer
+            type: array
+          - items:
+              type: number
+            type: array
+          - items:
+              anyOf:
+              - type: string
+              - type: integer
+              - type: number
+            type: array
+          title: Value
+      required:
+      - value
+      title: SDTVariable
+      type: object
+    datafold__monitors__schemas__DiffAlertCondition:
+      properties:
+        different_rows_count:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Threshold for the number of different rows allowed between the datasets.
+          title: Different Rows Count
+        different_rows_percent:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Threshold for the percentage of different rows allowed between the datasets.
+          title: Different Rows Percent
+        match_ratio_min:
+          anyOf:
+          - maximum: 1.0
+            minimum: 0.0
+            type: number
+          - type: 'null'
+          description: Minimum acceptable match ratio (0.0-1.0). Alert when match_ratio < match_ratio_min.
+          title: Match Ratio Min
+      title: Diff Conditions
+      type: object
+    ApiPublicListMonitorRunsOut:
+      properties:
+        count:
+          description: Total number of monitor runs.
+          title: Count
+          type: integer
+        page:
+          description: Current page number in the paginated result.
+          title: Page
+          type: integer
+        page_size:
+          description: Number of runs per page.
+          title: Page Size
+          type: integer
+        runs:
+          description: List of monitor runs.
+          items:
+            $ref: '#/components/schemas/ApiPublicMonitorRunOut'
+          title: Runs
+          type: array
+        total_pages:
+          description: Total number of pages available.
+          title: Total Pages
+          type: integer
+      required:
+      - count
+      - runs
+      - page
+      - page_size
+      - total_pages
+      title: ApiPublicListMonitorRunsOut
+      type: object
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          title: Location
+          type: array
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+      type: object
+    ApiPublicMonitorRunResultOut:
+      properties:
+        diff_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Unique identifier for the associated datadiff.
+          title: Diff Id
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Error message if the run encountered an error.
+          title: Error
+        monitor_id:
+          description: Unique identifier for the associated monitor.
+          title: Monitor Id
+          type: integer
+        run_id:
+          description: Unique identifier for the monitor run result.
+          title: Run Id
+          type: integer
+        started_at:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: Timestamp when the monitor run started.
+          title: Started At
+        state:
+          $ref: '#/components/schemas/MonitorRunState'
+          description: Current state of the monitor run result.
+        warnings:
+          description: List of warning messages generated during the run.
+          items:
+            type: string
+          title: Warnings
+          type: array
+      required:
+      - run_id
+      - monitor_id
+      - state
+      - warnings
+      title: ApiPublicMonitorRunResultOut
+      type: object
+    ColumnMetricAlias:
+      enum:
+      - minimum
+      - maximum
+      - std_dev
+      - cardinality
+      - uniqueness
+      - median
+      - average
+      - sum
+      - fill_rate
+      title: ColumnMetricAlias
+      type: string
+    InMemDataDiffConfig:
+      properties:
+        column_remapping:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          description: Mapping of columns from one dataset to another for comparison.
+          title: Column Remapping
+        column_rules:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ColumnRule'
+            type: array
+          - type: 'null'
+          description: Extra equality clauses that extend the in-memory diff value comparator. Useful for treating specific value pairs (e.g. legacy sentinels vs NULL) as non-differences. See `ColumnRule` for entry shape.
+          title: Column Rules
+        columns_to_compare:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          description: Optional list of columns to compare between the datasets.
+          title: Columns To Compare
+        compare_duplicates:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Compare rows with duplicate primary keys. Defaults to true.
+          title: Compare Duplicates
+        dataset_a:
+          anyOf:
+          - $ref: '#/components/schemas/XdbTableDataset'
+          - $ref: '#/components/schemas/XdbQueryDataset'
+          description: The first dataset to compare.
+          title: Dataset A
+        dataset_b:
+          anyOf:
+          - $ref: '#/components/schemas/XdbTableDataset'
+          - $ref: '#/components/schemas/XdbQueryDataset'
+          description: The second dataset to compare.
+          title: Dataset B
+        exclude_columns:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          description: Columns to exclude from the comparison. InDb diffs accept gitignore-style patterns (e.g. '*_ts'); InMem diffs require exact column names. Primary-key columns are never excluded.
+          title: Exclude Columns
+        ignore_string_case:
+          default: false
+          description: Indicates whether to ignore case differences in string comparisons.
+          title: Ignore String Case
+          type: boolean
+        include_columns:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          description: Columns to include in the comparison. InDb diffs accept gitignore-style patterns (e.g. '*_ts'); InMem diffs require exact column names. Alias of columns_to_compare; set only one.
+          title: Include Columns
+        materialize_results:
+          default: false
+          description: Indicates whether to materialize the results of the comparison.
+          title: Materialize Results
+          type: boolean
+        materialize_results_to:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Identifier for the destination where results should be materialized.
+          title: Materialize Results To
+        null_equals_empty_string:
+          default: false
+          description: Treat NULL and empty string ('') as equal in string comparisons and PK joins.
+          title: Null Equals Empty String
+          type: boolean
+        primary_key:
+          description: List of columns that make up the primary key for the datasets.
+          items:
+            type: string
+          title: Primary Key
+          type: array
+        sampling:
+          anyOf:
+          - $ref: '#/components/schemas/ToleranceBasedSampling'
+          - $ref: '#/components/schemas/PercentageSampling'
+          - $ref: '#/components/schemas/MaxRowsSampling'
+          - type: 'null'
+          description: Sampling configuration for the data comparison.
+          title: Sampling
+        sort_array_columns:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Sort array elements before comparison to ignore insertion order differences.
+          title: Sort Array Columns
+        tolerance:
+          anyOf:
+          - $ref: '#/components/schemas/DataDiffToleranceConfig'
+          - type: 'null'
+          description: Configuration for tolerance.
+      required:
+      - primary_key
+      - dataset_a
+      - dataset_b
+      title: In-Memory
+      type: object
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          title: Detail
+          type: array
+      title: HTTPValidationError
+      type: object
+    HourIntervalSchedule:
+      properties:
+        every:
+          const: hour
+          title: Every
+          type: string
+        type:
+          const: hourly
+          default: hourly
+          title: Type
+          type: string
+      required:
+      - every
+      title: Hour
+      type: object
+    EmailNotification:
+      properties:
+        features:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/DestinationFeatures'
+            type: array
+          - type: 'null'
+          description: A list of features to enable for this notification.
+          title: Features
+        recipients:
+          description: A list of email addresses to receive the notification.
+          items:
+            type: string
+          title: Recipients
+          type: array
+        type:
+          const: email
+          default: email
+          title: Type
+          type: string
+      required:
+      - recipients
+      title: Email
+      type: object
+    BaseTableMetricMonitorConfig:
+      properties:
+        filter:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Filter condition to evaluate.
+          title: Filter
+        metric:
+          anyOf:
+          - $ref: '#/components/schemas/TableMetricAlias'
+          description: The table metric configuration.
+        table:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The name of the table.
+          title: Table
+        type:
+          const: table
+          default: table
+          title: Type
+          type: string
+      required:
+      - metric
+      title: Table
+      type: object
+    XdbQueryDataset:
+      properties:
+        connection_id:
+          description: The identifier for the data source configuration.
+          title: Connection Id
+          type: integer
+        materialize:
+          default: true
+          description: Indicates whether to materialize the dataset.
+          title: Materialize
+          type: boolean
+        query:
+          description: The SQL query to be evaluated.
+          title: Query
+          type: string
+        session_parameters:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          description: Parameters for the database session.
+          title: Session Parameters
+      required:
+      - connection_id
+      - query
+      title: Query
+      type: object
+    MetricUpdateMonitorSpecPublic:
+      properties:
+        alert:
+          anyOf:
+          - discriminator:
+              mapping:
+                absolute: '#/components/schemas/AbsoluteThreshold'
+                automatic: '#/components/schemas/AnomalyDetectionThreshold'
+                percentage: '#/components/schemas/PercentageThreshold'
+              propertyName: type
+            oneOf:
+            - $ref: '#/components/schemas/AnomalyDetectionThreshold'
+            - $ref: '#/components/schemas/AbsoluteThreshold'
+            - $ref: '#/components/schemas/PercentageThreshold'
+          - type: 'null'
+          description: Condition for triggering alerts.
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The description of the monitor.
+          title: Description
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The name of the monitor.
+          title: Name
+        notifications:
+          description: Notification configuration for the monitor.
+          items:
+            discriminator:
+              mapping:
+                email: '#/components/schemas/EmailNotification'
+                pagerduty: '#/components/schemas/PagerDutyNotification'
+                slack: '#/components/schemas/SlackNotification'
+                teams: '#/components/schemas/TeamsNotification'
+                webhook: '#/components/schemas/WebhookNotification'
+              propertyName: type
+            oneOf:
+            - $ref: '#/components/schemas/EmailNotification'
+            - $ref: '#/components/schemas/PagerDutyNotification'
+            - $ref: '#/components/schemas/WebhookNotification'
+            - $ref: '#/components/schemas/SlackNotification'
+            - $ref: '#/components/schemas/TeamsNotification'
+          title: Notifications
+          type: array
+        owner:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Email of the monitor owner.
+          title: Owner
+        schedule:
+          anyOf:
+          - $ref: '#/components/schemas/IntervalSchedule'
+          - $ref: '#/components/schemas/CronSchedule'
+          - $ref: '#/components/schemas/NoneSchedule'
+          - type: 'null'
+          description: The schedule at which the monitor runs.
+        tags:
+          description: Tags associated with the monitor.
+          items:
+            type: string
+          title: Tags
+          type: array
+        type:
+          const: metric
+          description: The type of monitor.
+          title: Type
+          type: string
+      required:
+      - type
+      title: Metric
+      type: object
+    PagerDutyNotification:
+      properties:
+        features:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/DestinationFeatures'
+            type: array
+          - type: 'null'
+          description: A list of features to enable for this notification.
+          title: Features
+        integration:
+          description: The identifier for the integration.
+          title: Integration
+          type: integer
+        type:
+          const: pagerduty
+          default: pagerduty
+          title: Type
+          type: string
+      required:
+      - integration
+      title: PagerDuty
+      type: object
+    AnomalyDetectionThreshold:
+      properties:
+        sensitivity:
+          description: Sensitivity level for anomaly detection, ranging from 0 to 100.
+          maximum: 100.0
+          minimum: 0.0
+          title: Sensitivity
+          type: integer
+        type:
+          const: automatic
+          title: Type
+          type: string
+      required:
+      - type
+      - sensitivity
+      title: Anomaly Detection
+      type: object
+    ApiPublicGetMonitorOut:
+      properties:
+        created_at:
+          description: Timestamp when the monitor was created.
+          format: date-time
+          title: Created At
+          type: string
+        enabled:
+          description: Indicates whether the monitor is enabled.
+          title: Enabled
+          type: boolean
+        id:
+          description: Unique identifier for the monitor.
+          title: Id
+          type: integer
+        last_alert:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: Timestamp of the last alert.
+          title: Last Alert
+        last_run:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: Timestamp of the last monitor run.
+          title: Last Run
+        modified_at:
+          description: Timestamp when the monitor was last modified.
+          format: date-time
+          title: Modified At
+          type: string
+        monitor_type:
+          anyOf:
+          - enum:
+            - diff
+            - metric
+            - schema
+            - test
+            type: string
+          - type: 'null'
+          description: Type of the monitor.
+          title: Monitor Type
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Name of the monitor.
+          title: Name
+        owner:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Email of the monitor owner.
+          title: Owner
+        state:
+          anyOf:
+          - $ref: '#/components/schemas/MonitorRunState'
+          - type: 'null'
+          description: Current state of the monitor run.
+        tags:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          description: Tags associated with the monitor.
+          title: Tags
+      required:
+      - id
+      - name
+      - monitor_type
+      - created_at
+      - modified_at
+      - enabled
+      title: ApiPublicGetMonitorOut
+      type: object
+    AbsoluteThreshold:
+      properties:
+        max:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Maximum value for the absolute threshold.
+          title: Max
+        min:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Minimum value for the absolute threshold.
+          title: Min
+        type:
+          const: absolute
+          title: Type
+          type: string
+      required:
+      - type
+      title: Absolute
+      type: object
+    NoneSchedule:
+      properties:
+        type:
+          const: none
+          default: none
+          title: Type
+          type: string
+      title: None
+      type: object
+    ApiPublicCreateMonitorOut:
+      properties:
+        id:
+          description: Unique identifier for the monitor.
+          title: Id
+          type: integer
+      required:
+      - id
+      title: ApiPublicCreateMonitorOut
+      type: object
+    DataDiffUpdateMonitorSpecPublic:
+      properties:
+        alert:
+          anyOf:
+          - $ref: '#/components/schemas/datafold__monitors__schemas__DiffAlertCondition'
+          - type: 'null'
+          description: Condition for triggering alerts based on the data diff.
+        datadiff:
+          anyOf:
+          - discriminator:
+              mapping:
+                indb: '#/components/schemas/InDbUpdateDataDiffConfig'
+                inmem: '#/components/schemas/InMemUpdateDataDiffConfig'
+              propertyName: diff_type
+            oneOf:
+            - $ref: '#/components/schemas/InDbUpdateDataDiffConfig'
+            - $ref: '#/components/schemas/InMemUpdateDataDiffConfig'
+          - type: 'null'
+          description: Configuration for the data diff.
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The description of the monitor.
+          title: Description
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The name of the monitor.
+          title: Name
+        notifications:
+          description: Notification configuration for the monitor.
+          items:
+            discriminator:
+              mapping:
+                email: '#/components/schemas/EmailNotification'
+                pagerduty: '#/components/schemas/PagerDutyNotification'
+                slack: '#/components/schemas/SlackNotification'
+                teams: '#/components/schemas/TeamsNotification'
+                webhook: '#/components/schemas/WebhookNotification'
+              propertyName: type
+            oneOf:
+            - $ref: '#/components/schemas/EmailNotification'
+            - $ref: '#/components/schemas/PagerDutyNotification'
+            - $ref: '#/components/schemas/WebhookNotification'
+            - $ref: '#/components/schemas/SlackNotification'
+            - $ref: '#/components/schemas/TeamsNotification'
+          title: Notifications
+          type: array
+        owner:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Email of the monitor owner.
+          title: Owner
+        schedule:
+          anyOf:
+          - $ref: '#/components/schemas/IntervalSchedule'
+          - $ref: '#/components/schemas/CronSchedule'
+          - $ref: '#/components/schemas/NoneSchedule'
+          - type: 'null'
+          description: The schedule at which the monitor runs.
+        tags:
+          description: Tags associated with the monitor.
+          items:
+            type: string
+          title: Tags
+          type: array
+        type:
+          const: diff
+          description: The type of monitor.
+          title: Type
+          type: string
+      required:
+      - type
+      title: Diff
+      type: object
+    PercentageSampling:
+      properties:
+        rate:
+          description: The sampling rate as a percentage.
+          title: Rate
+          type: number
+        threshold:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Threshold for triggering actions based on sampling.
+          title: Threshold
+      required:
+      - rate
+      title: Percentage
+      type: object
+    Body_toggle_monitor_on_off_api_v1_monitors__id__toggle_put:
+      properties:
+        enabled:
+          description: Indicate whether to enable or disable the monitor.
+          title: Enabled
+          type: boolean
+      required:
+      - enabled
+      title: Body_toggle_monitor_on_off_api_v1_monitors__id__toggle_put
+      type: object
+    ToleranceBasedSampling:
+      properties:
+        confidence:
+          description: The confidence level for the sampling results.
+          title: Confidence
+          type: number
+        threshold:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Threshold for triggering actions based on sampling.
+          title: Threshold
+        tolerance:
+          description: The allowable margin of error for sampling.
+          title: Tolerance
+          type: number
+      required:
+      - tolerance
+      - confidence
+      title: Tolerance
+      type: object
+    InDbTableDataset:
+      properties:
+        connection_id:
+          description: The identifier for the data source configuration.
+          title: Connection Id
+          type: integer
+        filter:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Filter condition for querying the dataset.
+          title: Filter
+        session_parameters:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          description: Session parameters for the database session.
+          title: Session Parameters
+        table:
+          description: The table in the format 'db.schema.table'.
+          title: Table
+          type: string
+        time_travel_point:
+          anyOf:
+          - type: string
+          - type: integer
+          - type: 'null'
+          description: Point in time for querying historical data.
+          title: Time Travel Point
+      required:
+      - connection_id
+      - table
+      title: Table
+      type: object
+    ApiPublicGetMonitorOutFull:
+      properties:
+        alert:
+          anyOf:
+          - discriminator:
+              mapping:
+                absolute: '#/components/schemas/AbsoluteThreshold'
+                automatic: '#/components/schemas/AnomalyDetectionThreshold'
+                diff: '#/components/schemas/datafold__api__v1__monitors__DiffAlertCondition'
+                percentage: '#/components/schemas/PercentageThreshold'
+              propertyName: type
+            oneOf:
+            - $ref: '#/components/schemas/datafold__api__v1__monitors__DiffAlertCondition'
+            - $ref: '#/components/schemas/AnomalyDetectionThreshold'
+            - $ref: '#/components/schemas/AbsoluteThreshold'
+            - $ref: '#/components/schemas/PercentageThreshold'
+          - type: 'null'
+          description: Condition for triggering alerts based on the data diff.
+        created_at:
+          description: Timestamp when the monitor was created.
+          format: date-time
+          title: Created At
+          type: string
+        dataset:
+          description: Dataset configuration for the monitor.
+          items:
+            $ref: '#/components/schemas/MonitorDataset'
+          title: Dataset
+          type: array
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The description of the monitor.
+          title: Description
+        enabled:
+          description: Indicates whether the monitor is enabled.
+          title: Enabled
+          type: boolean
+        id:
+          description: Unique identifier for the monitor.
+          title: Id
+          type: integer
+        last_alert:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: Timestamp of the last alert.
+          title: Last Alert
+        last_run:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: Timestamp of the last monitor run.
+          title: Last Run
+        modified_at:
+          description: Timestamp when the monitor was last modified.
+          format: date-time
+          title: Modified At
+          type: string
+        monitor_type:
+          anyOf:
+          - enum:
+            - diff
+            - metric
+            - schema
+            - test
+            type: string
+          - type: 'null'
+          description: Type of the monitor.
+          title: Monitor Type
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Name of the monitor.
+          title: Name
+        notifications:
+          description: Notification configuration for the monitor.
+          items:
+            discriminator:
+              mapping:
+                email: '#/components/schemas/EmailNotification'
+                pagerduty: '#/components/schemas/PagerDutyNotification'
+                slack: '#/components/schemas/SlackNotification'
+                teams: '#/components/schemas/TeamsNotification'
+                webhook: '#/components/schemas/WebhookNotification'
+              propertyName: type
+            oneOf:
+            - $ref: '#/components/schemas/EmailNotification'
+            - $ref: '#/components/schemas/PagerDutyNotification'
+            - $ref: '#/components/schemas/WebhookNotification'
+            - $ref: '#/components/schemas/SlackNotification'
+            - $ref: '#/components/schemas/TeamsNotification'
+          title: Notifications
+          type: array
+        owner:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Email of the monitor owner.
+          title: Owner
+        schedule:
+          anyOf:
+          - $ref: '#/components/schemas/IntervalSchedule'
+          - $ref: '#/components/schemas/CronSchedule'
+          - $ref: '#/components/schemas/NoneSchedule'
+          description: The schedule at which the monitor runs.
+        state:
+          anyOf:
+          - $ref: '#/components/schemas/MonitorRunState'
+          - type: 'null'
+          description: Current state of the monitor run.
+        tags:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          description: Tags associated with the monitor.
+          title: Tags
+      required:
+      - id
+      - name
+      - monitor_type
+      - created_at
+      - modified_at
+      - enabled
+      - schedule
+      title: ApiPublicGetMonitorOutFull
+      type: object
+    MonitorDataset:
+      properties:
+        column:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The column of the table.
+          title: Column
+        connection_id:
+          description: The identifier for the data source configuration.
+          title: Connection Id
+          type: integer
+        filter:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Filter condition being evaluated.
+          title: Filter
+        metric:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The column metric configuration.
+          title: Metric
+        query:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The SQL query being evaluated.
+          title: Query
+        table:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The name of the table.
+          title: Table
+      required:
+      - connection_id
+      title: MonitorDataset
+      type: object
+    AbsoluteColumnTolerance:
+      properties:
+        type:
+          const: absolute
+          default: absolute
+          description: The type of Column Tolerance.
+          title: Type
+          type: string
+        value:
+          description: Value of Column Tolerance.
+          title: Value
+          type: number
+      required:
+      - value
+      title: Absolute
+      type: object
+    DataDiffToleranceConfig:
+      properties:
+        datetime:
+          anyOf:
+          - $ref: '#/components/schemas/DatetimeColumnToleranceConfig'
+          - type: 'null'
+          description: Configuration for datetime columns tolerance.
+        float:
+          anyOf:
+          - $ref: '#/components/schemas/ColumnToleranceConfig'
+          - type: 'null'
+          description: Configuration for float columns tolerance.
+      title: DataDiffToleranceConfig
+      type: object
+    StandardDataTestMonitorSpec:
+      properties:
+        tables:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SDTTable'
+            type: array
+          - type: 'null'
+          title: Tables
+        type:
+          $ref: '#/components/schemas/StandardDataTestTypes'
+        variables:
+          anyOf:
+          - additionalProperties:
+              $ref: '#/components/schemas/SDTVariable'
+            type: object
+          - type: 'null'
+          title: Variables
+      required:
+      - type
+      title: Standard DT
+      type: object
+    InDbDataDiffConfig:
+      properties:
+        column_remapping:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          description: Mapping of columns from one dataset to another for comparison.
+          title: Column Remapping
+        columns_to_compare:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          description: Optional list of columns to compare between the datasets.
+          title: Columns To Compare
+        compare_duplicates:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Compare rows with duplicate primary keys. Defaults to true.
+          title: Compare Duplicates
+        dataset_a:
+          anyOf:
+          - $ref: '#/components/schemas/InDbTableDataset'
+          - $ref: '#/components/schemas/InDbQueryDataset'
+          description: The first dataset to compare.
+        dataset_b:
+          anyOf:
+          - $ref: '#/components/schemas/InDbTableDataset'
+          - $ref: '#/components/schemas/InDbQueryDataset'
+          description: The second dataset to compare.
+        exclude_columns:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          description: Columns to exclude from the comparison. InDb diffs accept gitignore-style patterns (e.g. '*_ts'); InMem diffs require exact column names. Primary-key columns are never excluded.
+          title: Exclude Columns
+        ignore_string_case:
+          default: false
+          description: Indicates whether to ignore case differences in string comparisons.
+          title: Ignore String Case
+          type: boolean
+        include_columns:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          description: Columns to include in the comparison. InDb diffs accept gitignore-style patterns (e.g. '*_ts'); InMem diffs require exact column names. Alias of columns_to_compare; set only one.
+          title: Include Columns
+        materialize_results:
+          default: false
+          description: Indicates whether to materialize the results of the comparison.
+          title: Materialize Results
+          type: boolean
+        null_equals_empty_string:
+          default: false
+          description: Treat NULL and empty string ('') as equal in string comparisons and PK joins.
+          title: Null Equals Empty String
+          type: boolean
+        primary_key:
+          description: List of columns that make up the primary key for the datasets.
+          items:
+            type: string
+          title: Primary Key
+          type: array
+        sampling:
+          anyOf:
+          - $ref: '#/components/schemas/ToleranceBasedSampling'
+          - $ref: '#/components/schemas/PercentageSampling'
+          - $ref: '#/components/schemas/MaxRowsSampling'
+          - type: 'null'
+          description: Sampling configuration for the data comparison.
+        sort_array_columns:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Sort array elements before comparison to ignore insertion order differences.
+          title: Sort Array Columns
+        timeseries_dimension_column:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Column used for time series dimensioning in the comparison.
+          title: Timeseries Dimension Column
+        tolerance:
+          anyOf:
+          - $ref: '#/components/schemas/DataDiffToleranceConfig'
+          - type: 'null'
+          description: Configuration for tolerance.
+      required:
+      - primary_key
+      - dataset_a
+      - dataset_b
+      title: In-Database
+      type: object
+    DayIntervalSchedule:
+      properties:
+        every:
+          const: day
+          title: Every
+          type: string
+        hour:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: The hour at which the monitor should trigger. (0 - 23)
+          title: Hour
+        type:
+          const: daily
+          default: daily
+          title: Type
+          type: string
+        utc_at:
+          anyOf:
+          - format: time
+            type: string
+          - type: 'null'
+          description: The UTC time at which the monitor should trigger.
+          title: Utc At
+      required:
+      - every
+      title: Day
+      type: object
+    MonitorRunState:
+      enum:
+      - ok
+      - alert
+      - error
+      - learning
+      - checking
+      - created
+      - skipped
+      - cancelled
+      - queued
+      title: MonitorRunState
+      type: string
+    IntervalSchedule:
+      properties:
+        interval:
+          anyOf:
+          - $ref: '#/components/schemas/HourIntervalSchedule'
+          - $ref: '#/components/schemas/DayIntervalSchedule'
+          description: Specifies the scheduling interval.
+      required:
+      - interval
+      title: Interval
+      type: object
+    MetricMonitorSpecPublic:
+      properties:
+        alert:
+          anyOf:
+          - discriminator:
+              mapping:
+                absolute: '#/components/schemas/AbsoluteThreshold'
+                automatic: '#/components/schemas/AnomalyDetectionThreshold'
+                percentage: '#/components/schemas/PercentageThreshold'
+              propertyName: type
+            oneOf:
+            - $ref: '#/components/schemas/AnomalyDetectionThreshold'
+            - $ref: '#/components/schemas/AbsoluteThreshold'
+            - $ref: '#/components/schemas/PercentageThreshold'
+          - type: 'null'
+          description: Condition for triggering alerts.
+        connection_id:
+          description: The identifier for the data source configuration.
+          title: Connection Id
+          type: integer
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The description of the monitor.
+          title: Description
+        enabled:
+          default: true
+          description: Indicates whether the monitor is enabled.
+          title: Enabled
+          type: boolean
+        metric:
+          description: Configuration for the metric being monitored.
+          discriminator:
+            mapping:
+              column: '#/components/schemas/ColumnMetricMonitorConfig'
+              custom: '#/components/schemas/CustomMetricMonitorConfig'
+              table: '#/components/schemas/BaseTableMetricMonitorConfig'
+            propertyName: type
+          oneOf:
+          - $ref: '#/components/schemas/BaseTableMetricMonitorConfig'
+          - $ref: '#/components/schemas/ColumnMetricMonitorConfig'
+          - $ref: '#/components/schemas/CustomMetricMonitorConfig'
+        name:
+          description: The name of the monitor.
+          title: Name
+          type: string
+        notifications:
+          description: Notification configuration for the monitor.
+          items:
+            discriminator:
+              mapping:
+                email: '#/components/schemas/EmailNotification'
+                pagerduty: '#/components/schemas/PagerDutyNotification'
+                slack: '#/components/schemas/SlackNotification'
+                teams: '#/components/schemas/TeamsNotification'
+                webhook: '#/components/schemas/WebhookNotification'
+              propertyName: type
+            oneOf:
+            - $ref: '#/components/schemas/EmailNotification'
+            - $ref: '#/components/schemas/PagerDutyNotification'
+            - $ref: '#/components/schemas/WebhookNotification'
+            - $ref: '#/components/schemas/SlackNotification'
+            - $ref: '#/components/schemas/TeamsNotification'
+          title: Notifications
+          type: array
+        owner:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Email of the monitor owner.
+          title: Owner
+        schedule:
+          anyOf:
+          - $ref: '#/components/schemas/IntervalSchedule'
+          - $ref: '#/components/schemas/CronSchedule'
+          - $ref: '#/components/schemas/NoneSchedule'
+          description: The schedule at which the monitor runs.
+        tags:
+          description: Tags associated with the monitor.
+          items:
+            type: string
+          title: Tags
+          type: array
+      required:
+      - schedule
+      - name
+      - connection_id
+      - metric
+      title: MetricMonitorSpecPublic
+      type: object
+    RelativeColumnTolerance:
+      properties:
+        type:
+          const: relative
+          default: relative
+          description: The type of Column Tolerance.
+          title: Type
+          type: string
+        value:
+          anyOf:
+          - type: number
+          - type: integer
+          description: Value of Column Tolerance.
+          title: Value
+      required:
+      - value
+      title: Relative
+      type: object
+    SDTTable:
+      properties:
+        columns:
+          items:
+            type: string
+          title: Columns
+          type: array
+        path:
+          title: Path
+          type: string
+      required:
+      - path
+      - columns
+      title: SDTTable
+      type: object
+    SchemaChangeMonitorSpecPublic:
+      properties:
+        connection_id:
+          description: The identifier for the data source configuration.
+          title: Connection Id
+          type: integer
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The description of the monitor.
+          title: Description
+        enabled:
+          default: true
+          description: Indicates whether the monitor is enabled.
+          title: Enabled
+          type: boolean
+        name:
+          description: The name of the monitor.
+          title: Name
+          type: string
+        notifications:
+          description: Notification configuration for the monitor.
+          items:
+            discriminator:
+              mapping:
+                email: '#/components/schemas/EmailNotification'
+                pagerduty: '#/components/schemas/PagerDutyNotification'
+                slack: '#/components/schemas/SlackNotification'
+                teams: '#/components/schemas/TeamsNotification'
+                webhook: '#/components/schemas/WebhookNotification'
+              propertyName: type
+            oneOf:
+            - $ref: '#/components/schemas/EmailNotification'
+            - $ref: '#/components/schemas/PagerDutyNotification'
+            - $ref: '#/components/schemas/WebhookNotification'
+            - $ref: '#/components/schemas/SlackNotification'
+            - $ref: '#/components/schemas/TeamsNotification'
+          title: Notifications
+          type: array
+        owner:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Email of the monitor owner.
+          title: Owner
+        schedule:
+          anyOf:
+          - $ref: '#/components/schemas/IntervalSchedule'
+          - $ref: '#/components/schemas/CronSchedule'
+          - $ref: '#/components/schemas/NoneSchedule'
+          description: The schedule at which the monitor runs.
+        table:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The name of the table.
+          title: Table
+        tags:
+          description: Tags associated with the monitor.
+          items:
+            type: string
+          title: Tags
+          type: array
+      required:
+      - schedule
+      - name
+      - connection_id
+      title: SchemaChangeMonitorSpecPublic
+      type: object
+    SlackNotification:
+      properties:
+        channel:
+          description: The channel through which the notification will be sent.
+          title: Channel
+          type: string
+        features:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/DestinationFeatures'
+            type: array
+          - type: 'null'
+          description: A list of features to enable for this notification.
+          title: Features
+        integration:
+          description: The identifier for the integration.
+          title: Integration
+          type: integer
+        mentions:
+          description: A list of mentions to include in the notification.
+          items:
+            type: string
+          title: Mentions
+          type: array
+        type:
+          const: slack
+          default: slack
+          title: Type
+          type: string
+      required:
+      - integration
+      - channel
+      title: Slack
+      type: object
+    ApiPublicMonitorTriggerRunResultOut:
+      properties:
+        run_id:
+          description: Unique identifier for the monitor run result.
+          title: Run Id
+          type: integer
+      required:
+      - run_id
+      title: ApiPublicMonitorTriggerRunResultOut
+      type: object
+    DataTestMonitorSpecPublic:
+      properties:
+        connection_id:
+          description: The identifier for the data source configuration.
+          title: Connection Id
+          type: integer
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The description of the monitor.
+          title: Description
+        enabled:
+          default: true
+          description: Indicates whether the monitor is enabled.
+          title: Enabled
+          type: boolean
+        name:
+          description: The name of the monitor.
+          title: Name
+          type: string
+        notifications:
+          description: Notification configuration for the monitor.
+          items:
+            discriminator:
+              mapping:
+                email: '#/components/schemas/EmailNotification'
+                pagerduty: '#/components/schemas/PagerDutyNotification'
+                slack: '#/components/schemas/SlackNotification'
+                teams: '#/components/schemas/TeamsNotification'
+                webhook: '#/components/schemas/WebhookNotification'
+              propertyName: type
+            oneOf:
+            - $ref: '#/components/schemas/EmailNotification'
+            - $ref: '#/components/schemas/PagerDutyNotification'
+            - $ref: '#/components/schemas/WebhookNotification'
+            - $ref: '#/components/schemas/SlackNotification'
+            - $ref: '#/components/schemas/TeamsNotification'
+          title: Notifications
+          type: array
+        owner:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Email of the monitor owner.
+          title: Owner
+        query:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The SQL query to be evaluated.
+          title: Query
+        schedule:
+          anyOf:
+          - $ref: '#/components/schemas/IntervalSchedule'
+          - $ref: '#/components/schemas/CronSchedule'
+          - $ref: '#/components/schemas/NoneSchedule'
+          description: The schedule at which the monitor runs.
+        tags:
+          description: Tags associated with the monitor.
+          items:
+            type: string
+          title: Tags
+          type: array
+        test:
+          anyOf:
+          - $ref: '#/components/schemas/StandardDataTestMonitorSpec'
+          - type: 'null'
+      required:
+      - schedule
+      - name
+      - connection_id
+      title: DataTestMonitorSpecPublic
+      type: object
+    InDbUpdateDataDiffConfig:
+      properties:
+        column_remapping:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          description: Mapping of columns from one dataset to another for comparison.
+          title: Column Remapping
+        columns_to_compare:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          description: Optional list of columns to compare between the datasets.
+          title: Columns To Compare
+        compare_duplicates:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Compare rows with duplicate primary keys. Defaults to true.
+          title: Compare Duplicates
+        ignore_string_case:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Indicates whether to ignore case differences in string comparisons.
+          title: Ignore String Case
+        materialize_results:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Indicates whether to materialize the results of the comparison.
+          title: Materialize Results
+        null_equals_empty_string:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Treat NULL and empty string ('') as equal in string comparisons and PK joins.
+          title: Null Equals Empty String
+        primary_key:
+          description: List of columns that make up the primary key for the datasets.
+          items:
+            type: string
+          title: Primary Key
+          type: array
+        sampling:
+          anyOf:
+          - $ref: '#/components/schemas/ToleranceBasedSampling'
+          - $ref: '#/components/schemas/PercentageSampling'
+          - $ref: '#/components/schemas/MaxRowsSampling'
+          - type: 'null'
+          description: Sampling configuration for the data comparison.
+        sort_array_columns:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Sort array elements before comparison to ignore insertion order differences.
+          title: Sort Array Columns
+        timeseries_dimension_column:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Column used for time series dimensioning in the comparison.
+          title: Timeseries Dimension Column
+        tolerance:
+          anyOf:
+          - $ref: '#/components/schemas/DataDiffToleranceConfig'
+          - type: 'null'
+          description: Configuration for tolerance applied to FLOAT columns.
+      title: In-Database
+      type: object
+    DatatypeName:
+      enum:
+      - boolean
+      - integer
+      - float
+      - decimal
+      - unbounded_decimal
+      - money
+      - string
+      - fixed_length_string
+      - varbinary
+      - binary
+      - date
+      - super
+      - time
+      - time_interval
+      - timestamp
+      - year
+      - uuid
+      - array
+      - struct
+      - json
+      - xml
+      - map
+      - void
+      - unsupported
+      title: DatatypeName
+      type: string
+    ColumnMetricMonitorConfig:
+      properties:
+        column:
+          description: The column of the table.
+          title: Column
+          type: string
+        filter:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Filter condition to evaluate.
+          title: Filter
+        metric:
+          anyOf:
+          - $ref: '#/components/schemas/ColumnMetricAlias'
+          description: The column metric configuration.
+          title: Metric
+        table:
+          description: The name of the table.
+          title: Table
+          type: string
+        type:
+          const: column
+          default: column
+          title: Type
+          type: string
+      required:
+      - table
+      - column
+      - metric
+      title: Column
+      type: object
+    ApiPublicMonitorRunOut:
+      properties:
+        diff_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Unique identifier for the associated datadiff.
+          title: Diff Id
+        monitor_id:
+          description: Unique identifier for the associated monitor.
+          title: Monitor Id
+          type: integer
+        run_id:
+          description: Unique identifier for the monitor run.
+          title: Run Id
+          type: integer
+        started_at:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: Timestamp when the monitor run started.
+          title: Started At
+        state:
+          anyOf:
+          - $ref: '#/components/schemas/MonitorRunState'
+          - type: 'null'
+          description: Current state of the monitor run.
+      required:
+      - run_id
+      - monitor_id
+      title: ApiPublicMonitorRunOut
+      type: object
+    DataTestUpdateMonitorSpecPublic:
+      properties:
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The description of the monitor.
+          title: Description
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The name of the monitor.
+          title: Name
+        notifications:
+          description: Notification configuration for the monitor.
+          items:
+            discriminator:
+              mapping:
+                email: '#/components/schemas/EmailNotification'
+                pagerduty: '#/components/schemas/PagerDutyNotification'
+                slack: '#/components/schemas/SlackNotification'
+                teams: '#/components/schemas/TeamsNotification'
+                webhook: '#/components/schemas/WebhookNotification'
+              propertyName: type
+            oneOf:
+            - $ref: '#/components/schemas/EmailNotification'
+            - $ref: '#/components/schemas/PagerDutyNotification'
+            - $ref: '#/components/schemas/WebhookNotification'
+            - $ref: '#/components/schemas/SlackNotification'
+            - $ref: '#/components/schemas/TeamsNotification'
+          title: Notifications
+          type: array
+        owner:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Email of the monitor owner.
+          title: Owner
+        query:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The SQL query to be evaluated.
+          title: Query
+        schedule:
+          anyOf:
+          - $ref: '#/components/schemas/IntervalSchedule'
+          - $ref: '#/components/schemas/CronSchedule'
+          - $ref: '#/components/schemas/NoneSchedule'
+          - type: 'null'
+          description: The schedule at which the monitor runs.
+        tags:
+          description: Tags associated with the monitor.
+          items:
+            type: string
+          title: Tags
+          type: array
+        test:
+          anyOf:
+          - $ref: '#/components/schemas/StandardDataTestMonitorSpec'
+          - type: 'null'
+        type:
+          const: test
+          description: The type of monitor.
+          title: Type
+          type: string
+      required:
+      - type
+      title: Data
+      type: object
+    TableMetricAlias:
+      enum:
+      - row_count
+      - freshness
+      title: TableMetricAlias
+      type: string
+    CronSchedule:
+      properties:
+        cron:
+          description: The cron expression that defines the schedule.
+          title: Cron
+          type: string
+        type:
+          const: crontab
+          default: crontab
+          title: Type
+          type: string
+      required:
+      - cron
+      title: Cron
+      type: object
+    PercentageThreshold:
+      properties:
+        decrease:
+          anyOf:
+          - type: number
+          - type: integer
+          - type: 'null'
+          description: Threshold for allowable percentage decrease.
+          title: Decrease
+        increase:
+          anyOf:
+          - type: number
+          - type: integer
+          - type: 'null'
+          description: Threshold for allowable percentage increase.
+          title: Increase
+        type:
+          const: percentage
+          title: Type
+          type: string
+      required:
+      - type
+      title: Percentage
+      type: object
+    SortableFields:
+      enum:
+      - id
+      - name
+      - last_triggered
+      - last_run
+      - created_by
+      title: SortableFields
+      type: string
+    DatetimeColumnToleranceConfig:
+      properties:
+        default:
+          enum:
+          - 1s
+          - 0.1s
+          - 0.01s
+          - 1ms
+          - 0.1ms
+          - 0.01ms
+          - 1us
+          title: Default
+          type: string
+      required:
+      - default
+      title: DatetimeColumnToleranceConfig
+      type: object
+    DestinationFeatures:
+      enum:
+      - attach_csv
+      - notify_first_triggered_only
+      - disable_recovery_notifications
+      - notify_every_run
+      title: DestinationFeatures
+      type: string
+    ColumnRule:
+      properties:
+        column:
+          anyOf:
+          - minLength: 1
+            type: string
+          - type: 'null'
+          description: Column name the rule applies to. When column remapping is enabled, this refers to the dataset-A (canonical) column name — the same name the comparator operates on after remapping. Mutually exclusive with `type`. Exactly one of `column` or `type` must be set.
+          title: Column
+        equal_if:
+          description: 'SQL boolean expression OR-ed into the value comparator for the matching column(s). Use {a} and {b} as placeholders for the side-A and side-B column references. Multiple rules matching the same column are all OR-ed together. Example: "{a} = ''1900-01-01'' AND {b} IS NULL".'
+          title: Equal If
+          type: string
+        type:
+          anyOf:
+          - $ref: '#/components/schemas/DatatypeName'
+          - type: 'null'
+          description: Type-based selector — matches all columns whose Datatype.typename equals this value. The rule is applied to every column of that type after data lands in DuckDB post-fetch. Mutually exclusive with `column`. Exactly one of `column` or `type` must be set.
+      required:
+      - equal_if
+      title: ColumnRule
+      type: object
+    datafold__api__v1__monitors__DiffAlertCondition:
+      properties:
+        different_rows_count:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Threshold for the number of different rows allowed between the datasets.
+          title: Different Rows Count
+        different_rows_percent:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Threshold for the percentage of different rows allowed between the datasets.
+          title: Different Rows Percent
+        match_ratio_min:
+          anyOf:
+          - maximum: 1.0
+            minimum: 0.0
+            type: number
+          - type: 'null'
+          description: Minimum acceptable match ratio (0.0-1.0). Alert when match_ratio < match_ratio_min.
+          title: Match Ratio Min
+        type:
+          const: diff
+          title: Type
+          type: string
+      required:
+      - type
+      title: Diff Conditions
+      type: object
+    TeamsNotification:
+      properties:
+        channel:
+          description: The channel through which the notification will be sent.
+          title: Channel
+          type: string
+        features:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/DestinationFeatures'
+            type: array
+          - type: 'null'
+          description: A list of features to enable for this notification.
+          title: Features
+        integration:
+          description: The identifier for the integration.
+          title: Integration
+          type: integer
+        mentions:
+          description: A list of mentions names to include in the notification.
+          items:
+            type: string
+          title: Mentions
+          type: array
+        type:
+          const: teams
+          default: teams
+          title: Type
+          type: string
+      required:
+      - integration
+      - channel
+      title: Teams
+      type: object
+    InDbQueryDataset:
+      properties:
+        connection_id:
+          description: The identifier for the data source configuration.
+          title: Connection Id
+          type: integer
+        query:
+          description: The SQL query to be evaluated.
+          title: Query
+          type: string
+        session_parameters:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          description: Parameters for the database session.
+          title: Session Parameters
+        time_travel_point:
+          anyOf:
+          - type: string
+          - type: integer
+          - type: 'null'
+          description: Point in time for querying historical data.
+          title: Time Travel Point
+      required:
+      - connection_id
+      - query
+      title: Query
+      type: object
+    InMemUpdateDataDiffConfig:
+      properties:
+        column_remapping:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          description: Mapping of columns from one dataset to another for comparison.
+          title: Column Remapping
+        column_rules:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ColumnRule'
+            type: array
+          - type: 'null'
+          description: Extra equality clauses that extend the in-memory diff value comparator. Useful for treating specific value pairs (e.g. legacy sentinels vs NULL) as non-differences. See `ColumnRule` for entry shape.
+          title: Column Rules
+        columns_to_compare:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          description: Optional list of columns to compare between the datasets.
+          title: Columns To Compare
+        compare_duplicates:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Compare rows with duplicate primary keys. Defaults to true.
+          title: Compare Duplicates
+        ignore_string_case:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Indicates whether to ignore case differences in string comparisons.
+          title: Ignore String Case
+        materialize_results:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Indicates whether to materialize the results of the comparison.
+          title: Materialize Results
+        materialize_results_to:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Identifier for the destination where results should be materialized.
+          title: Materialize Results To
+        null_equals_empty_string:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Treat NULL and empty string ('') as equal in string comparisons and PK joins.
+          title: Null Equals Empty String
+        primary_key:
+          description: List of columns that make up the primary key for the datasets.
+          items:
+            type: string
+          title: Primary Key
+          type: array
+        sampling:
+          anyOf:
+          - $ref: '#/components/schemas/ToleranceBasedSampling'
+          - $ref: '#/components/schemas/PercentageSampling'
+          - $ref: '#/components/schemas/MaxRowsSampling'
+          - type: 'null'
+          description: Sampling configuration for the data comparison.
+          title: Sampling
+        sort_array_columns:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Sort array elements before comparison to ignore insertion order differences.
+          title: Sort Array Columns
+        tolerance:
+          anyOf:
+          - $ref: '#/components/schemas/DataDiffToleranceConfig'
+          - type: 'null'
+          description: Configuration for tolerance.
+      title: In-Memory
+      type: object
+    SchemaChangeUpdateMonitorSpecPublic:
+      properties:
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The description of the monitor.
+          title: Description
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The name of the monitor.
+          title: Name
+        notifications:
+          description: Notification configuration for the monitor.
+          items:
+            discriminator:
+              mapping:
+                email: '#/components/schemas/EmailNotification'
+                pagerduty: '#/components/schemas/PagerDutyNotification'
+                slack: '#/components/schemas/SlackNotification'
+                teams: '#/components/schemas/TeamsNotification'
+                webhook: '#/components/schemas/WebhookNotification'
+              propertyName: type
+            oneOf:
+            - $ref: '#/components/schemas/EmailNotification'
+            - $ref: '#/components/schemas/PagerDutyNotification'
+            - $ref: '#/components/schemas/WebhookNotification'
+            - $ref: '#/components/schemas/SlackNotification'
+            - $ref: '#/components/schemas/TeamsNotification'
+          title: Notifications
+          type: array
+        owner:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Email of the monitor owner.
+          title: Owner
+        schedule:
+          anyOf:
+          - $ref: '#/components/schemas/IntervalSchedule'
+          - $ref: '#/components/schemas/CronSchedule'
+          - $ref: '#/components/schemas/NoneSchedule'
+          - type: 'null'
+          description: The schedule at which the monitor runs.
+        tags:
+          description: Tags associated with the monitor.
+          items:
+            type: string
+          title: Tags
+          type: array
+        type:
+          const: schema
+          description: The type of monitor.
+          title: Type
+          type: string
+      required:
+      - type
+      title: Schema
+      type: object
+    MaxRowsSampling:
+      properties:
+        max_rows:
+          description: The maximum number of rows to sample.
+          title: Max Rows
+          type: integer
+        threshold:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Threshold for triggering actions based on sampling.
+          title: Threshold
+      required:
+      - max_rows
+      title: MaxRows
+      type: object
+    ColumnToleranceConfig:
+      properties:
+        column_tolerance:
+          anyOf:
+          - additionalProperties:
+              discriminator:
+                mapping:
+                  absolute: '#/components/schemas/AbsoluteColumnTolerance'
+                  relative: '#/components/schemas/RelativeColumnTolerance'
+                propertyName: type
+              oneOf:
+              - $ref: '#/components/schemas/RelativeColumnTolerance'
+              - $ref: '#/components/schemas/AbsoluteColumnTolerance'
+            type: object
+          - type: 'null'
+          description: Specific tolerance per column.
+          title: Column Tolerance
+        default:
+          anyOf:
+          - discriminator:
+              mapping:
+                absolute: '#/components/schemas/AbsoluteColumnTolerance'
+                relative: '#/components/schemas/RelativeColumnTolerance'
+              propertyName: type
+            oneOf:
+            - $ref: '#/components/schemas/RelativeColumnTolerance'
+            - $ref: '#/components/schemas/AbsoluteColumnTolerance'
+          - type: 'null'
+          description: Default tolerance applied to all columns.
+          title: Default
+      title: ColumnToleranceConfig
+      type: object
+    StandardDataTestTypes:
+      enum:
+      - unique
+      - not_null
+      - accepted_values
+      - referential_integrity
+      - numeric_range
+      - custom_template
+      title: StandardDataTestTypes
+      type: string
+    ApiPublicListMonitorsOut:
+      properties:
+        count:
+          description: Total number of monitors.
+          title: Count
+          type: integer
+        monitors:
+          description: List of monitor details.
+          items:
+            $ref: '#/components/schemas/ApiPublicGetMonitorOut'
+          title: Monitors
+          type: array
+        page:
+          description: Current page number in the paginated result.
+          title: Page
+          type: integer
+        page_size:
+          description: Number of monitors per page.
+          title: Page Size
+          type: integer
+        total_pages:
+          description: Total number of pages available.
+          title: Total Pages
+          type: integer
+      required:
+      - count
+      - monitors
+      - page
+      - page_size
+      - total_pages
+      title: ApiPublicListMonitorsOut
+      type: object
+    WebhookNotification:
+      properties:
+        features:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/DestinationFeatures'
+            type: array
+          - type: 'null'
+          description: A list of features to enable for this notification.
+          title: Features
+        integration:
+          description: The identifier for the integration.
+          title: Integration
+          type: integer
+        type:
+          const: webhook
+          default: webhook
+          title: Type
+          type: string
+      required:
+      - integration
+      title: Webhook
+      type: object
+    DataDiffMonitorSpecPublic:
+      properties:
+        alert:
+          anyOf:
+          - $ref: '#/components/schemas/datafold__monitors__schemas__DiffAlertCondition'
+          - type: 'null'
+          description: Condition for triggering alerts based on the data diff.
+        datadiff:
+          description: Configuration for the data diff.
+          discriminator:
+            mapping:
+              indb: '#/components/schemas/InDbDataDiffConfig'
+              inmem: '#/components/schemas/InMemDataDiffConfig'
+            propertyName: diff_type
+          oneOf:
+          - $ref: '#/components/schemas/InDbDataDiffConfig'
+          - $ref: '#/components/schemas/InMemDataDiffConfig'
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The description of the monitor.
+          title: Description
+        enabled:
+          default: true
+          description: Indicates whether the monitor is enabled.
+          title: Enabled
+          type: boolean
+        name:
+          description: The name of the monitor.
+          title: Name
+          type: string
+        notifications:
+          description: Notification configuration for the monitor.
+          items:
+            discriminator:
+              mapping:
+                email: '#/components/schemas/EmailNotification'
+                pagerduty: '#/components/schemas/PagerDutyNotification'
+                slack: '#/components/schemas/SlackNotification'
+                teams: '#/components/schemas/TeamsNotification'
+                webhook: '#/components/schemas/WebhookNotification'
+              propertyName: type
+            oneOf:
+            - $ref: '#/components/schemas/EmailNotification'
+            - $ref: '#/components/schemas/PagerDutyNotification'
+            - $ref: '#/components/schemas/WebhookNotification'
+            - $ref: '#/components/schemas/SlackNotification'
+            - $ref: '#/components/schemas/TeamsNotification'
+          title: Notifications
+          type: array
+        owner:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Email of the monitor owner.
+          title: Owner
+        schedule:
+          anyOf:
+          - $ref: '#/components/schemas/IntervalSchedule'
+          - $ref: '#/components/schemas/CronSchedule'
+          - $ref: '#/components/schemas/NoneSchedule'
+          description: The schedule at which the monitor runs.
+        tags:
+          description: Tags associated with the monitor.
+          items:
+            type: string
+          title: Tags
+          type: array
+      required:
+      - schedule
+      - name
+      - datadiff
+      title: DataDiffMonitorSpecPublic
+      type: object
+    XdbTableDataset:
+      properties:
+        connection_id:
+          description: The identifier for the data source configuration.
+          title: Connection Id
+          type: integer
+        filter:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Filter condition for querying the dataset.
+          title: Filter
+        materialize:
+          default: true
+          description: Indicates whether to materialize the dataset.
+          title: Materialize
+          type: boolean
+        session_parameters:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          description: Session parameters for the database session.
+          title: Session Parameters
+        table:
+          description: The table in the format 'db.schema.table'.
+          title: Table
+          type: string
+      required:
+      - connection_id
+      - table
+      title: Table
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      description: Use the 'Authorization' header with the format 'Key <api-key>'
+      in: header
+      name: Authorization
+      type: apiKey

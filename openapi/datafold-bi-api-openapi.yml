@@ -1,0 +1,696 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: support@datafold.com
+    name: API Support
+  description: "The Datafold API reference is a guide to our available endpoints and authentication methods.\nIf you're just getting started with Datafold, we recommend first checking out our [documentation](https://docs.datafold.com).\n\n:::info\n  To use the Datafold API, you should first create a Datafold API Key,\n  which should be stored as a local environment variable named DATAFOLD_API_KEY.\n  This can be set in your Datafold Cloud's Settings under the Account page.\n:::"
+  title: Datafold Audit Logs BI API
+  version: latest
+servers:
+- description: Default server
+  url: https://app.datafold.com
+security:
+- ApiKeyAuth: []
+tags:
+- name: BI
+paths:
+  /api/v1/lineage/bi/:
+    get:
+      description: Return all integrations for Mode/Tableau/Looker
+      operationId: get_all_integrations_api_v1_lineage_bi__get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+      summary: List all integrations
+      tags:
+      - BI
+  /api/v1/lineage/bi/dbt/:
+    post:
+      operationId: create_dbt_integration_api_v1_lineage_bi_dbt__post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DbtDataSourceConfig'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create a DBT BI integration
+      tags:
+      - BI
+  /api/v1/lineage/bi/dbt/{bi_datasource_id}/:
+    put:
+      description: Returns the integration with changed fields.
+      operationId: update_dbt_integration_api_v1_lineage_bi_dbt__bi_datasource_id___put
+      parameters:
+      - in: path
+        name: bi_datasource_id
+        required: true
+        schema:
+          title: Tableau integration id
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DbtDataSourceConfig'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Update a DBT BI integration
+      tags:
+      - BI
+  /api/v1/lineage/bi/hightouch/:
+    post:
+      operationId: create_hightouch_integration_api_v1_lineage_bi_hightouch__post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HighTouchDataSourceConfig'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create a Hightouch integration
+      tags:
+      - BI
+  /api/v1/lineage/bi/hightouch/{bi_datasource_id}/:
+    put:
+      description: It can only update the schedule. Returns the integration with changed fields.
+      operationId: change_hightouch_integration_api_v1_lineage_bi_hightouch__bi_datasource_id___put
+      parameters:
+      - in: path
+        name: bi_datasource_id
+        required: true
+        schema:
+          title: Hightouch integration id
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HighTouchDataSourceConfig'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Update a Hightouch integration
+      tags:
+      - BI
+  /api/v1/lineage/bi/looker/:
+    post:
+      operationId: create_looker_integration_api_v1_lineage_bi_looker__post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LookerDataSourceConfig'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create a Looker integration
+      tags:
+      - BI
+  /api/v1/lineage/bi/looker/{bi_datasource_id}/:
+    put:
+      description: It can only update the schedule. Returns the integration with changed fields.
+      operationId: update_looker_integration_api_v1_lineage_bi_looker__bi_datasource_id___put
+      parameters:
+      - in: path
+        name: bi_datasource_id
+        required: true
+        schema:
+          title: Looker integration id
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LookerDataSourceConfig'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Update a Looker integration
+      tags:
+      - BI
+  /api/v1/lineage/bi/mode/:
+    post:
+      operationId: create_mode_integration_api_v1_lineage_bi_mode__post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModeDataSourceConfig'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create a Mode Analytics integration
+      tags:
+      - BI
+  /api/v1/lineage/bi/mode/{bi_datasource_id}/:
+    put:
+      description: It can only update the schedule. Returns the integration with changed fields.
+      operationId: change_mode_integration_api_v1_lineage_bi_mode__bi_datasource_id___put
+      parameters:
+      - in: path
+        name: bi_datasource_id
+        required: true
+        schema:
+          title: Mode integration id
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModeDataSourceConfig'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Update a Mode Analytics integration
+      tags:
+      - BI
+  /api/v1/lineage/bi/powerbi/:
+    post:
+      operationId: create_powerbi_integration_api_v1_lineage_bi_powerbi__post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PowerBIDataSourceConfig'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create a Power BI integration
+      tags:
+      - BI
+  /api/v1/lineage/bi/powerbi/{bi_datasource_id}/:
+    put:
+      description: Updates the integration configuration. Returns the integration with changed fields.
+      operationId: update_powerbi_integration_api_v1_lineage_bi_powerbi__bi_datasource_id___put
+      parameters:
+      - in: path
+        name: bi_datasource_id
+        required: true
+        schema:
+          title: Power BI integration id
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PowerBIDataSourceConfig'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Update a Power BI integration
+      tags:
+      - BI
+  /api/v1/lineage/bi/tableau/:
+    post:
+      operationId: create_tableau_integration_api_v1_lineage_bi_tableau__post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TableauDataSourceConfig'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create a Tableau integration
+      tags:
+      - BI
+  /api/v1/lineage/bi/tableau/{bi_datasource_id}/:
+    put:
+      description: It can only update the schedule. Returns the integration with changed fields.
+      operationId: update_tableau_integration_api_v1_lineage_bi_tableau__bi_datasource_id___put
+      parameters:
+      - in: path
+        name: bi_datasource_id
+        required: true
+        schema:
+          title: Tableau integration id
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TableauDataSourceConfig'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Update a Tableau integration
+      tags:
+      - BI
+  /api/v1/lineage/bi/{bi_datasource_id}/:
+    delete:
+      operationId: remove_integration_api_v1_lineage_bi__bi_datasource_id___delete
+      parameters:
+      - in: path
+        name: bi_datasource_id
+        required: true
+        schema:
+          title: BI integration id
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Remove an integration
+      tags:
+      - BI
+    get:
+      description: Returns the integration for Mode/Tableau/Looker/HighTouch by its id.
+      operationId: get_integration_api_v1_lineage_bi__bi_datasource_id___get
+      parameters:
+      - in: path
+        name: bi_datasource_id
+        required: true
+        schema:
+          title: BI integration id
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Get an integration
+      tags:
+      - BI
+  /api/v1/lineage/bi/{bi_datasource_id}/sync/:
+    get:
+      description: Start an unscheduled synchronization of the integration.
+      operationId: resync_integration_api_v1_lineage_bi__bi_datasource_id__sync__get
+      parameters:
+      - in: path
+        name: bi_datasource_id
+        required: true
+        schema:
+          title: BI integration id
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Sync a BI integration
+      tags:
+      - BI
+components:
+  schemas:
+    HighTouchDataSourceConfig:
+      properties:
+        bindings:
+          items:
+            $ref: '#/components/schemas/DataSourceBinding'
+          title: Bindings
+          type: array
+        indexing_cron:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Indexing Cron
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        token:
+          format: password
+          title: Token
+          type: string
+          writeOnly: true
+        workspace:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Workspace
+      required:
+      - token
+      - bindings
+      title: HighTouchDataSourceConfig
+      type: object
+    LookerDataSourceConfig:
+      properties:
+        base_url:
+          title: Base Url
+          type: string
+        bindings:
+          default: []
+          items:
+            $ref: '#/components/schemas/DataSourceBinding'
+          title: Bindings
+          type: array
+        client_id:
+          title: Client Id
+          type: string
+        client_secret:
+          format: password
+          title: Client Secret
+          type: string
+          writeOnly: true
+        indexing_cron:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Indexing Cron
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        project_ids:
+          default: []
+          items:
+            type: string
+          title: Project Ids
+          type: array
+        repo_id:
+          title: Repo Id
+          type: integer
+      required:
+      - base_url
+      - client_id
+      - repo_id
+      - client_secret
+      title: LookerDataSourceConfig
+      type: object
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          title: Location
+          type: array
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+      type: object
+    TableauDataSourceConfig:
+      properties:
+        indexing_cron:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Indexing Cron
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        server_url:
+          title: Server Url
+          type: string
+        site_id:
+          title: Site Id
+          type: string
+        token_name:
+          title: Token Name
+          type: string
+        token_value:
+          format: password
+          title: Token Value
+          type: string
+          writeOnly: true
+      required:
+      - token_name
+      - token_value
+      - site_id
+      - server_url
+      title: TableauDataSourceConfig
+      type: object
+    PowerBIAuthType:
+      enum:
+      - delegated
+      - service_principal
+      title: PowerBIAuthType
+      type: string
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          title: Detail
+          type: array
+      title: HTTPValidationError
+      type: object
+    DbtDataSourceConfig:
+      properties:
+        ci_config_id:
+          title: Ci Config Id
+          type: integer
+        indexing_cron:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Indexing Cron
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+      required:
+      - ci_config_id
+      title: DbtDataSourceConfig
+      type: object
+    DataSourceBinding:
+      properties:
+        boundIds:
+          items:
+            type: integer
+          title: Boundids
+          type: array
+        remoteId:
+          title: Remoteid
+          type: string
+      required:
+      - remoteId
+      - boundIds
+      title: DataSourceBinding
+      type: object
+    PowerBIDataSourceConfig:
+      description: Power BI data source parameters.
+      properties:
+        auth_type:
+          anyOf:
+          - $ref: '#/components/schemas/PowerBIAuthType'
+          - type: 'null'
+        client_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Client Id
+        client_secret:
+          anyOf:
+          - format: password
+            type: string
+            writeOnly: true
+          - type: 'null'
+          title: Client Secret
+        indexing_cron:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Indexing Cron
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        tenant_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tenant Id
+      title: PowerBIDataSourceConfig
+      type: object
+    ModeDataSourceConfig:
+      properties:
+        indexing_cron:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Indexing Cron
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        password:
+          format: password
+          title: Password
+          type: string
+          writeOnly: true
+        token:
+          format: password
+          title: Token
+          type: string
+          writeOnly: true
+        workspace:
+          default: ''
+          title: Workspace
+          type: string
+      required:
+      - token
+      - password
+      title: ModeDataSourceConfig
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      description: Use the 'Authorization' header with the format 'Key <api-key>'
+      in: header
+      name: Authorization
+      type: apiKey
