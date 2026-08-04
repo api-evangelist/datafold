@@ -1,0 +1,38 @@
+{
+  "provider": "datafold",
+  "sources": [
+    "datafold-audit-logs-api-openapi.yml",
+    "datafold-bi-added-api-openapi.yml",
+    "datafold-bi-api-openapi.yml",
+    "datafold-bi-deleted-api-openapi.yml",
+    "datafold-bi-modified-api-openapi.yml",
+    "datafold-bolt-api-openapi.yml",
+    "datafold-ci-api-openapi.yml",
+    "datafold-data-diffs-api-openapi.yml",
+    "datafold-data-source-added-api-openapi.yml",
+    "datafold-data-sources-api-openapi.yml",
+    "datafold-diff-created-api-openapi.yml",
+    "datafold-explore-api-openapi.yml",
+    "datafold-monitors-api-openapi.yml"
+  ],
+  "outputs": [
+    "datafold-audit-logs-api-openapi.yml",
+    "datafold-bi-added-api-openapi.yml",
+    "datafold-bi-api-openapi.yml",
+    "datafold-bi-deleted-api-openapi.yml",
+    "datafold-bi-modified-api-openapi.yml",
+    "datafold-bolt-api-openapi.yml",
+    "datafold-ci-api-openapi.yml",
+    "datafold-data-diffs-api-openapi.yml",
+    "datafold-data-source-added-api-openapi.yml",
+    "datafold-data-sources-api-openapi.yml",
+    "datafold-diff-created-api-openapi.yml",
+    "datafold-explore-api-openapi.yml",
+    "datafold-monitors-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
