@@ -1,0 +1,1199 @@
+{
+  "item": [
+    {
+      "id": "5eebd22b-f720-4f07-a420-e2dc72c999f0",
+      "name": "Data diffs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d7bbfc1a-65a1-4fbf-9d98-8b2541458dbe",
+          "name": "List data diffs",
+          "request": {
+            "name": "List data diffs",
+            "description": {
+              "content": "All fields support multiple items, using just comma delimiter\nDate fields also support ranges using the following syntax:\n\n- ``<DATETIME`` = before DATETIME\n- ``>DATETIME`` = after DATETIME\n- ``DATETIME`` = between DATETIME and DATETIME + 1 MINUTE\n- ``DATE`` = start of that DATE until DATE + 1 DAY\n- ``DATETIME1<<DATETIME2`` = between DATETIME1 and DATETIME2\n- ``DATE1<<DATE2`` = between DATE1 and DATE2",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "datadiffs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "asc"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "id"
+                },
+                {
+                  "disabled": false,
+                  "key": "accessible_only",
+                  "value": "false"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ffa7e21-eda7-4824-8b3a-3b3245abc9a1",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "datadiffs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id"
+                    },
+                    {
+                      "key": "accessible_only",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "null",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "662f3bc7-c6e8-4806-961f-25fefc05776c",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "datadiffs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id"
+                    },
+                    {
+                      "key": "accessible_only",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8e297a7-bbd6-427a-9d7c-8d859da9be19",
+          "name": "Create a data diff",
+          "request": {
+            "name": "Create a data diff",
+            "description": {
+              "content": "Launches a new data diff to compare two datasets (tables or queries).\n\nA data diff identifies differences between two datasets by comparing:\n- Row-level changes (added, removed, modified rows)\n- Schema differences\n- Column-level statistics\n\nThe diff runs asynchronously. Use the returned diff ID to poll for status and retrieve results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "datadiffs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data_source1_id\": \"<integer>\",\n  \"data_source2_id\": \"<integer>\",\n  \"archived\": false,\n  \"bisection_factor\": \"<integer>\",\n  \"bisection_threshold\": \"<integer>\",\n  \"column_mapping\": [\n    \"<array>\",\n    \"<array>\"\n  ],\n  \"column_rules\": [\n    {\n      \"equal_if\": \"<string>\",\n      \"column\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"equal_if\": \"<string>\",\n      \"column\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"columns_to_compare\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"compare_duplicates\": \"<boolean>\",\n  \"data_source1_session_parameters\": {\n    \"key_0\": 793\n  },\n  \"data_source2_session_parameters\": {\n    \"key_0\": 5188.347995611233,\n    \"key_1\": \"string\",\n    \"key_2\": 3007,\n    \"key_3\": \"string\"\n  },\n  \"datetime_tolerance\": \"<integer>\",\n  \"diff_tolerance\": \"<number>\",\n  \"diff_tolerances_per_column\": [\n    {\n      \"column_name\": \"<string>\",\n      \"tolerance_value\": \"<number>\",\n      \"tolerance_mode\": \"<string>\"\n    },\n    {\n      \"column_name\": \"<string>\",\n      \"tolerance_value\": \"<number>\",\n      \"tolerance_mode\": \"<string>\"\n    }\n  ],\n  \"download_limit\": \"<integer>\",\n  \"exclude_columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"file1\": \"<uri>\",\n  \"file1_options\": {\n    \"delimiter\": \"<string>\",\n    \"file_type\": \"csv\",\n    \"skip_head_rows\": \"<integer>\",\n    \"skip_tail_rows\": \"<integer>\"\n  },\n  \"file2\": \"<uri>\",\n  \"file2_options\": {\n    \"delimiter\": \"<string>\",\n    \"file_type\": \"csv\",\n    \"skip_head_rows\": \"<integer>\",\n    \"skip_tail_rows\": \"<integer>\"\n  },\n  \"filter1\": \"<string>\",\n  \"filter2\": \"<string>\",\n  \"include_columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"infer_pk\": false,\n  \"infer_pk_avoid_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"infer_pk_avoid_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"materialization_destination_id\": \"<integer>\",\n  \"materialize_dataset1\": \"<boolean>\",\n  \"materialize_dataset2\": \"<boolean>\",\n  \"materialize_without_sampling\": \"<boolean>\",\n  \"per_column_diff_limit\": \"<integer>\",\n  \"pk_columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"purged\": false,\n  \"query1\": \"<string>\",\n  \"query2\": \"<string>\",\n  \"run_profiles\": \"<boolean>\",\n  \"sampling_confidence\": \"<number>\",\n  \"sampling_max_rows\": \"<integer>\",\n  \"sampling_ratio\": \"<number>\",\n  \"sampling_threshold\": \"<integer>\",\n  \"sampling_tolerance\": \"<number>\",\n  \"sort_array_columns\": \"<boolean>\",\n  \"table1\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"table2\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"table_modifiers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"time_aggregate\": \"<string>\",\n  \"time_column\": \"<string>\",\n  \"time_interval_end\": \"<dateTime>\",\n  \"time_interval_start\": \"<dateTime>\",\n  \"time_travel_point1\": \"<integer>\",\n  \"time_travel_point2\": \"<integer>\",\n  \"tolerance_mode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0bbc7465-06d2-4e94-9d10-72e26ddef383",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "datadiffs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data_source1_id\": \"<integer>\",\n  \"data_source2_id\": \"<integer>\",\n  \"archived\": false,\n  \"bisection_factor\": \"<integer>\",\n  \"bisection_threshold\": \"<integer>\",\n  \"column_mapping\": [\n    \"<array>\",\n    \"<array>\"\n  ],\n  \"column_rules\": [\n    {\n      \"equal_if\": \"string\",\n      \"column\": \"string\",\n      \"type\": \"void\"\n    },\n    {\n      \"equal_if\": \"string\",\n      \"column\": \"string\",\n      \"type\": \"varbinary\"\n    }\n  ],\n  \"columns_to_compare\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"compare_duplicates\": \"<boolean>\",\n  \"data_source1_session_parameters\": {\n    \"key_0\": 3201.545885772027,\n    \"key_1\": 8849.11750478449,\n    \"key_2\": \"string\",\n    \"key_3\": \"string\",\n    \"key_4\": false\n  },\n  \"data_source2_session_parameters\": {\n    \"key_0\": true,\n    \"key_1\": \"string\"\n  },\n  \"datetime_tolerance\": \"<integer>\",\n  \"diff_tolerance\": \"<number>\",\n  \"diff_tolerances_per_column\": [\n    {\n      \"column_name\": \"string\",\n      \"tolerance_value\": 2942.779107004425,\n      \"tolerance_mode\": \"absolute\"\n    },\n    {\n      \"column_name\": \"string\",\n      \"tolerance_value\": 9655.5621022846,\n      \"tolerance_mode\": \"relative\"\n    }\n  ],\n  \"download_limit\": \"<integer>\",\n  \"exclude_columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"file1\": \"<uri>\",\n  \"file1_options\": {\n    \"delimiter\": \"string\",\n    \"file_type\": \"csv\",\n    \"skip_head_rows\": 3605,\n    \"skip_tail_rows\": 425\n  },\n  \"file2\": \"<uri>\",\n  \"file2_options\": {\n    \"delimiter\": \"string\",\n    \"file_type\": \"csv\",\n    \"skip_head_rows\": 9309,\n    \"skip_tail_rows\": 9291\n  },\n  \"filter1\": \"<string>\",\n  \"filter2\": \"<string>\",\n  \"include_columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"infer_pk\": false,\n  \"infer_pk_avoid_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"infer_pk_avoid_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"materialization_destination_id\": \"<integer>\",\n  \"materialize_dataset1\": \"<boolean>\",\n  \"materialize_dataset2\": \"<boolean>\",\n  \"materialize_without_sampling\": \"<boolean>\",\n  \"per_column_diff_limit\": \"<integer>\",\n  \"pk_columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"purged\": false,\n  \"query1\": \"<string>\",\n  \"query2\": \"<string>\",\n  \"run_profiles\": \"<boolean>\",\n  \"sampling_confidence\": \"<number>\",\n  \"sampling_max_rows\": \"<integer>\",\n  \"sampling_ratio\": \"<number>\",\n  \"sampling_threshold\": \"<integer>\",\n  \"sampling_tolerance\": \"<number>\",\n  \"sort_array_columns\": \"<boolean>\",\n  \"table1\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"table2\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"table_modifiers\": [\n    \"null_equals_empty_string\",\n    \"case_insensitive_strings\"\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"time_aggregate\": \"hour\",\n  \"time_column\": \"<string>\",\n  \"time_interval_end\": \"<dateTime>\",\n  \"time_interval_start\": \"<dateTime>\",\n  \"time_travel_point1\": \"<integer>\",\n  \"time_travel_point2\": \"<integer>\",\n  \"tolerance_mode\": \"absolute\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "null",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e478ad8-9e2b-4eb4-8042-3f0bfb713163",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "datadiffs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data_source1_id\": \"<integer>\",\n  \"data_source2_id\": \"<integer>\",\n  \"archived\": false,\n  \"bisection_factor\": \"<integer>\",\n  \"bisection_threshold\": \"<integer>\",\n  \"column_mapping\": [\n    \"<array>\",\n    \"<array>\"\n  ],\n  \"column_rules\": [\n    {\n      \"equal_if\": \"string\",\n      \"column\": \"string\",\n      \"type\": \"void\"\n    },\n    {\n      \"equal_if\": \"string\",\n      \"column\": \"string\",\n      \"type\": \"varbinary\"\n    }\n  ],\n  \"columns_to_compare\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"compare_duplicates\": \"<boolean>\",\n  \"data_source1_session_parameters\": {\n    \"key_0\": 3201.545885772027,\n    \"key_1\": 8849.11750478449,\n    \"key_2\": \"string\",\n    \"key_3\": \"string\",\n    \"key_4\": false\n  },\n  \"data_source2_session_parameters\": {\n    \"key_0\": true,\n    \"key_1\": \"string\"\n  },\n  \"datetime_tolerance\": \"<integer>\",\n  \"diff_tolerance\": \"<number>\",\n  \"diff_tolerances_per_column\": [\n    {\n      \"column_name\": \"string\",\n      \"tolerance_value\": 2942.779107004425,\n      \"tolerance_mode\": \"absolute\"\n    },\n    {\n      \"column_name\": \"string\",\n      \"tolerance_value\": 9655.5621022846,\n      \"tolerance_mode\": \"relative\"\n    }\n  ],\n  \"download_limit\": \"<integer>\",\n  \"exclude_columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"file1\": \"<uri>\",\n  \"file1_options\": {\n    \"delimiter\": \"string\",\n    \"file_type\": \"csv\",\n    \"skip_head_rows\": 3605,\n    \"skip_tail_rows\": 425\n  },\n  \"file2\": \"<uri>\",\n  \"file2_options\": {\n    \"delimiter\": \"string\",\n    \"file_type\": \"csv\",\n    \"skip_head_rows\": 9309,\n    \"skip_tail_rows\": 9291\n  },\n  \"filter1\": \"<string>\",\n  \"filter2\": \"<string>\",\n  \"include_columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"infer_pk\": false,\n  \"infer_pk_avoid_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"infer_pk_avoid_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"materialization_destination_id\": \"<integer>\",\n  \"materialize_dataset1\": \"<boolean>\",\n  \"materialize_dataset2\": \"<boolean>\",\n  \"materialize_without_sampling\": \"<boolean>\",\n  \"per_column_diff_limit\": \"<integer>\",\n  \"pk_columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"purged\": false,\n  \"query1\": \"<string>\",\n  \"query2\": \"<string>\",\n  \"run_profiles\": \"<boolean>\",\n  \"sampling_confidence\": \"<number>\",\n  \"sampling_max_rows\": \"<integer>\",\n  \"sampling_ratio\": \"<number>\",\n  \"sampling_threshold\": \"<integer>\",\n  \"sampling_tolerance\": \"<number>\",\n  \"sort_array_columns\": \"<boolean>\",\n  \"table1\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"table2\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"table_modifiers\": [\n    \"null_equals_empty_string\",\n    \"case_insensitive_strings\"\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"time_aggregate\": \"hour\",\n  \"time_column\": \"<string>\",\n  \"time_interval_end\": \"<dateTime>\",\n  \"time_interval_start\": \"<dateTime>\",\n  \"time_travel_point1\": \"<integer>\",\n  \"time_travel_point2\": \"<integer>\",\n  \"tolerance_mode\": \"absolute\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "335f5c83-0b83-4b87-ba29-48cbbb46f6de",
+          "name": "Get a data diff",
+          "request": {
+            "name": "Get a data diff",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "datadiffs",
+                ":datadiff_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "datadiff_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "71ff7ceb-94d0-4908-974d-bda05a7d5f5e",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "datadiffs",
+                    ":datadiff_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "datadiff_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "null",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1bae8c4-4890-4cc6-8c23-3e1cceedea37",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "datadiffs",
+                    ":datadiff_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "datadiff_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "43cdd243-354e-40ac-a126-7004c7445591",
+          "name": "Update a data diff",
+          "request": {
+            "name": "Update a data diff",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "datadiffs",
+                ":datadiff_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "datadiff_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"archived\": \"<boolean>\",\n  \"purged\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8dbbff79-3d8a-4e96-9544-2d663639b5f8",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "datadiffs",
+                    ":datadiff_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "datadiff_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"archived\": \"<boolean>\",\n  \"purged\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "93e378a1-8a11-492a-99ae-4b83e2124a89",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "datadiffs",
+                    ":datadiff_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "datadiff_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"archived\": \"<boolean>\",\n  \"purged\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5ce8487c-6b05-489c-aff7-f59eeb1b08e2",
+          "name": "Cancel a running data diff",
+          "request": {
+            "name": "Cancel a running data diff",
+            "description": {
+              "content": "Cancels a data diff that is currently queued or running.\n\nThis operation stops the diff execution and marks it as cancelled. If the diff has already\ncompleted or been cancelled, this operation has no effect and returns the current status.\n\nUse this to stop long-running diffs that are no longer needed or were started with incorrect parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "datadiffs",
+                ":datadiff_id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "datadiff_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a5258bde-6e5e-4bca-bd84-ae966cdfa997",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "datadiffs",
+                    ":datadiff_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "datadiff_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8996,\n  \"status\": \"needs_confirmation\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9df79d4f-1ab2-451e-aefe-41422338fc7a",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "datadiffs",
+                    ":datadiff_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "datadiff_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "30d01ec6-0f9e-4eb8-9656-5047fac48cf5",
+          "name": "Get a human-readable summary of a DataDiff comparison",
+          "request": {
+            "name": "Get a human-readable summary of a DataDiff comparison",
+            "description": {
+              "content": "Retrieves a comprehensive, human-readable summary of a completed data diff.\n\nThis endpoint provides the most useful information for understanding diff results:\n- Overall status and result (success/failure)\n- Human-readable feedback explaining the differences found\n- Key statistics (row counts, differences, match rates)\n- Configuration details (tables compared, primary keys used)\n- Error messages if the diff failed\n\nUse this after a diff completes to get actionable insights. For diffs still running,\ncheck status with get_datadiff first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "datadiffs",
+                ":datadiff_id",
+                "summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "datadiff_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0229ed8e-f7c5-435a-b4f6-111b54c805f9",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "datadiffs",
+                    ":datadiff_id",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "datadiff_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8887,\n  \"status\": \"needs_authentication\",\n  \"data_source1_id\": 3146,\n  \"data_source2_id\": 3613,\n  \"algorithm\": \"string\",\n  \"created_at\": \"1983-12-29T20:53:24.978Z\",\n  \"data_source1_name\": \"string\",\n  \"data_source2_name\": \"string\",\n  \"diff_stats\": {\n    \"key_0\": true\n  },\n  \"error\": \"string\",\n  \"feedback\": \"string\",\n  \"finished_at\": \"2005-11-06T10:36:43.497Z\",\n  \"include_columns\": [\n    \"string\",\n    \"string\"\n  ],\n  \"pk_columns\": [\n    \"string\",\n    \"string\"\n  ],\n  \"result\": \"string\",\n  \"result_status\": \"string\",\n  \"results_count\": 0,\n  \"sampling_ratio\": 111.8181444409061,\n  \"table1\": [\n    \"string\",\n    \"string\"\n  ],\n  \"table2\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "077ba438-c2f1-45ae-b80d-22c9c727c9a8",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "datadiffs",
+                    ":datadiff_id",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "datadiff_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ec63706-5449-4eb1-a990-dc80e6a01413",
+          "name": "Get a data diff summary",
+          "request": {
+            "name": "Get a data diff summary",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "datadiffs",
+                ":datadiff_id",
+                "summary_results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "datadiff_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4da3f86e-9de6-4933-9ccf-3e9b56b22384",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "datadiffs",
+                    ":datadiff_id",
+                    "summary_results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "datadiff_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "null",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2fa2797d-2b2a-4963-ad27-ed1d0dc7852d",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "datadiffs",
+                    ":datadiff_id",
+                    "summary_results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "datadiff_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.datafold.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "900f5ce6-222d-4c26-846e-380ee62d745c",
+    "name": "Datafold Audit Logs Data diffs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Datafold API reference is a guide to our available endpoints and authentication methods.\nIf you're just getting started with Datafold, we recommend first checking out our [documentation](https://docs.datafold.com).\n\n:::info\n  To use the Datafold API, you should first create a Datafold API Key,\n  which should be stored as a local environment variable named DATAFOLD_API_KEY.\n  This can be set in your Datafold Cloud's Settings under the Account page.\n:::\n\nContact Support:\n Name: API Support\n Email: support@datafold.com",
+      "type": "text/plain"
+    }
+  }
+}

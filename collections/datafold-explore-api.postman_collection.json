@@ -1,0 +1,893 @@
+{
+  "item": [
+    {
+      "id": "1a64eebd-b9b8-4b5e-90d9-ac67f8a88ac3",
+      "name": "Explore",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eb12ae45-cdf5-4a4d-9c7d-33c185457f65",
+          "name": "Get column downstreams",
+          "request": {
+            "name": "Get column downstreams",
+            "description": {
+              "content": "Retrieve a list of columns or tables which depend on the given column.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "explore",
+                "db",
+                ":data_connection_id",
+                "columns",
+                ":column_path",
+                "downstreams"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "max_depth",
+                  "value": "10",
+                  "description": "Maximum depth of the lineage to retrieve."
+                },
+                {
+                  "disabled": false,
+                  "key": "include_tabular_nodes",
+                  "value": "true",
+                  "description": "Include Tables in the lineage calculation and in the output."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "data_connection_id",
+                  "description": "(Required) Unique ID for the Data Connection. Can be found in the Datafold app under Settings > Integrations > Data Connections."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "column_path",
+                  "description": "(Required) Path to the column, e.g. `db.schema.table.column`. The path is case sensitive. If components of the path contain periods, they must be quoted: `db.my_schema.\"www.mysite.com visits\".\"visit.id\"`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "114cadb1-a21c-4e26-b334-679ed270e7e0",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "explore",
+                    "db",
+                    ":data_connection_id",
+                    "columns",
+                    ":column_path",
+                    "downstreams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "max_depth",
+                      "value": "10"
+                    },
+                    {
+                      "key": "include_tabular_nodes",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "data_connection_id",
+                      "description": "(Required) Unique ID for the Data Connection. Can be found in the Datafold app under Settings > Integrations > Data Connections."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "column_path",
+                      "description": "(Required) Path to the column, e.g. `db.schema.table.column`. The path is case sensitive. If components of the path contain periods, they must be quoted: `db.my_schema.\"www.mysite.com visits\".\"visit.id\"`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"table\": {\n      \"name\": \"string\",\n      \"path\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"type\": \"Column\"\n  },\n  {\n    \"name\": \"string\",\n    \"table\": {\n      \"name\": \"string\",\n      \"path\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"type\": \"Column\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d6667c59-8b39-42b0-ac3c-91f6e425a9aa",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "explore",
+                    "db",
+                    ":data_connection_id",
+                    "columns",
+                    ":column_path",
+                    "downstreams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "max_depth",
+                      "value": "10"
+                    },
+                    {
+                      "key": "include_tabular_nodes",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "data_connection_id",
+                      "description": "(Required) Unique ID for the Data Connection. Can be found in the Datafold app under Settings > Integrations > Data Connections."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "column_path",
+                      "description": "(Required) Path to the column, e.g. `db.schema.table.column`. The path is case sensitive. If components of the path contain periods, they must be quoted: `db.my_schema.\"www.mysite.com visits\".\"visit.id\"`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7153016f-28ff-46c9-a7a1-2ba94700ad4d",
+          "name": "Get column upstreams",
+          "request": {
+            "name": "Get column upstreams",
+            "description": {
+              "content": "Retrieve a list of columns or tables which the given column depends on.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "explore",
+                "db",
+                ":data_connection_id",
+                "columns",
+                ":column_path",
+                "upstreams"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "max_depth",
+                  "value": "10",
+                  "description": "Maximum depth of the lineage to retrieve."
+                },
+                {
+                  "disabled": false,
+                  "key": "include_tabular_nodes",
+                  "value": "true",
+                  "description": "Include Tables in the lineage calculation and in the output."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "data_connection_id",
+                  "description": "(Required) Unique ID for the Data Connection. Can be found in the Datafold app under Settings > Integrations > Data Connections."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "column_path",
+                  "description": "(Required) Path to the column, e.g. `db.schema.table.column`. The path is case sensitive. If components of the path contain periods, they must be quoted: `db.my_schema.\"www.mysite.com visits\".\"visit.id\"`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3925d09c-bc10-4aa2-a48b-65835ed442c2",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "explore",
+                    "db",
+                    ":data_connection_id",
+                    "columns",
+                    ":column_path",
+                    "upstreams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "max_depth",
+                      "value": "10"
+                    },
+                    {
+                      "key": "include_tabular_nodes",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "data_connection_id",
+                      "description": "(Required) Unique ID for the Data Connection. Can be found in the Datafold app under Settings > Integrations > Data Connections."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "column_path",
+                      "description": "(Required) Path to the column, e.g. `db.schema.table.column`. The path is case sensitive. If components of the path contain periods, they must be quoted: `db.my_schema.\"www.mysite.com visits\".\"visit.id\"`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"table\": {\n      \"name\": \"string\",\n      \"path\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"type\": \"Column\"\n  },\n  {\n    \"name\": \"string\",\n    \"table\": {\n      \"name\": \"string\",\n      \"path\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"type\": \"Column\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "463af8ee-0f1a-4675-9395-d0071c08f895",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "explore",
+                    "db",
+                    ":data_connection_id",
+                    "columns",
+                    ":column_path",
+                    "upstreams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "max_depth",
+                      "value": "10"
+                    },
+                    {
+                      "key": "include_tabular_nodes",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "data_connection_id",
+                      "description": "(Required) Unique ID for the Data Connection. Can be found in the Datafold app under Settings > Integrations > Data Connections."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "column_path",
+                      "description": "(Required) Path to the column, e.g. `db.schema.table.column`. The path is case sensitive. If components of the path contain periods, they must be quoted: `db.my_schema.\"www.mysite.com visits\".\"visit.id\"`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "52a26e2e-9d4b-4916-9025-ffa4f61f2f13",
+          "name": "Get table downstreams",
+          "request": {
+            "name": "Get table downstreams",
+            "description": {
+              "content": "Retrieve a list of tables which depend on the given table.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "explore",
+                "db",
+                ":data_connection_id",
+                "tables",
+                ":table_path",
+                "downstreams"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "max_depth",
+                  "value": "10",
+                  "description": "Maximum depth of the lineage to retrieve."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "data_connection_id",
+                  "description": "(Required) Unique ID for the Data Connection. Can be found in the Datafold app under Settings > Integrations > Data Connections."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "table_path",
+                  "description": "(Required) Path to the table, e.g. `db.schema.table`. The path is case sensitive. If components of the path contain periods, they must be quoted: `db.\"my.schema\".\"www.mysite.com visits\"`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "84dfb7c9-fa72-47f1-aedd-d3260df211cf",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "explore",
+                    "db",
+                    ":data_connection_id",
+                    "tables",
+                    ":table_path",
+                    "downstreams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "max_depth",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "data_connection_id",
+                      "description": "(Required) Unique ID for the Data Connection. Can be found in the Datafold app under Settings > Integrations > Data Connections."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "table_path",
+                      "description": "(Required) Path to the table, e.g. `db.schema.table`. The path is case sensitive. If components of the path contain periods, they must be quoted: `db.\"my.schema\".\"www.mysite.com visits\"`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"columns\": [\n      {\n        \"name\": \"string\"\n      },\n      {\n        \"name\": \"string\"\n      }\n    ],\n    \"path\": [\n      \"string\",\n      \"string\"\n    ],\n    \"type\": \"Table\"\n  },\n  {\n    \"name\": \"string\",\n    \"columns\": [\n      {\n        \"name\": \"string\"\n      },\n      {\n        \"name\": \"string\"\n      }\n    ],\n    \"path\": [\n      \"string\",\n      \"string\"\n    ],\n    \"type\": \"Table\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b1059e5-4a3d-4156-85dd-be5341354c4d",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "explore",
+                    "db",
+                    ":data_connection_id",
+                    "tables",
+                    ":table_path",
+                    "downstreams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "max_depth",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "data_connection_id",
+                      "description": "(Required) Unique ID for the Data Connection. Can be found in the Datafold app under Settings > Integrations > Data Connections."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "table_path",
+                      "description": "(Required) Path to the table, e.g. `db.schema.table`. The path is case sensitive. If components of the path contain periods, they must be quoted: `db.\"my.schema\".\"www.mysite.com visits\"`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10d55aa3-94bd-4968-a4f6-f261de9c0625",
+          "name": "Get table upstreams",
+          "request": {
+            "name": "Get table upstreams",
+            "description": {
+              "content": "Retrieve a list of tables which the given table depends on.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "explore",
+                "db",
+                ":data_connection_id",
+                "tables",
+                ":table_path",
+                "upstreams"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "max_depth",
+                  "value": "10",
+                  "description": "Maximum depth of the lineage to retrieve."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "data_connection_id",
+                  "description": "(Required) Unique ID for the Data Connection. Can be found in the Datafold app under Settings > Integrations > Data Connections."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "table_path",
+                  "description": "(Required) Path to the table, e.g. `db.schema.table`. The path is case sensitive. If components of the path contain periods, they must be quoted: `db.\"my.schema\".\"www.mysite.com visits\"`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "05f162a5-e684-4762-970e-c019fcbbdbad",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "explore",
+                    "db",
+                    ":data_connection_id",
+                    "tables",
+                    ":table_path",
+                    "upstreams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "max_depth",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "data_connection_id",
+                      "description": "(Required) Unique ID for the Data Connection. Can be found in the Datafold app under Settings > Integrations > Data Connections."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "table_path",
+                      "description": "(Required) Path to the table, e.g. `db.schema.table`. The path is case sensitive. If components of the path contain periods, they must be quoted: `db.\"my.schema\".\"www.mysite.com visits\"`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"columns\": [\n      {\n        \"name\": \"string\"\n      },\n      {\n        \"name\": \"string\"\n      }\n    ],\n    \"path\": [\n      \"string\",\n      \"string\"\n    ],\n    \"type\": \"Table\"\n  },\n  {\n    \"name\": \"string\",\n    \"columns\": [\n      {\n        \"name\": \"string\"\n      },\n      {\n        \"name\": \"string\"\n      }\n    ],\n    \"path\": [\n      \"string\",\n      \"string\"\n    ],\n    \"type\": \"Table\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36ebdf10-e003-42c3-87bf-21cb05adcdac",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "explore",
+                    "db",
+                    ":data_connection_id",
+                    "tables",
+                    ":table_path",
+                    "upstreams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "max_depth",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "data_connection_id",
+                      "description": "(Required) Unique ID for the Data Connection. Can be found in the Datafold app under Settings > Integrations > Data Connections."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "table_path",
+                      "description": "(Required) Path to the table, e.g. `db.schema.table`. The path is case sensitive. If components of the path contain periods, they must be quoted: `db.\"my.schema\".\"www.mysite.com visits\"`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.datafold.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b4a963ba-8961-45ec-84ed-da817426cc72",
+    "name": "Datafold Audit Logs Explore API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Datafold API reference is a guide to our available endpoints and authentication methods.\nIf you're just getting started with Datafold, we recommend first checking out our [documentation](https://docs.datafold.com).\n\n:::info\n  To use the Datafold API, you should first create a Datafold API Key,\n  which should be stored as a local environment variable named DATAFOLD_API_KEY.\n  This can be set in your Datafold Cloud's Settings under the Account page.\n:::\n\nContact Support:\n Name: API Support\n Email: support@datafold.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Datafold Audit Logs data_source_added API",
+    "version": "latest"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "data_source_added",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a data source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/data_sources",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a data source"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

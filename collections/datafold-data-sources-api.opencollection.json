@@ -1,0 +1,169 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Datafold Audit Logs Data sources API",
+    "version": "latest"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data sources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List data sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.datafold.com/api/v1/data_sources"
+          },
+          "docs": "Retrieves all data sources for the organization, annotated with an `accessible` boolean.\n\nReturns active data sources (not deleted, hidden, or draft). Each DS includes `accessible=True`\nif the user is admin or the user's groups overlap with the DS's groups."
+        },
+        {
+          "info": {
+            "name": "Create a data source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/data_sources",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a data source"
+        },
+        {
+          "info": {
+            "name": "Get data source testing results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.datafold.com/api/v1/data_sources/test/:job_id",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get data source testing results"
+        },
+        {
+          "info": {
+            "name": "List data source types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.datafold.com/api/v1/data_sources/types"
+          },
+          "docs": "List data source types"
+        },
+        {
+          "info": {
+            "name": "Get a data source",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.datafold.com/api/v1/data_sources/:data_source_id",
+            "params": [
+              {
+                "name": "data_source_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a data source"
+        },
+        {
+          "info": {
+            "name": "Execute a SQL query against a data source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/data_sources/:data_source_id/query",
+            "headers": [
+              {
+                "name": "X-Stream-Response",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "data_source_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "stream",
+                "value": "",
+                "type": "query",
+                "description": "Stream results as JSON"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a SQL query against the specified data source and returns the results.\n\nThis endpoint allows you to run ad-hoc SQL queries for data exploration, validation, or analysis.\nThe query is executed using the data source's native query runner with the appropriate credentials.\n\n**Streaming mode**: Use query parameter `?stream=true` or set `X-Stream-Response: true` header.\nStreaming is only supported for certain data sources (e.g., Databricks).\nWhen streaming, results are sent incrementally as v"
+        },
+        {
+          "info": {
+            "name": "Get a data source summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.datafold.com/api/v1/data_sources/:data_source_id/summary",
+            "params": [
+              {
+                "name": "data_source_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a data source summary"
+        },
+        {
+          "info": {
+            "name": "Test a data source connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/data_sources/:data_source_id/test",
+            "params": [
+              {
+                "name": "data_source_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Test a data source connection"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

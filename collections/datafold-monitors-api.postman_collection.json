@@ -1,0 +1,2095 @@
+{
+  "item": [
+    {
+      "id": "1c211af3-7585-4d07-985a-6f739ced012e",
+      "name": "Monitors",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5bef881b-c9ec-4c46-adee-3453cc18c580",
+          "name": "List Monitors",
+          "request": {
+            "name": "List Monitors",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "monitors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number to retrieve."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "20",
+                  "description": "The number of items to retrieve per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "<string>",
+                  "description": "Field to order the monitors by."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "desc",
+                  "description": "Specify the order direction for the monitors."
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Comma-separated tags to filter monitors by."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ddbad87b-f266-47ac-a070-6b5ef2987f65",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "monitors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "last_triggered"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 6209,\n  \"monitors\": [\n    {\n      \"id\": 422,\n      \"name\": \"string\",\n      \"monitor_type\": \"test\",\n      \"created_at\": \"1977-03-20T23:56:45.660Z\",\n      \"modified_at\": \"1952-12-25T07:41:06.392Z\",\n      \"enabled\": false,\n      \"last_alert\": \"1968-01-31T12:57:24.868Z\",\n      \"last_run\": \"1979-08-31T14:22:42.210Z\",\n      \"owner\": \"string\",\n      \"state\": \"checking\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": 716,\n      \"name\": \"string\",\n      \"monitor_type\": \"diff\",\n      \"created_at\": \"1993-02-13T22:54:29.054Z\",\n      \"modified_at\": \"1952-01-17T21:45:34.800Z\",\n      \"enabled\": false,\n      \"last_alert\": \"2021-10-10T22:34:51.502Z\",\n      \"last_run\": \"1960-04-14T09:05:35.098Z\",\n      \"owner\": \"string\",\n      \"state\": \"alert\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"page\": 9500,\n  \"page_size\": 3258,\n  \"total_pages\": 53\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7671c1cd-a212-42b6-ab26-b720780cd0a0",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "monitors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "last_triggered"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "61ab003c-9257-44b8-ab12-69ae781d3eb1",
+          "name": "Create a Data Diff Monitor",
+          "request": {
+            "name": "Create a Data Diff Monitor",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "monitors",
+                "create",
+                "diff"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"schedule\": {\n    \"interval\": {\n      \"every\": \"<string>\",\n      \"type\": \"hourly\"\n    }\n  },\n  \"name\": \"<string>\",\n  \"datadiff\": {\n    \"primary_key\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"dataset_a\": {\n      \"connection_id\": \"<integer>\",\n      \"table\": \"<string>\",\n      \"filter\": \"<string>\",\n      \"session_parameters\": {\n        \"key_0\": 6062\n      },\n      \"time_travel_point\": \"<string>\"\n    },\n    \"dataset_b\": {\n      \"connection_id\": \"<integer>\",\n      \"table\": \"<string>\",\n      \"filter\": \"<string>\",\n      \"session_parameters\": {\n        \"key_0\": false,\n        \"key_1\": \"string\",\n        \"key_2\": 1634.2297550552375,\n        \"key_3\": 5138\n      },\n      \"time_travel_point\": \"<string>\"\n    },\n    \"column_remapping\": {\n      \"key_0\": \"<string>\"\n    },\n    \"columns_to_compare\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"compare_duplicates\": \"<boolean>\",\n    \"exclude_columns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"ignore_string_case\": false,\n    \"include_columns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"materialize_results\": false,\n    \"null_equals_empty_string\": false,\n    \"sampling\": {\n      \"tolerance\": \"<number>\",\n      \"confidence\": \"<number>\",\n      \"threshold\": \"<integer>\"\n    },\n    \"sort_array_columns\": \"<boolean>\",\n    \"timeseries_dimension_column\": \"<string>\",\n    \"tolerance\": {\n      \"datetime\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"float\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  },\n  \"alert\": {\n    \"different_rows_count\": \"<integer>\",\n    \"different_rows_percent\": \"<integer>\",\n    \"match_ratio_min\": \"<number>\"\n  },\n  \"description\": \"<string>\",\n  \"enabled\": true,\n  \"notifications\": [\n    {\n      \"recipients\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"features\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"type\": \"email\"\n    },\n    {\n      \"recipients\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"features\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"type\": \"email\"\n    }\n  ],\n  \"owner\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "26ad4bc5-55ae-4b57-abc6-de65eac9ebf4",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "monitors",
+                    "create",
+                    "diff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schedule\": {\n    \"interval\": {\n      \"every\": \"string\",\n      \"type\": \"hourly\"\n    }\n  },\n  \"name\": \"<string>\",\n  \"datadiff\": {\n    \"primary_key\": [\n      \"string\",\n      \"string\"\n    ],\n    \"dataset_a\": {\n      \"connection_id\": 2841,\n      \"table\": \"string\",\n      \"filter\": \"string\",\n      \"session_parameters\": {\n        \"key_0\": 9262.906916565758,\n        \"key_1\": 6316.164145859977,\n        \"key_2\": false,\n        \"key_3\": 9250.626670735757\n      },\n      \"time_travel_point\": \"string\"\n    },\n    \"dataset_b\": {\n      \"connection_id\": 5189,\n      \"table\": \"string\",\n      \"filter\": \"string\",\n      \"session_parameters\": {\n        \"key_0\": false\n      },\n      \"time_travel_point\": \"string\"\n    },\n    \"column_remapping\": {\n      \"key_0\": \"string\"\n    },\n    \"columns_to_compare\": [\n      \"string\",\n      \"string\"\n    ],\n    \"compare_duplicates\": false,\n    \"exclude_columns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"ignore_string_case\": false,\n    \"include_columns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"materialize_results\": false,\n    \"null_equals_empty_string\": false,\n    \"sampling\": {\n      \"tolerance\": 7746.244655000366,\n      \"confidence\": 2216.6530398650907,\n      \"threshold\": 8699\n    },\n    \"sort_array_columns\": true,\n    \"timeseries_dimension_column\": \"string\",\n    \"tolerance\": {\n      \"datetime\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"float\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  },\n  \"alert\": {\n    \"different_rows_count\": 403,\n    \"different_rows_percent\": 1912,\n    \"match_ratio_min\": 0.848843927120626\n  },\n  \"description\": \"<string>\",\n  \"enabled\": true,\n  \"notifications\": [\n    {\n      \"recipients\": [\n        \"string\",\n        \"string\"\n      ],\n      \"features\": [\n        \"notify_first_triggered_only\",\n        \"attach_csv\"\n      ],\n      \"type\": \"email\"\n    },\n    {\n      \"recipients\": [\n        \"string\",\n        \"string\"\n      ],\n      \"features\": [\n        \"disable_recovery_notifications\",\n        \"notify_every_run\"\n      ],\n      \"type\": \"email\"\n    }\n  ],\n  \"owner\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 519\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0bd0a3a-e3be-4ab1-bc46-4cb35af713bf",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "monitors",
+                    "create",
+                    "diff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schedule\": {\n    \"interval\": {\n      \"every\": \"string\",\n      \"type\": \"hourly\"\n    }\n  },\n  \"name\": \"<string>\",\n  \"datadiff\": {\n    \"primary_key\": [\n      \"string\",\n      \"string\"\n    ],\n    \"dataset_a\": {\n      \"connection_id\": 2841,\n      \"table\": \"string\",\n      \"filter\": \"string\",\n      \"session_parameters\": {\n        \"key_0\": 9262.906916565758,\n        \"key_1\": 6316.164145859977,\n        \"key_2\": false,\n        \"key_3\": 9250.626670735757\n      },\n      \"time_travel_point\": \"string\"\n    },\n    \"dataset_b\": {\n      \"connection_id\": 5189,\n      \"table\": \"string\",\n      \"filter\": \"string\",\n      \"session_parameters\": {\n        \"key_0\": false\n      },\n      \"time_travel_point\": \"string\"\n    },\n    \"column_remapping\": {\n      \"key_0\": \"string\"\n    },\n    \"columns_to_compare\": [\n      \"string\",\n      \"string\"\n    ],\n    \"compare_duplicates\": false,\n    \"exclude_columns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"ignore_string_case\": false,\n    \"include_columns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"materialize_results\": false,\n    \"null_equals_empty_string\": false,\n    \"sampling\": {\n      \"tolerance\": 7746.244655000366,\n      \"confidence\": 2216.6530398650907,\n      \"threshold\": 8699\n    },\n    \"sort_array_columns\": true,\n    \"timeseries_dimension_column\": \"string\",\n    \"tolerance\": {\n      \"datetime\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"float\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  },\n  \"alert\": {\n    \"different_rows_count\": 403,\n    \"different_rows_percent\": 1912,\n    \"match_ratio_min\": 0.848843927120626\n  },\n  \"description\": \"<string>\",\n  \"enabled\": true,\n  \"notifications\": [\n    {\n      \"recipients\": [\n        \"string\",\n        \"string\"\n      ],\n      \"features\": [\n        \"notify_first_triggered_only\",\n        \"attach_csv\"\n      ],\n      \"type\": \"email\"\n    },\n    {\n      \"recipients\": [\n        \"string\",\n        \"string\"\n      ],\n      \"features\": [\n        \"disable_recovery_notifications\",\n        \"notify_every_run\"\n      ],\n      \"type\": \"email\"\n    }\n  ],\n  \"owner\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4dccb38f-c1a0-465d-bc11-8a7868d21243",
+          "name": "Create a Metric Monitor",
+          "request": {
+            "name": "Create a Metric Monitor",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "monitors",
+                "create",
+                "metric"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"schedule\": {\n    \"interval\": {\n      \"every\": \"<string>\",\n      \"type\": \"hourly\"\n    }\n  },\n  \"name\": \"<string>\",\n  \"connection_id\": \"<integer>\",\n  \"metric\": {\n    \"metric\": \"<string>\",\n    \"filter\": \"<string>\",\n    \"table\": \"<string>\",\n    \"type\": \"table\"\n  },\n  \"alert\": {\n    \"type\": \"<string>\",\n    \"sensitivity\": \"<integer>\"\n  },\n  \"description\": \"<string>\",\n  \"enabled\": true,\n  \"notifications\": [\n    {\n      \"recipients\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"features\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"type\": \"email\"\n    },\n    {\n      \"recipients\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"features\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"type\": \"email\"\n    }\n  ],\n  \"owner\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d7dddc4f-62e3-49fc-9777-83f783ae282b",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "monitors",
+                    "create",
+                    "metric"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schedule\": {\n    \"interval\": {\n      \"every\": \"string\",\n      \"type\": \"hourly\"\n    }\n  },\n  \"name\": \"<string>\",\n  \"connection_id\": \"<integer>\",\n  \"metric\": {\n    \"metric\": \"freshness\",\n    \"filter\": \"string\",\n    \"table\": \"string\",\n    \"type\": \"table\"\n  },\n  \"alert\": {\n    \"type\": \"string\",\n    \"sensitivity\": 75\n  },\n  \"description\": \"<string>\",\n  \"enabled\": true,\n  \"notifications\": [\n    {\n      \"recipients\": [\n        \"string\",\n        \"string\"\n      ],\n      \"features\": [\n        \"notify_first_triggered_only\",\n        \"attach_csv\"\n      ],\n      \"type\": \"email\"\n    },\n    {\n      \"recipients\": [\n        \"string\",\n        \"string\"\n      ],\n      \"features\": [\n        \"disable_recovery_notifications\",\n        \"disable_recovery_notifications\"\n      ],\n      \"type\": \"email\"\n    }\n  ],\n  \"owner\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 519\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1269182-a5b8-40d1-ab79-33282bae5770",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "monitors",
+                    "create",
+                    "metric"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schedule\": {\n    \"interval\": {\n      \"every\": \"string\",\n      \"type\": \"hourly\"\n    }\n  },\n  \"name\": \"<string>\",\n  \"connection_id\": \"<integer>\",\n  \"metric\": {\n    \"metric\": \"freshness\",\n    \"filter\": \"string\",\n    \"table\": \"string\",\n    \"type\": \"table\"\n  },\n  \"alert\": {\n    \"type\": \"string\",\n    \"sensitivity\": 75\n  },\n  \"description\": \"<string>\",\n  \"enabled\": true,\n  \"notifications\": [\n    {\n      \"recipients\": [\n        \"string\",\n        \"string\"\n      ],\n      \"features\": [\n        \"notify_first_triggered_only\",\n        \"attach_csv\"\n      ],\n      \"type\": \"email\"\n    },\n    {\n      \"recipients\": [\n        \"string\",\n        \"string\"\n      ],\n      \"features\": [\n        \"disable_recovery_notifications\",\n        \"disable_recovery_notifications\"\n      ],\n      \"type\": \"email\"\n    }\n  ],\n  \"owner\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bde4c5e3-95f4-4cae-9c10-ee0967c9ef22",
+          "name": "Create a Schema Change Monitor",
+          "request": {
+            "name": "Create a Schema Change Monitor",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "monitors",
+                "create",
+                "schema"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"schedule\": {\n    \"interval\": {\n      \"every\": \"<string>\",\n      \"type\": \"hourly\"\n    }\n  },\n  \"name\": \"<string>\",\n  \"connection_id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"enabled\": true,\n  \"notifications\": [\n    {\n      \"recipients\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"features\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"type\": \"email\"\n    },\n    {\n      \"recipients\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"features\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"type\": \"email\"\n    }\n  ],\n  \"owner\": \"<string>\",\n  \"table\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b371e4a4-52fb-468c-90a1-6edc00e55e57",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "monitors",
+                    "create",
+                    "schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schedule\": {\n    \"interval\": {\n      \"every\": \"string\",\n      \"type\": \"hourly\"\n    }\n  },\n  \"name\": \"<string>\",\n  \"connection_id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"enabled\": true,\n  \"notifications\": [\n    {\n      \"recipients\": [\n        \"string\",\n        \"string\"\n      ],\n      \"features\": [\n        \"notify_first_triggered_only\",\n        \"disable_recovery_notifications\"\n      ],\n      \"type\": \"email\"\n    },\n    {\n      \"recipients\": [\n        \"string\",\n        \"string\"\n      ],\n      \"features\": [\n        \"notify_first_triggered_only\",\n        \"notify_first_triggered_only\"\n      ],\n      \"type\": \"email\"\n    }\n  ],\n  \"owner\": \"<string>\",\n  \"table\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 519\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3c260ef-a887-4795-9391-938e30d35e0c",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "monitors",
+                    "create",
+                    "schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schedule\": {\n    \"interval\": {\n      \"every\": \"string\",\n      \"type\": \"hourly\"\n    }\n  },\n  \"name\": \"<string>\",\n  \"connection_id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"enabled\": true,\n  \"notifications\": [\n    {\n      \"recipients\": [\n        \"string\",\n        \"string\"\n      ],\n      \"features\": [\n        \"notify_first_triggered_only\",\n        \"disable_recovery_notifications\"\n      ],\n      \"type\": \"email\"\n    },\n    {\n      \"recipients\": [\n        \"string\",\n        \"string\"\n      ],\n      \"features\": [\n        \"notify_first_triggered_only\",\n        \"notify_first_triggered_only\"\n      ],\n      \"type\": \"email\"\n    }\n  ],\n  \"owner\": \"<string>\",\n  \"table\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1a1ff46-a558-4b46-8127-e8d61e9eb699",
+          "name": "Create a Data Test Monitor",
+          "request": {
+            "name": "Create a Data Test Monitor",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "monitors",
+                "create",
+                "test"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"schedule\": {\n    \"interval\": {\n      \"every\": \"<string>\",\n      \"type\": \"hourly\"\n    }\n  },\n  \"name\": \"<string>\",\n  \"connection_id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"enabled\": true,\n  \"notifications\": [\n    {\n      \"recipients\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"features\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"type\": \"email\"\n    },\n    {\n      \"recipients\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"features\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"type\": \"email\"\n    }\n  ],\n  \"owner\": \"<string>\",\n  \"query\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"test\": {\n    \"type\": \"<string>\",\n    \"tables\": [\n      {\n        \"path\": \"<string>\",\n        \"columns\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"path\": \"<string>\",\n        \"columns\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"variables\": {\n      \"key_0\": {\n        \"value\": \"<string>\",\n        \"quote\": true\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e17f5c3d-d518-429f-b3d4-2c7e374a074a",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "monitors",
+                    "create",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schedule\": {\n    \"interval\": {\n      \"every\": \"string\",\n      \"type\": \"hourly\"\n    }\n  },\n  \"name\": \"<string>\",\n  \"connection_id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"enabled\": true,\n  \"notifications\": [\n    {\n      \"recipients\": [\n        \"string\",\n        \"string\"\n      ],\n      \"features\": [\n        \"attach_csv\",\n        \"notify_every_run\"\n      ],\n      \"type\": \"email\"\n    },\n    {\n      \"recipients\": [\n        \"string\",\n        \"string\"\n      ],\n      \"features\": [\n        \"notify_every_run\",\n        \"notify_first_triggered_only\"\n      ],\n      \"type\": \"email\"\n    }\n  ],\n  \"owner\": \"<string>\",\n  \"query\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"test\": {\n    \"type\": \"numeric_range\",\n    \"tables\": [\n      {\n        \"path\": \"string\",\n        \"columns\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"path\": \"string\",\n        \"columns\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ],\n    \"variables\": {\n      \"key_0\": {\n        \"value\": \"string\",\n        \"quote\": true\n      },\n      \"key_1\": {\n        \"value\": \"string\",\n        \"quote\": true\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 519\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ebbb046b-8986-4ed1-84fc-d6f9effe9499",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "monitors",
+                    "create",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schedule\": {\n    \"interval\": {\n      \"every\": \"string\",\n      \"type\": \"hourly\"\n    }\n  },\n  \"name\": \"<string>\",\n  \"connection_id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"enabled\": true,\n  \"notifications\": [\n    {\n      \"recipients\": [\n        \"string\",\n        \"string\"\n      ],\n      \"features\": [\n        \"attach_csv\",\n        \"notify_every_run\"\n      ],\n      \"type\": \"email\"\n    },\n    {\n      \"recipients\": [\n        \"string\",\n        \"string\"\n      ],\n      \"features\": [\n        \"notify_every_run\",\n        \"notify_first_triggered_only\"\n      ],\n      \"type\": \"email\"\n    }\n  ],\n  \"owner\": \"<string>\",\n  \"query\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"test\": {\n    \"type\": \"numeric_range\",\n    \"tables\": [\n      {\n        \"path\": \"string\",\n        \"columns\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"path\": \"string\",\n        \"columns\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ],\n    \"variables\": {\n      \"key_0\": {\n        \"value\": \"string\",\n        \"quote\": true\n      },\n      \"key_1\": {\n        \"value\": \"string\",\n        \"quote\": true\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3e0e5d9-42ec-429a-a528-1f1e05001fd1",
+          "name": "Delete a Monitor",
+          "request": {
+            "name": "Delete a Monitor",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "monitors",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the monitor."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "25349ae9-f521-4cf0-bf6a-b8d3aac2e812",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "monitors",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the monitor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ece9a0b0-81ce-4592-a8da-26840c656d41",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "monitors",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the monitor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7adf0f24-6576-4c74-ba85-cc3eedf1e17e",
+          "name": "Get Monitor",
+          "request": {
+            "name": "Get Monitor",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "monitors",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the monitor."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "19c3fcd1-ff4f-4264-99cd-2848288830f5",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "monitors",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the monitor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3416,\n  \"name\": \"string\",\n  \"monitor_type\": \"test\",\n  \"created_at\": \"1992-02-22T19:50:06.278Z\",\n  \"modified_at\": \"2014-08-04T08:17:44.128Z\",\n  \"enabled\": false,\n  \"schedule\": {\n    \"interval\": {\n      \"every\": \"string\",\n      \"type\": \"hourly\"\n    }\n  },\n  \"alert\": {\n    \"type\": \"string\",\n    \"different_rows_count\": 3228,\n    \"different_rows_percent\": 4979,\n    \"match_ratio_min\": 0.419632037963359\n  },\n  \"dataset\": [\n    {\n      \"connection_id\": 7118,\n      \"column\": \"string\",\n      \"filter\": \"string\",\n      \"metric\": \"string\",\n      \"query\": \"string\",\n      \"table\": \"string\"\n    },\n    {\n      \"connection_id\": 3253,\n      \"column\": \"string\",\n      \"filter\": \"string\",\n      \"metric\": \"string\",\n      \"query\": \"string\",\n      \"table\": \"string\"\n    }\n  ],\n  \"description\": \"string\",\n  \"last_alert\": \"2017-08-23T18:32:41.091Z\",\n  \"last_run\": \"1950-08-31T08:39:58.025Z\",\n  \"notifications\": [\n    {\n      \"recipients\": [\n        \"string\",\n        \"string\"\n      ],\n      \"features\": [\n        \"notify_every_run\",\n        \"notify_every_run\"\n      ],\n      \"type\": \"email\"\n    },\n    {\n      \"recipients\": [\n        \"string\",\n        \"string\"\n      ],\n      \"features\": [\n        \"notify_first_triggered_only\",\n        \"notify_every_run\"\n      ],\n      \"type\": \"email\"\n    }\n  ],\n  \"owner\": \"string\",\n  \"state\": \"queued\",\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4de2111c-78ba-4c0d-b1a8-e1ec814213cb",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "monitors",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the monitor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f85e795d-ead3-4e82-998d-3eda2f9dda6d",
+          "name": "Trigger a run",
+          "request": {
+            "name": "Trigger a run",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "monitors",
+                ":id",
+                "run"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the monitor for which to start the run."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "33f9004d-92c6-4c13-91a0-c2ee5ed4334f",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "monitors",
+                    ":id",
+                    "run"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the monitor for which to start the run."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"run_id\": 7358\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55856fda-12a9-4d1f-81a9-e254b9ee2ae3",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "monitors",
+                    ":id",
+                    "run"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the monitor for which to start the run."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "204eb552-73eb-4c5d-8ecd-f27a5b3a7bd7",
+          "name": "List Monitor Runs",
+          "request": {
+            "name": "List Monitor Runs",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "monitors",
+                ":id",
+                "runs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number to retrieve."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "10",
+                  "description": "The number of items to retrieve per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "<dateTime>",
+                  "description": "Include runs with a timestamp >= this value."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_time",
+                  "value": "<dateTime>",
+                  "description": "Include runs with a timestamp <= this value."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the monitor."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "17101f96-f324-43fc-8e24-369fb9c6f07d",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "monitors",
+                    ":id",
+                    "runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the monitor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 9838,\n  \"runs\": [\n    {\n      \"run_id\": 7696,\n      \"monitor_id\": 5626,\n      \"diff_id\": 4462,\n      \"started_at\": \"1957-10-04T21:03:14.540Z\",\n      \"state\": \"queued\"\n    },\n    {\n      \"run_id\": 4257,\n      \"monitor_id\": 2769,\n      \"diff_id\": 9870,\n      \"started_at\": \"1948-03-22T05:19:19.841Z\",\n      \"state\": \"created\"\n    }\n  ],\n  \"page\": 9524,\n  \"page_size\": 695,\n  \"total_pages\": 8251\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a327f185-1ddc-4caf-a306-779df84a6ad9",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "monitors",
+                    ":id",
+                    "runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the monitor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e27af3e2-63a7-47d3-8ade-ec75062f5f6e",
+          "name": "Get Monitor Run",
+          "request": {
+            "name": "Get Monitor Run",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "monitors",
+                ":id",
+                "runs",
+                ":run_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "run_id",
+                  "description": "(Required) The unique identifier of the run to retrieve."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the monitor associated with the run."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b9b8696-fbc9-4c6a-ab05-bdd4fffa1969",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "monitors",
+                    ":id",
+                    "runs",
+                    ":run_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "run_id",
+                      "description": "(Required) The unique identifier of the run to retrieve."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the monitor associated with the run."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"run_id\": 7000,\n  \"monitor_id\": 5767,\n  \"state\": \"ok\",\n  \"warnings\": [\n    \"string\",\n    \"string\"\n  ],\n  \"diff_id\": 521,\n  \"error\": \"string\",\n  \"started_at\": \"1949-10-23T02:46:09.644Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17ab27ef-67f6-4922-9617-a3b05cb9af03",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "monitors",
+                    ":id",
+                    "runs",
+                    ":run_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "run_id",
+                      "description": "(Required) The unique identifier of the run to retrieve."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the monitor associated with the run."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "349e75cd-6a1a-4963-a987-aa80aeeb4b77",
+          "name": "Toggle a Monitor",
+          "request": {
+            "name": "Toggle a Monitor",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "monitors",
+                ":id",
+                "toggle"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the monitor."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3b2e8b88-51c1-42d1-bd52-973e11601156",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "monitors",
+                    ":id",
+                    "toggle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the monitor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e21869ae-2487-44f4-8090-d4029233e7c3",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "monitors",
+                    ":id",
+                    "toggle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the monitor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ce0411e-6b4d-4e40-99b3-065699deb913",
+          "name": "Update a Monitor",
+          "request": {
+            "name": "Update a Monitor",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "monitors",
+                ":id",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the monitor."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"alert\": {\n    \"different_rows_count\": \"<integer>\",\n    \"different_rows_percent\": \"<integer>\",\n    \"match_ratio_min\": \"<number>\"\n  },\n  \"datadiff\": {\n    \"column_remapping\": {\n      \"key_0\": \"<string>\"\n    },\n    \"columns_to_compare\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"compare_duplicates\": \"<boolean>\",\n    \"ignore_string_case\": \"<boolean>\",\n    \"materialize_results\": \"<boolean>\",\n    \"null_equals_empty_string\": \"<boolean>\",\n    \"primary_key\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sampling\": {\n      \"tolerance\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"confidence\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"threshold\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"sort_array_columns\": \"<boolean>\",\n    \"timeseries_dimension_column\": \"<string>\",\n    \"tolerance\": {\n      \"datetime\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"float\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  },\n  \"description\": \"<string>\",\n  \"name\": \"<string>\",\n  \"notifications\": [\n    {\n      \"recipients\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"features\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"type\": \"email\"\n    },\n    {\n      \"recipients\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"features\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"type\": \"email\"\n    }\n  ],\n  \"owner\": \"<string>\",\n  \"schedule\": {\n    \"interval\": {\n      \"every\": \"<string>\",\n      \"type\": \"hourly\"\n    }\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0d2b9632-4d22-433b-8695-2c34f6b683e5",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "monitors",
+                    ":id",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the monitor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"string\",\n  \"alert\": {\n    \"different_rows_count\": 8426,\n    \"different_rows_percent\": 1353,\n    \"match_ratio_min\": 0.6592906241126115\n  },\n  \"datadiff\": {\n    \"column_remapping\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"columns_to_compare\": [\n      \"string\",\n      \"string\"\n    ],\n    \"compare_duplicates\": false,\n    \"ignore_string_case\": false,\n    \"materialize_results\": false,\n    \"null_equals_empty_string\": false,\n    \"primary_key\": [\n      \"string\",\n      \"string\"\n    ],\n    \"sampling\": {\n      \"tolerance\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"confidence\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"threshold\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"sort_array_columns\": true,\n    \"timeseries_dimension_column\": \"string\",\n    \"tolerance\": {\n      \"datetime\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"float\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  },\n  \"description\": \"string\",\n  \"name\": \"string\",\n  \"notifications\": [\n    {\n      \"recipients\": [\n        \"string\",\n        \"string\"\n      ],\n      \"features\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"type\": \"email\"\n    },\n    {\n      \"recipients\": [\n        \"string\",\n        \"string\"\n      ],\n      \"features\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"type\": \"email\"\n    }\n  ],\n  \"owner\": \"string\",\n  \"schedule\": {\n    \"interval\": {\n      \"every\": \"string\",\n      \"type\": \"hourly\"\n    }\n  },\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01ed53ac-3a13-4ddb-9ecc-c0fb47b50119",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "monitors",
+                    ":id",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the monitor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"string\",\n  \"alert\": {\n    \"different_rows_count\": 8426,\n    \"different_rows_percent\": 1353,\n    \"match_ratio_min\": 0.6592906241126115\n  },\n  \"datadiff\": {\n    \"column_remapping\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"columns_to_compare\": [\n      \"string\",\n      \"string\"\n    ],\n    \"compare_duplicates\": false,\n    \"ignore_string_case\": false,\n    \"materialize_results\": false,\n    \"null_equals_empty_string\": false,\n    \"primary_key\": [\n      \"string\",\n      \"string\"\n    ],\n    \"sampling\": {\n      \"tolerance\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"confidence\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"threshold\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"sort_array_columns\": true,\n    \"timeseries_dimension_column\": \"string\",\n    \"tolerance\": {\n      \"datetime\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"float\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  },\n  \"description\": \"string\",\n  \"name\": \"string\",\n  \"notifications\": [\n    {\n      \"recipients\": [\n        \"string\",\n        \"string\"\n      ],\n      \"features\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"type\": \"email\"\n    },\n    {\n      \"recipients\": [\n        \"string\",\n        \"string\"\n      ],\n      \"features\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"type\": \"email\"\n    }\n  ],\n  \"owner\": \"string\",\n  \"schedule\": {\n    \"interval\": {\n      \"every\": \"string\",\n      \"type\": \"hourly\"\n    }\n  },\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.datafold.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1182da8d-6d2c-43c4-ba49-448d12eed709",
+    "name": "Datafold Audit Logs Monitors API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Datafold API reference is a guide to our available endpoints and authentication methods.\nIf you're just getting started with Datafold, we recommend first checking out our [documentation](https://docs.datafold.com).\n\n:::info\n  To use the Datafold API, you should first create a Datafold API Key,\n  which should be stored as a local environment variable named DATAFOLD_API_KEY.\n  This can be set in your Datafold Cloud's Settings under the Account page.\n:::\n\nContact Support:\n Name: API Support\n Email: support@datafold.com",
+      "type": "text/plain"
+    }
+  }
+}

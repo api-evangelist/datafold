@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Datafold Audit Logs bi_deleted API",
+    "version": "latest"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "bi_deleted",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Remove an integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/:bi_datasource_id/",
+            "params": [
+              {
+                "name": "bi_datasource_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove an integration"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

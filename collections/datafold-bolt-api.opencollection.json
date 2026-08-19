@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Datafold Audit Logs bolt API",
+    "version": "latest"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "bolt",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Org Spend",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.datafold.com/api/internal/bolt/org/spend"
+          },
+          "docs": "Daily/monthly LLM spend + effective caps for the caller's org."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

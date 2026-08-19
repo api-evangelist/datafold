@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Datafold Audit Logs diff_created API",
+    "version": "latest"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "diff_created",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a data diff",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/datadiffs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Launches a new data diff to compare two datasets (tables or queries).\n\nA data diff identifies differences between two datasets by comparing:\n- Row-level changes (added, removed, modified rows)\n- Schema differences\n- Column-level statistics\n\nThe diff runs asynchronously. Use the returned diff ID to poll for status and retrieve results."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

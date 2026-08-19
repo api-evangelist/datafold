@@ -1,0 +1,1199 @@
+{
+  "item": [
+    {
+      "id": "db3fe536-1b5c-4d3b-b32b-67470ed22477",
+      "name": "Data sources",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c7f91cfb-ddb5-42f2-a477-4f6582d748f7",
+          "name": "List data sources",
+          "request": {
+            "name": "List data sources",
+            "description": {
+              "content": "Retrieves all data sources for the organization, annotated with an `accessible` boolean.\n\nReturns active data sources (not deleted, hidden, or draft). Each DS includes `accessible=True`\nif the user is admin or the user's groups overlap with the DS's groups.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "data_sources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2dccca5d-4cca-42b4-9eee-45c523521c11",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "data_sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"type\": \"string\",\n    \"accessible\": true,\n    \"catalog_exclude_list\": \"string\",\n    \"catalog_include_list\": \"string\",\n    \"created_from\": \"string\",\n    \"data_retention_days\": 6979,\n    \"disable_profiling\": false,\n    \"disable_schema_indexing\": true,\n    \"float_tolerance\": 6350.016041263431,\n    \"group_ids\": [\n      4360,\n      317\n    ],\n    \"groups\": {\n      \"key_0\": true\n    },\n    \"hidden\": false,\n    \"id\": 9587,\n    \"is_paused\": true,\n    \"last_test\": {\n      \"tested_at\": \"1998-01-20T17:56:34.806Z\",\n      \"results\": [\n        {\n          \"step\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"result\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"step\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"result\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"lineage_schedule\": \"string\",\n    \"max_allowed_connections\": 7419,\n    \"oauth_dwh_active\": false,\n    \"options\": {\n      \"projectId\": \"string\",\n      \"extraProjectsToIndex\": \"string\",\n      \"jsonOAuthKeyFile\": \"string\",\n      \"location\": \"US\",\n      \"totalMBytesProcessedLimit\": 1133,\n      \"useStandardSql\": true,\n      \"userDefinedFunctionResourceUri\": \"string\"\n    },\n    \"profile_exclude_list\": \"string\",\n    \"profile_include_list\": \"string\",\n    \"profile_schedule\": \"string\",\n    \"queue_name\": \"string\",\n    \"scheduled_queue_name\": \"string\",\n    \"schema_indexing_schedule\": \"string\",\n    \"schema_max_age_s\": 3056,\n    \"secret_id\": 188,\n    \"source\": \"string\",\n    \"temp_schema\": \"string\",\n    \"view_only\": false\n  },\n  {\n    \"name\": \"string\",\n    \"type\": \"string\",\n    \"accessible\": true,\n    \"catalog_exclude_list\": \"string\",\n    \"catalog_include_list\": \"string\",\n    \"created_from\": \"string\",\n    \"data_retention_days\": 160,\n    \"disable_profiling\": false,\n    \"disable_schema_indexing\": true,\n    \"float_tolerance\": 4539.893812916717,\n    \"group_ids\": [\n      9205,\n      3302\n    ],\n    \"groups\": {\n      \"key_0\": false\n    },\n    \"hidden\": false,\n    \"id\": 6188,\n    \"is_paused\": false,\n    \"last_test\": {\n      \"tested_at\": \"2024-09-05T22:17:51.390Z\",\n      \"results\": [\n        {\n          \"step\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"result\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"step\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"result\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"lineage_schedule\": \"string\",\n    \"max_allowed_connections\": 3920,\n    \"oauth_dwh_active\": true,\n    \"options\": {\n      \"projectId\": \"string\",\n      \"extraProjectsToIndex\": \"string\",\n      \"jsonOAuthKeyFile\": \"string\",\n      \"location\": \"US\",\n      \"totalMBytesProcessedLimit\": 4508,\n      \"useStandardSql\": true,\n      \"userDefinedFunctionResourceUri\": \"string\"\n    },\n    \"profile_exclude_list\": \"string\",\n    \"profile_include_list\": \"string\",\n    \"profile_schedule\": \"string\",\n    \"queue_name\": \"string\",\n    \"scheduled_queue_name\": \"string\",\n    \"schema_indexing_schedule\": \"string\",\n    \"schema_max_age_s\": 5249,\n    \"secret_id\": 8868,\n    \"source\": \"string\",\n    \"temp_schema\": \"string\",\n    \"view_only\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a437dc3-e5d3-4225-a72a-ae3fdb25ccdf",
+          "name": "Create a data source",
+          "request": {
+            "name": "Create a data source",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "data_sources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"accessible\": true,\n  \"catalog_exclude_list\": \"<string>\",\n  \"catalog_include_list\": \"<string>\",\n  \"created_from\": \"<string>\",\n  \"data_retention_days\": \"<integer>\",\n  \"disable_profiling\": \"<boolean>\",\n  \"disable_schema_indexing\": \"<boolean>\",\n  \"float_tolerance\": \"<number>\",\n  \"group_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"groups\": {\n    \"key_0\": \"<boolean>\"\n  },\n  \"hidden\": \"<boolean>\",\n  \"id\": \"<integer>\",\n  \"is_paused\": \"<boolean>\",\n  \"last_test\": {\n    \"tested_at\": \"<dateTime>\",\n    \"results\": [\n      {\n        \"step\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"result\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"step\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"result\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"lineage_schedule\": \"<string>\",\n  \"max_allowed_connections\": \"<integer>\",\n  \"oauth_dwh_active\": \"<boolean>\",\n  \"options\": {\n    \"projectId\": \"<string>\",\n    \"jsonKeyFile\": \"<password>\",\n    \"extraProjectsToIndex\": \"<string>\",\n    \"jsonOAuthKeyFile\": \"<password>\",\n    \"location\": \"US\",\n    \"totalMBytesProcessedLimit\": \"<integer>\",\n    \"useStandardSql\": true,\n    \"userDefinedFunctionResourceUri\": \"<string>\"\n  },\n  \"profile_exclude_list\": \"<string>\",\n  \"profile_include_list\": \"<string>\",\n  \"profile_schedule\": \"<string>\",\n  \"queue_name\": \"<string>\",\n  \"scheduled_queue_name\": \"<string>\",\n  \"schema_indexing_schedule\": \"<string>\",\n  \"schema_max_age_s\": \"<integer>\",\n  \"secret_id\": \"<integer>\",\n  \"source\": \"<string>\",\n  \"temp_schema\": \"<string>\",\n  \"view_only\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ad95ecfd-5f38-4a2f-85ff-d3804225c9cb",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "data_sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"accessible\": true,\n  \"catalog_exclude_list\": \"string\",\n  \"catalog_include_list\": \"string\",\n  \"created_from\": \"string\",\n  \"data_retention_days\": 1437,\n  \"disable_profiling\": true,\n  \"disable_schema_indexing\": true,\n  \"float_tolerance\": 7482.895274523204,\n  \"group_ids\": [\n    221,\n    65\n  ],\n  \"groups\": {\n    \"key_0\": false,\n    \"key_1\": false\n  },\n  \"hidden\": true,\n  \"id\": 4247,\n  \"is_paused\": true,\n  \"last_test\": {\n    \"tested_at\": \"1985-04-28T19:20:27.086Z\",\n    \"results\": [\n      {\n        \"step\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"result\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"step\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"result\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"lineage_schedule\": \"string\",\n  \"max_allowed_connections\": 9155,\n  \"oauth_dwh_active\": false,\n  \"options\": {\n    \"projectId\": \"string\",\n    \"jsonKeyFile\": \"string\",\n    \"extraProjectsToIndex\": \"string\",\n    \"jsonOAuthKeyFile\": \"string\",\n    \"location\": \"US\",\n    \"totalMBytesProcessedLimit\": 246,\n    \"useStandardSql\": true,\n    \"userDefinedFunctionResourceUri\": \"string\"\n  },\n  \"profile_exclude_list\": \"string\",\n  \"profile_include_list\": \"string\",\n  \"profile_schedule\": \"string\",\n  \"queue_name\": \"string\",\n  \"scheduled_queue_name\": \"string\",\n  \"schema_indexing_schedule\": \"string\",\n  \"schema_max_age_s\": 8640,\n  \"secret_id\": 5779,\n  \"source\": \"string\",\n  \"temp_schema\": \"string\",\n  \"view_only\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"accessible\": true,\n  \"catalog_exclude_list\": \"string\",\n  \"catalog_include_list\": \"string\",\n  \"created_from\": \"string\",\n  \"data_retention_days\": 4025,\n  \"disable_profiling\": false,\n  \"disable_schema_indexing\": true,\n  \"float_tolerance\": 5635.144666410351,\n  \"group_ids\": [\n    3013,\n    5302\n  ],\n  \"groups\": {\n    \"key_0\": false\n  },\n  \"hidden\": true,\n  \"id\": 4466,\n  \"is_paused\": false,\n  \"last_test\": {\n    \"tested_at\": \"1961-10-12T00:48:26.078Z\",\n    \"results\": [\n      {\n        \"step\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"result\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"step\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"result\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"lineage_schedule\": \"string\",\n  \"max_allowed_connections\": 4164,\n  \"oauth_dwh_active\": false,\n  \"options\": {\n    \"projectId\": \"string\",\n    \"extraProjectsToIndex\": \"string\",\n    \"jsonOAuthKeyFile\": \"string\",\n    \"location\": \"US\",\n    \"totalMBytesProcessedLimit\": 5797,\n    \"useStandardSql\": true,\n    \"userDefinedFunctionResourceUri\": \"string\"\n  },\n  \"profile_exclude_list\": \"string\",\n  \"profile_include_list\": \"string\",\n  \"profile_schedule\": \"string\",\n  \"queue_name\": \"string\",\n  \"scheduled_queue_name\": \"string\",\n  \"schema_indexing_schedule\": \"string\",\n  \"schema_max_age_s\": 7358,\n  \"secret_id\": 2934,\n  \"source\": \"string\",\n  \"temp_schema\": \"string\",\n  \"view_only\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "558c4c52-8326-4b7a-84d3-db2308ef1538",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "data_sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"accessible\": true,\n  \"catalog_exclude_list\": \"string\",\n  \"catalog_include_list\": \"string\",\n  \"created_from\": \"string\",\n  \"data_retention_days\": 1437,\n  \"disable_profiling\": true,\n  \"disable_schema_indexing\": true,\n  \"float_tolerance\": 7482.895274523204,\n  \"group_ids\": [\n    221,\n    65\n  ],\n  \"groups\": {\n    \"key_0\": false,\n    \"key_1\": false\n  },\n  \"hidden\": true,\n  \"id\": 4247,\n  \"is_paused\": true,\n  \"last_test\": {\n    \"tested_at\": \"1985-04-28T19:20:27.086Z\",\n    \"results\": [\n      {\n        \"step\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"result\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"step\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"result\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"lineage_schedule\": \"string\",\n  \"max_allowed_connections\": 9155,\n  \"oauth_dwh_active\": false,\n  \"options\": {\n    \"projectId\": \"string\",\n    \"jsonKeyFile\": \"string\",\n    \"extraProjectsToIndex\": \"string\",\n    \"jsonOAuthKeyFile\": \"string\",\n    \"location\": \"US\",\n    \"totalMBytesProcessedLimit\": 246,\n    \"useStandardSql\": true,\n    \"userDefinedFunctionResourceUri\": \"string\"\n  },\n  \"profile_exclude_list\": \"string\",\n  \"profile_include_list\": \"string\",\n  \"profile_schedule\": \"string\",\n  \"queue_name\": \"string\",\n  \"scheduled_queue_name\": \"string\",\n  \"schema_indexing_schedule\": \"string\",\n  \"schema_max_age_s\": 8640,\n  \"secret_id\": 5779,\n  \"source\": \"string\",\n  \"temp_schema\": \"string\",\n  \"view_only\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9081b3c4-be81-4f92-ab60-b0da96ba2c0c",
+          "name": "Get data source testing results",
+          "request": {
+            "name": "Get data source testing results",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "data_sources",
+                "test",
+                ":job_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "job_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "506bd059-7a88-425d-82bc-18cc809030c8",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "data_sources",
+                    "test",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6966,\n  \"status\": \"queued\",\n  \"results\": [\n    {\n      \"step\": \"lineage_download\",\n      \"status\": \"cancelled\",\n      \"result\": {}\n    },\n    {\n      \"step\": \"connection\",\n      \"status\": \"failed\",\n      \"result\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ea18b0e-42c9-40b9-a69a-f335be6fa776",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "data_sources",
+                    "test",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba26bd0a-f5fc-40c3-8827-8db18b417599",
+          "name": "List data source types",
+          "request": {
+            "name": "List data source types",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "data_sources",
+                "types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3e748827-4592-4035-807f-e2a7a2a85f33",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "data_sources",
+                    "types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"type\": \"string\",\n    \"configuration_schema\": {\n      \"key_0\": 4972\n    },\n    \"features\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"name\": \"string\",\n    \"type\": \"string\",\n    \"configuration_schema\": {\n      \"key_0\": 8010.078451613519,\n      \"key_1\": 2785,\n      \"key_2\": \"string\"\n    },\n    \"features\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7dbfd52-ff2c-488b-86f6-688cff4b2290",
+          "name": "Get a data source",
+          "request": {
+            "name": "Get a data source",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "data_sources",
+                ":data_source_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "data_source_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "191c617a-0ed8-4e81-8142-4344e0522e38",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "data_sources",
+                    ":data_source_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "data_source_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"accessible\": true,\n  \"catalog_exclude_list\": \"string\",\n  \"catalog_include_list\": \"string\",\n  \"created_from\": \"string\",\n  \"data_retention_days\": 4025,\n  \"disable_profiling\": false,\n  \"disable_schema_indexing\": true,\n  \"float_tolerance\": 5635.144666410351,\n  \"group_ids\": [\n    3013,\n    5302\n  ],\n  \"groups\": {\n    \"key_0\": false\n  },\n  \"hidden\": true,\n  \"id\": 4466,\n  \"is_paused\": false,\n  \"last_test\": {\n    \"tested_at\": \"1961-10-12T00:48:26.078Z\",\n    \"results\": [\n      {\n        \"step\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"result\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"step\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"result\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"lineage_schedule\": \"string\",\n  \"max_allowed_connections\": 4164,\n  \"oauth_dwh_active\": false,\n  \"options\": {\n    \"projectId\": \"string\",\n    \"extraProjectsToIndex\": \"string\",\n    \"jsonOAuthKeyFile\": \"string\",\n    \"location\": \"US\",\n    \"totalMBytesProcessedLimit\": 5797,\n    \"useStandardSql\": true,\n    \"userDefinedFunctionResourceUri\": \"string\"\n  },\n  \"profile_exclude_list\": \"string\",\n  \"profile_include_list\": \"string\",\n  \"profile_schedule\": \"string\",\n  \"queue_name\": \"string\",\n  \"scheduled_queue_name\": \"string\",\n  \"schema_indexing_schedule\": \"string\",\n  \"schema_max_age_s\": 7358,\n  \"secret_id\": 2934,\n  \"source\": \"string\",\n  \"temp_schema\": \"string\",\n  \"view_only\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6bedd5a-f6ad-4b9a-9ddf-e8a4d942225b",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "data_sources",
+                    ":data_source_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "data_source_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3c46f0e-d1e9-4aa6-8a56-2b8b3435312b",
+          "name": "Execute a SQL query against a data source",
+          "request": {
+            "name": "Execute a SQL query against a data source",
+            "description": {
+              "content": "Executes a SQL query against the specified data source and returns the results.\n\nThis endpoint allows you to run ad-hoc SQL queries for data exploration, validation, or analysis.\nThe query is executed using the data source's native query runner with the appropriate credentials.\n\n**Streaming mode**: Use query parameter `?stream=true` or set `X-Stream-Response: true` header.\nStreaming is only supported for certain data sources (e.g., Databricks).\nWhen streaming, results are sent incrementally as valid JSON for memory efficiency.\n\nReturns:\n- Query results as rows with column metadata (name, type, description)\n- Limited to a reasonable number of rows for performance",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "data_sources",
+                ":data_source_id",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "stream",
+                  "value": "false",
+                  "description": "Stream results as JSON"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "data_source_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-Stream-Response",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\",\n  \"params\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "190e2af6-38b5-413f-b1fe-466e22ae9e53",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "data_sources",
+                    ":data_source_id",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "stream",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "data_source_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Stream-Response",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"params\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"rows\": [\n    {\n      \"key_0\": \"string\"\n    },\n    {\n      \"key_0\": \"string\"\n    }\n  ],\n  \"columns\": [\n    {\n      \"name\": \"string\",\n      \"db_type\": \"string\",\n      \"description\": \"string\",\n      \"is_nullable\": true,\n      \"number\": 1034,\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"db_type\": \"string\",\n      \"description\": \"string\",\n      \"is_nullable\": false,\n      \"number\": 2945,\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e204c54-c1b5-4665-8a92-ba3b71c084cb",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "data_sources",
+                    ":data_source_id",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "stream",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "data_source_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Stream-Response",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"params\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "204769d5-7e80-4fdf-a388-e2b84d22d6cb",
+          "name": "Get a data source summary",
+          "request": {
+            "name": "Get a data source summary",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "data_sources",
+                ":data_source_id",
+                "summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "data_source_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6f492821-ff82-4d89-90f7-435a3af83fbb",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "data_sources",
+                    ":data_source_id",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "data_source_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1448,\n  \"name\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d08bea3b-ad30-4f61-bd7f-4a7b216bf07c",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "data_sources",
+                    ":data_source_id",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "data_source_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b42d7532-5509-47d5-9efa-8d15ae9b4fa3",
+          "name": "Test a data source connection",
+          "request": {
+            "name": "Test a data source connection",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "data_sources",
+                ":data_source_id",
+                "test"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "data_source_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cf6c7a51-f1aa-4fc1-ba6a-7a5d3871e061",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "data_sources",
+                    ":data_source_id",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "data_source_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_id\": 2620\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b04855f-94bb-444c-bf54-a84dce592b8d",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "data_sources",
+                    ":data_source_id",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "data_source_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.datafold.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a42c524d-257f-4687-90fb-181b779b8c31",
+    "name": "Datafold Audit Logs Data sources API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Datafold API reference is a guide to our available endpoints and authentication methods.\nIf you're just getting started with Datafold, we recommend first checking out our [documentation](https://docs.datafold.com).\n\n:::info\n  To use the Datafold API, you should first create a Datafold API Key,\n  which should be stored as a local environment variable named DATAFOLD_API_KEY.\n  This can be set in your Datafold Cloud's Settings under the Account page.\n:::\n\nContact Support:\n Name: API Support\n Email: support@datafold.com",
+      "type": "text/plain"
+    }
+  }
+}

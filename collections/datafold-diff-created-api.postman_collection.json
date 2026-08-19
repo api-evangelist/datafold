@@ -1,0 +1,205 @@
+{
+  "item": [
+    {
+      "id": "35a918da-0ea3-4c1c-b21b-9e84fbc4e4d6",
+      "name": "diff_created",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "80666dd9-21de-4e2b-a4e6-f4a986c49654",
+          "name": "Create a data diff",
+          "request": {
+            "name": "Create a data diff",
+            "description": {
+              "content": "Launches a new data diff to compare two datasets (tables or queries).\n\nA data diff identifies differences between two datasets by comparing:\n- Row-level changes (added, removed, modified rows)\n- Schema differences\n- Column-level statistics\n\nThe diff runs asynchronously. Use the returned diff ID to poll for status and retrieve results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "datadiffs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data_source1_id\": \"<integer>\",\n  \"data_source2_id\": \"<integer>\",\n  \"archived\": false,\n  \"bisection_factor\": \"<integer>\",\n  \"bisection_threshold\": \"<integer>\",\n  \"column_mapping\": [\n    \"<array>\",\n    \"<array>\"\n  ],\n  \"column_rules\": [\n    {\n      \"equal_if\": \"<string>\",\n      \"column\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"equal_if\": \"<string>\",\n      \"column\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"columns_to_compare\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"compare_duplicates\": \"<boolean>\",\n  \"data_source1_session_parameters\": {\n    \"key_0\": 2878.5272729077083\n  },\n  \"data_source2_session_parameters\": {\n    \"key_0\": 7590\n  },\n  \"datetime_tolerance\": \"<integer>\",\n  \"diff_tolerance\": \"<number>\",\n  \"diff_tolerances_per_column\": [\n    {\n      \"column_name\": \"<string>\",\n      \"tolerance_value\": \"<number>\",\n      \"tolerance_mode\": \"<string>\"\n    },\n    {\n      \"column_name\": \"<string>\",\n      \"tolerance_value\": \"<number>\",\n      \"tolerance_mode\": \"<string>\"\n    }\n  ],\n  \"download_limit\": \"<integer>\",\n  \"exclude_columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"file1\": \"<uri>\",\n  \"file1_options\": {\n    \"delimiter\": \"<string>\",\n    \"file_type\": \"csv\",\n    \"skip_head_rows\": \"<integer>\",\n    \"skip_tail_rows\": \"<integer>\"\n  },\n  \"file2\": \"<uri>\",\n  \"file2_options\": {\n    \"delimiter\": \"<string>\",\n    \"file_type\": \"csv\",\n    \"skip_head_rows\": \"<integer>\",\n    \"skip_tail_rows\": \"<integer>\"\n  },\n  \"filter1\": \"<string>\",\n  \"filter2\": \"<string>\",\n  \"include_columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"infer_pk\": false,\n  \"infer_pk_avoid_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"infer_pk_avoid_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"materialization_destination_id\": \"<integer>\",\n  \"materialize_dataset1\": \"<boolean>\",\n  \"materialize_dataset2\": \"<boolean>\",\n  \"materialize_without_sampling\": \"<boolean>\",\n  \"per_column_diff_limit\": \"<integer>\",\n  \"pk_columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"purged\": false,\n  \"query1\": \"<string>\",\n  \"query2\": \"<string>\",\n  \"run_profiles\": \"<boolean>\",\n  \"sampling_confidence\": \"<number>\",\n  \"sampling_max_rows\": \"<integer>\",\n  \"sampling_ratio\": \"<number>\",\n  \"sampling_threshold\": \"<integer>\",\n  \"sampling_tolerance\": \"<number>\",\n  \"sort_array_columns\": \"<boolean>\",\n  \"table1\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"table2\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"table_modifiers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"time_aggregate\": \"<string>\",\n  \"time_column\": \"<string>\",\n  \"time_interval_end\": \"<dateTime>\",\n  \"time_interval_start\": \"<dateTime>\",\n  \"time_travel_point1\": \"<integer>\",\n  \"time_travel_point2\": \"<integer>\",\n  \"tolerance_mode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "abf00029-a6ed-4b3d-b1d8-8c93ac6737fc",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "datadiffs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data_source1_id\": \"<integer>\",\n  \"data_source2_id\": \"<integer>\",\n  \"archived\": false,\n  \"bisection_factor\": \"<integer>\",\n  \"bisection_threshold\": \"<integer>\",\n  \"column_mapping\": [\n    \"<array>\",\n    \"<array>\"\n  ],\n  \"column_rules\": [\n    {\n      \"equal_if\": \"string\",\n      \"column\": \"string\",\n      \"type\": \"void\"\n    },\n    {\n      \"equal_if\": \"string\",\n      \"column\": \"string\",\n      \"type\": \"unbounded_decimal\"\n    }\n  ],\n  \"columns_to_compare\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"compare_duplicates\": \"<boolean>\",\n  \"data_source1_session_parameters\": {\n    \"key_0\": \"string\",\n    \"key_1\": 2661.755054883508,\n    \"key_2\": 2707\n  },\n  \"data_source2_session_parameters\": {\n    \"key_0\": \"string\"\n  },\n  \"datetime_tolerance\": \"<integer>\",\n  \"diff_tolerance\": \"<number>\",\n  \"diff_tolerances_per_column\": [\n    {\n      \"column_name\": \"string\",\n      \"tolerance_value\": 8251.684476616974,\n      \"tolerance_mode\": \"absolute\"\n    },\n    {\n      \"column_name\": \"string\",\n      \"tolerance_value\": 9552.029262481185,\n      \"tolerance_mode\": \"absolute\"\n    }\n  ],\n  \"download_limit\": \"<integer>\",\n  \"exclude_columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"file1\": \"<uri>\",\n  \"file1_options\": {\n    \"delimiter\": \"string\",\n    \"file_type\": \"csv\",\n    \"skip_head_rows\": 896,\n    \"skip_tail_rows\": 6685\n  },\n  \"file2\": \"<uri>\",\n  \"file2_options\": {\n    \"delimiter\": \"string\",\n    \"file_type\": \"csv\",\n    \"skip_head_rows\": 1268,\n    \"skip_tail_rows\": 6620\n  },\n  \"filter1\": \"<string>\",\n  \"filter2\": \"<string>\",\n  \"include_columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"infer_pk\": false,\n  \"infer_pk_avoid_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"infer_pk_avoid_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"materialization_destination_id\": \"<integer>\",\n  \"materialize_dataset1\": \"<boolean>\",\n  \"materialize_dataset2\": \"<boolean>\",\n  \"materialize_without_sampling\": \"<boolean>\",\n  \"per_column_diff_limit\": \"<integer>\",\n  \"pk_columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"purged\": false,\n  \"query1\": \"<string>\",\n  \"query2\": \"<string>\",\n  \"run_profiles\": \"<boolean>\",\n  \"sampling_confidence\": \"<number>\",\n  \"sampling_max_rows\": \"<integer>\",\n  \"sampling_ratio\": \"<number>\",\n  \"sampling_threshold\": \"<integer>\",\n  \"sampling_tolerance\": \"<number>\",\n  \"sort_array_columns\": \"<boolean>\",\n  \"table1\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"table2\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"table_modifiers\": [\n    \"null_equals_empty_string\",\n    \"null_equals_empty_string\"\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"time_aggregate\": \"day\",\n  \"time_column\": \"<string>\",\n  \"time_interval_end\": \"<dateTime>\",\n  \"time_interval_start\": \"<dateTime>\",\n  \"time_travel_point1\": \"<integer>\",\n  \"time_travel_point2\": \"<integer>\",\n  \"tolerance_mode\": \"absolute\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "null",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0ec2d4d-60b3-4a61-afac-741e99bc8801",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "datadiffs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data_source1_id\": \"<integer>\",\n  \"data_source2_id\": \"<integer>\",\n  \"archived\": false,\n  \"bisection_factor\": \"<integer>\",\n  \"bisection_threshold\": \"<integer>\",\n  \"column_mapping\": [\n    \"<array>\",\n    \"<array>\"\n  ],\n  \"column_rules\": [\n    {\n      \"equal_if\": \"string\",\n      \"column\": \"string\",\n      \"type\": \"void\"\n    },\n    {\n      \"equal_if\": \"string\",\n      \"column\": \"string\",\n      \"type\": \"unbounded_decimal\"\n    }\n  ],\n  \"columns_to_compare\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"compare_duplicates\": \"<boolean>\",\n  \"data_source1_session_parameters\": {\n    \"key_0\": \"string\",\n    \"key_1\": 2661.755054883508,\n    \"key_2\": 2707\n  },\n  \"data_source2_session_parameters\": {\n    \"key_0\": \"string\"\n  },\n  \"datetime_tolerance\": \"<integer>\",\n  \"diff_tolerance\": \"<number>\",\n  \"diff_tolerances_per_column\": [\n    {\n      \"column_name\": \"string\",\n      \"tolerance_value\": 8251.684476616974,\n      \"tolerance_mode\": \"absolute\"\n    },\n    {\n      \"column_name\": \"string\",\n      \"tolerance_value\": 9552.029262481185,\n      \"tolerance_mode\": \"absolute\"\n    }\n  ],\n  \"download_limit\": \"<integer>\",\n  \"exclude_columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"file1\": \"<uri>\",\n  \"file1_options\": {\n    \"delimiter\": \"string\",\n    \"file_type\": \"csv\",\n    \"skip_head_rows\": 896,\n    \"skip_tail_rows\": 6685\n  },\n  \"file2\": \"<uri>\",\n  \"file2_options\": {\n    \"delimiter\": \"string\",\n    \"file_type\": \"csv\",\n    \"skip_head_rows\": 1268,\n    \"skip_tail_rows\": 6620\n  },\n  \"filter1\": \"<string>\",\n  \"filter2\": \"<string>\",\n  \"include_columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"infer_pk\": false,\n  \"infer_pk_avoid_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"infer_pk_avoid_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"materialization_destination_id\": \"<integer>\",\n  \"materialize_dataset1\": \"<boolean>\",\n  \"materialize_dataset2\": \"<boolean>\",\n  \"materialize_without_sampling\": \"<boolean>\",\n  \"per_column_diff_limit\": \"<integer>\",\n  \"pk_columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"purged\": false,\n  \"query1\": \"<string>\",\n  \"query2\": \"<string>\",\n  \"run_profiles\": \"<boolean>\",\n  \"sampling_confidence\": \"<number>\",\n  \"sampling_max_rows\": \"<integer>\",\n  \"sampling_ratio\": \"<number>\",\n  \"sampling_threshold\": \"<integer>\",\n  \"sampling_tolerance\": \"<number>\",\n  \"sort_array_columns\": \"<boolean>\",\n  \"table1\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"table2\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"table_modifiers\": [\n    \"null_equals_empty_string\",\n    \"null_equals_empty_string\"\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"time_aggregate\": \"day\",\n  \"time_column\": \"<string>\",\n  \"time_interval_end\": \"<dateTime>\",\n  \"time_interval_start\": \"<dateTime>\",\n  \"time_travel_point1\": \"<integer>\",\n  \"time_travel_point2\": \"<integer>\",\n  \"tolerance_mode\": \"absolute\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.datafold.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "24c01514-e354-4cf6-a50a-74e287276cb4",
+    "name": "Datafold Audit Logs diff_created API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Datafold API reference is a guide to our available endpoints and authentication methods.\nIf you're just getting started with Datafold, we recommend first checking out our [documentation](https://docs.datafold.com).\n\n:::info\n  To use the Datafold API, you should first create a Datafold API Key,\n  which should be stored as a local environment variable named DATAFOLD_API_KEY.\n  This can be set in your Datafold Cloud's Settings under the Account page.\n:::\n\nContact Support:\n Name: API Support\n Email: support@datafold.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Datafold Audit Logs CI API",
+    "version": "latest"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CI",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List CI runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.datafold.com/api/v1/ci/:ci_config_id/runs",
+            "params": [
+              {
+                "name": "ci_config_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "pr_sha",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pr_num",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List CI runs"
+        },
+        {
+          "info": {
+            "name": "Trigger a PR/MR run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/ci/:ci_config_id/trigger",
+            "params": [
+              {
+                "name": "ci_config_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger a PR/MR run"
+        },
+        {
+          "info": {
+            "name": "Upload PR/MR changes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/ci/:ci_config_id/:pr_num",
+            "params": [
+              {
+                "name": "ci_config_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "pr_num",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upload PR/MR changes"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

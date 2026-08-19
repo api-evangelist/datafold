@@ -1,0 +1,162 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Datafold Audit Logs Explore API",
+    "version": "latest"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Explore",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get column downstreams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.datafold.com/api/v1/explore/db/:data_connection_id/columns/:column_path/downstreams",
+            "params": [
+              {
+                "name": "data_connection_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID for the Data Connection. Can be found in the Datafold app under Settings > Integrations > Data Connections."
+              },
+              {
+                "name": "column_path",
+                "value": "",
+                "type": "path",
+                "description": "Path to the column, e.g. `db.schema.table.column`. The path is case sensitive. If components of the path contain periods, they must be quoted: `db.my_schema.\"www.mysite.com visits\".\"visit.id\"`."
+              },
+              {
+                "name": "max_depth",
+                "value": "",
+                "type": "query",
+                "description": "Maximum depth of the lineage to retrieve."
+              },
+              {
+                "name": "include_tabular_nodes",
+                "value": "",
+                "type": "query",
+                "description": "Include Tables in the lineage calculation and in the output."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of columns or tables which depend on the given column."
+        },
+        {
+          "info": {
+            "name": "Get column upstreams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.datafold.com/api/v1/explore/db/:data_connection_id/columns/:column_path/upstreams",
+            "params": [
+              {
+                "name": "data_connection_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID for the Data Connection. Can be found in the Datafold app under Settings > Integrations > Data Connections."
+              },
+              {
+                "name": "column_path",
+                "value": "",
+                "type": "path",
+                "description": "Path to the column, e.g. `db.schema.table.column`. The path is case sensitive. If components of the path contain periods, they must be quoted: `db.my_schema.\"www.mysite.com visits\".\"visit.id\"`."
+              },
+              {
+                "name": "max_depth",
+                "value": "",
+                "type": "query",
+                "description": "Maximum depth of the lineage to retrieve."
+              },
+              {
+                "name": "include_tabular_nodes",
+                "value": "",
+                "type": "query",
+                "description": "Include Tables in the lineage calculation and in the output."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of columns or tables which the given column depends on."
+        },
+        {
+          "info": {
+            "name": "Get table downstreams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.datafold.com/api/v1/explore/db/:data_connection_id/tables/:table_path/downstreams",
+            "params": [
+              {
+                "name": "data_connection_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID for the Data Connection. Can be found in the Datafold app under Settings > Integrations > Data Connections."
+              },
+              {
+                "name": "table_path",
+                "value": "",
+                "type": "path",
+                "description": "Path to the table, e.g. `db.schema.table`. The path is case sensitive. If components of the path contain periods, they must be quoted: `db.\"my.schema\".\"www.mysite.com visits\"`."
+              },
+              {
+                "name": "max_depth",
+                "value": "",
+                "type": "query",
+                "description": "Maximum depth of the lineage to retrieve."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of tables which depend on the given table."
+        },
+        {
+          "info": {
+            "name": "Get table upstreams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.datafold.com/api/v1/explore/db/:data_connection_id/tables/:table_path/upstreams",
+            "params": [
+              {
+                "name": "data_connection_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID for the Data Connection. Can be found in the Datafold app under Settings > Integrations > Data Connections."
+              },
+              {
+                "name": "table_path",
+                "value": "",
+                "type": "path",
+                "description": "Path to the table, e.g. `db.schema.table`. The path is case sensitive. If components of the path contain periods, they must be quoted: `db.\"my.schema\".\"www.mysite.com visits\"`."
+              },
+              {
+                "name": "max_depth",
+                "value": "",
+                "type": "query",
+                "description": "Maximum depth of the lineage to retrieve."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of tables which the given table depends on."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,202 @@
+{
+  "item": [
+    {
+      "id": "dd0fd2d3-f38c-48c4-8b09-8453ce84879a",
+      "name": "data_source_added",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "754bf1c1-54b2-4599-80fe-bc6230269535",
+          "name": "Create a data source",
+          "request": {
+            "name": "Create a data source",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "data_sources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"accessible\": true,\n  \"catalog_exclude_list\": \"<string>\",\n  \"catalog_include_list\": \"<string>\",\n  \"created_from\": \"<string>\",\n  \"data_retention_days\": \"<integer>\",\n  \"disable_profiling\": \"<boolean>\",\n  \"disable_schema_indexing\": \"<boolean>\",\n  \"float_tolerance\": \"<number>\",\n  \"group_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"groups\": {\n    \"key_0\": \"<boolean>\",\n    \"key_1\": \"<boolean>\"\n  },\n  \"hidden\": \"<boolean>\",\n  \"id\": \"<integer>\",\n  \"is_paused\": \"<boolean>\",\n  \"last_test\": {\n    \"tested_at\": \"<dateTime>\",\n    \"results\": [\n      {\n        \"step\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"result\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"step\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"result\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"lineage_schedule\": \"<string>\",\n  \"max_allowed_connections\": \"<integer>\",\n  \"oauth_dwh_active\": \"<boolean>\",\n  \"options\": {\n    \"projectId\": \"<string>\",\n    \"jsonKeyFile\": \"<password>\",\n    \"extraProjectsToIndex\": \"<string>\",\n    \"jsonOAuthKeyFile\": \"<password>\",\n    \"location\": \"US\",\n    \"totalMBytesProcessedLimit\": \"<integer>\",\n    \"useStandardSql\": true,\n    \"userDefinedFunctionResourceUri\": \"<string>\"\n  },\n  \"profile_exclude_list\": \"<string>\",\n  \"profile_include_list\": \"<string>\",\n  \"profile_schedule\": \"<string>\",\n  \"queue_name\": \"<string>\",\n  \"scheduled_queue_name\": \"<string>\",\n  \"schema_indexing_schedule\": \"<string>\",\n  \"schema_max_age_s\": \"<integer>\",\n  \"secret_id\": \"<integer>\",\n  \"source\": \"<string>\",\n  \"temp_schema\": \"<string>\",\n  \"view_only\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1cfe872a-51dd-4add-8aa3-94d3d676142a",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "data_sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"accessible\": true,\n  \"catalog_exclude_list\": \"string\",\n  \"catalog_include_list\": \"string\",\n  \"created_from\": \"string\",\n  \"data_retention_days\": 9839,\n  \"disable_profiling\": true,\n  \"disable_schema_indexing\": false,\n  \"float_tolerance\": 8509.890968585434,\n  \"group_ids\": [\n    6924,\n    9305\n  ],\n  \"groups\": {\n    \"key_0\": false\n  },\n  \"hidden\": false,\n  \"id\": 6519,\n  \"is_paused\": true,\n  \"last_test\": {\n    \"tested_at\": \"2005-02-02T18:55:06.096Z\",\n    \"results\": [\n      {\n        \"step\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"result\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"step\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"result\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"lineage_schedule\": \"string\",\n  \"max_allowed_connections\": 8144,\n  \"oauth_dwh_active\": true,\n  \"options\": {\n    \"projectId\": \"string\",\n    \"jsonKeyFile\": \"string\",\n    \"extraProjectsToIndex\": \"string\",\n    \"jsonOAuthKeyFile\": \"string\",\n    \"location\": \"US\",\n    \"totalMBytesProcessedLimit\": 8962,\n    \"useStandardSql\": true,\n    \"userDefinedFunctionResourceUri\": \"string\"\n  },\n  \"profile_exclude_list\": \"string\",\n  \"profile_include_list\": \"string\",\n  \"profile_schedule\": \"string\",\n  \"queue_name\": \"string\",\n  \"scheduled_queue_name\": \"string\",\n  \"schema_indexing_schedule\": \"string\",\n  \"schema_max_age_s\": 4933,\n  \"secret_id\": 3922,\n  \"source\": \"string\",\n  \"temp_schema\": \"string\",\n  \"view_only\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"accessible\": true,\n  \"catalog_exclude_list\": \"string\",\n  \"catalog_include_list\": \"string\",\n  \"created_from\": \"string\",\n  \"data_retention_days\": 6610,\n  \"disable_profiling\": true,\n  \"disable_schema_indexing\": false,\n  \"float_tolerance\": 950.8283291991171,\n  \"group_ids\": [\n    4551,\n    6596\n  ],\n  \"groups\": {\n    \"key_0\": false\n  },\n  \"hidden\": true,\n  \"id\": 7707,\n  \"is_paused\": true,\n  \"last_test\": {\n    \"tested_at\": \"1956-05-23T07:39:16.491Z\",\n    \"results\": [\n      {\n        \"step\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"result\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"step\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"result\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"lineage_schedule\": \"string\",\n  \"max_allowed_connections\": 8637,\n  \"oauth_dwh_active\": false,\n  \"options\": {\n    \"projectId\": \"string\",\n    \"extraProjectsToIndex\": \"string\",\n    \"jsonOAuthKeyFile\": \"string\",\n    \"location\": \"US\",\n    \"totalMBytesProcessedLimit\": 7887,\n    \"useStandardSql\": true,\n    \"userDefinedFunctionResourceUri\": \"string\"\n  },\n  \"profile_exclude_list\": \"string\",\n  \"profile_include_list\": \"string\",\n  \"profile_schedule\": \"string\",\n  \"queue_name\": \"string\",\n  \"scheduled_queue_name\": \"string\",\n  \"schema_indexing_schedule\": \"string\",\n  \"schema_max_age_s\": 6947,\n  \"secret_id\": 1073,\n  \"source\": \"string\",\n  \"temp_schema\": \"string\",\n  \"view_only\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1bd82b94-aa53-49c7-ad9a-0eb302a65d8a",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "data_sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"accessible\": true,\n  \"catalog_exclude_list\": \"string\",\n  \"catalog_include_list\": \"string\",\n  \"created_from\": \"string\",\n  \"data_retention_days\": 9839,\n  \"disable_profiling\": true,\n  \"disable_schema_indexing\": false,\n  \"float_tolerance\": 8509.890968585434,\n  \"group_ids\": [\n    6924,\n    9305\n  ],\n  \"groups\": {\n    \"key_0\": false\n  },\n  \"hidden\": false,\n  \"id\": 6519,\n  \"is_paused\": true,\n  \"last_test\": {\n    \"tested_at\": \"2005-02-02T18:55:06.096Z\",\n    \"results\": [\n      {\n        \"step\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"result\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"step\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"result\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"lineage_schedule\": \"string\",\n  \"max_allowed_connections\": 8144,\n  \"oauth_dwh_active\": true,\n  \"options\": {\n    \"projectId\": \"string\",\n    \"jsonKeyFile\": \"string\",\n    \"extraProjectsToIndex\": \"string\",\n    \"jsonOAuthKeyFile\": \"string\",\n    \"location\": \"US\",\n    \"totalMBytesProcessedLimit\": 8962,\n    \"useStandardSql\": true,\n    \"userDefinedFunctionResourceUri\": \"string\"\n  },\n  \"profile_exclude_list\": \"string\",\n  \"profile_include_list\": \"string\",\n  \"profile_schedule\": \"string\",\n  \"queue_name\": \"string\",\n  \"scheduled_queue_name\": \"string\",\n  \"schema_indexing_schedule\": \"string\",\n  \"schema_max_age_s\": 4933,\n  \"secret_id\": 3922,\n  \"source\": \"string\",\n  \"temp_schema\": \"string\",\n  \"view_only\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.datafold.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "08597d45-b713-494d-81cb-86b5a24aa689",
+    "name": "Datafold Audit Logs data_source_added API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Datafold API reference is a guide to our available endpoints and authentication methods.\nIf you're just getting started with Datafold, we recommend first checking out our [documentation](https://docs.datafold.com).\n\n:::info\n  To use the Datafold API, you should first create a Datafold API Key,\n  which should be stored as a local environment variable named DATAFOLD_API_KEY.\n  This can be set in your Datafold Cloud's Settings under the Account page.\n:::\n\nContact Support:\n Name: API Support\n Email: support@datafold.com",
+      "type": "text/plain"
+    }
+  }
+}

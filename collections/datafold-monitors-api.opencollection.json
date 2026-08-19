@@ -1,0 +1,300 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Datafold Audit Logs Monitors API",
+    "version": "latest"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Monitors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Monitors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.datafold.com/api/v1/monitors",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to retrieve."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to retrieve per page."
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "Field to order the monitors by."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "Specify the order direction for the monitors."
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated tags to filter monitors by."
+              }
+            ]
+          },
+          "docs": "List Monitors"
+        },
+        {
+          "info": {
+            "name": "Create a Data Diff Monitor",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/monitors/create/diff",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Data Diff Monitor"
+        },
+        {
+          "info": {
+            "name": "Create a Metric Monitor",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/monitors/create/metric",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Metric Monitor"
+        },
+        {
+          "info": {
+            "name": "Create a Schema Change Monitor",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/monitors/create/schema",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Schema Change Monitor"
+        },
+        {
+          "info": {
+            "name": "Create a Data Test Monitor",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/monitors/create/test",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Data Test Monitor"
+        },
+        {
+          "info": {
+            "name": "Get Monitor",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.datafold.com/api/v1/monitors/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the monitor."
+              }
+            ]
+          },
+          "docs": "Get Monitor"
+        },
+        {
+          "info": {
+            "name": "Delete a Monitor",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.datafold.com/api/v1/monitors/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the monitor."
+              }
+            ]
+          },
+          "docs": "Delete a Monitor"
+        },
+        {
+          "info": {
+            "name": "Trigger a run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/monitors/:id/run",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the monitor for which to start the run."
+              }
+            ]
+          },
+          "docs": "Trigger a run"
+        },
+        {
+          "info": {
+            "name": "List Monitor Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.datafold.com/api/v1/monitors/:id/runs",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the monitor."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to retrieve."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to retrieve per page."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Include runs with a timestamp >= this value."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "Include runs with a timestamp <= this value."
+              }
+            ]
+          },
+          "docs": "List Monitor Runs"
+        },
+        {
+          "info": {
+            "name": "Get Monitor Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.datafold.com/api/v1/monitors/:id/runs/:run_id",
+            "params": [
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the run to retrieve."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the monitor associated with the run."
+              }
+            ]
+          },
+          "docs": "Get Monitor Run"
+        },
+        {
+          "info": {
+            "name": "Toggle a Monitor",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.datafold.com/api/v1/monitors/:id/toggle",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the monitor."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Toggle a Monitor"
+        },
+        {
+          "info": {
+            "name": "Update a Monitor",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://app.datafold.com/api/v1/monitors/:id/update",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the monitor."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a Monitor"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

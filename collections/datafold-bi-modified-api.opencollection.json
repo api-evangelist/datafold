@@ -1,0 +1,158 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Datafold Audit Logs bi_modified API",
+    "version": "latest"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "bi_modified",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update a DBT BI integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/dbt/:bi_datasource_id/",
+            "params": [
+              {
+                "name": "bi_datasource_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the integration with changed fields."
+        },
+        {
+          "info": {
+            "name": "Update a Hightouch integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/hightouch/:bi_datasource_id/",
+            "params": [
+              {
+                "name": "bi_datasource_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "It can only update the schedule. Returns the integration with changed fields."
+        },
+        {
+          "info": {
+            "name": "Update a Looker integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/looker/:bi_datasource_id/",
+            "params": [
+              {
+                "name": "bi_datasource_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "It can only update the schedule. Returns the integration with changed fields."
+        },
+        {
+          "info": {
+            "name": "Update a Mode Analytics integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/mode/:bi_datasource_id/",
+            "params": [
+              {
+                "name": "bi_datasource_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "It can only update the schedule. Returns the integration with changed fields."
+        },
+        {
+          "info": {
+            "name": "Update a Power BI integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/powerbi/:bi_datasource_id/",
+            "params": [
+              {
+                "name": "bi_datasource_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the integration configuration. Returns the integration with changed fields."
+        },
+        {
+          "info": {
+            "name": "Update a Tableau integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/tableau/:bi_datasource_id/",
+            "params": [
+              {
+                "name": "bi_datasource_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "It can only update the schedule. Returns the integration with changed fields."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

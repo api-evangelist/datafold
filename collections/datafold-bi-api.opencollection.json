@@ -1,0 +1,313 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Datafold Audit Logs BI API",
+    "version": "latest"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "BI",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all integrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/"
+          },
+          "docs": "Return all integrations for Mode/Tableau/Looker"
+        },
+        {
+          "info": {
+            "name": "Create a DBT BI integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/dbt/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a DBT BI integration"
+        },
+        {
+          "info": {
+            "name": "Update a DBT BI integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/dbt/:bi_datasource_id/",
+            "params": [
+              {
+                "name": "bi_datasource_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the integration with changed fields."
+        },
+        {
+          "info": {
+            "name": "Create a Hightouch integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/hightouch/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Hightouch integration"
+        },
+        {
+          "info": {
+            "name": "Update a Hightouch integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/hightouch/:bi_datasource_id/",
+            "params": [
+              {
+                "name": "bi_datasource_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "It can only update the schedule. Returns the integration with changed fields."
+        },
+        {
+          "info": {
+            "name": "Create a Looker integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/looker/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Looker integration"
+        },
+        {
+          "info": {
+            "name": "Update a Looker integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/looker/:bi_datasource_id/",
+            "params": [
+              {
+                "name": "bi_datasource_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "It can only update the schedule. Returns the integration with changed fields."
+        },
+        {
+          "info": {
+            "name": "Create a Mode Analytics integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/mode/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Mode Analytics integration"
+        },
+        {
+          "info": {
+            "name": "Update a Mode Analytics integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/mode/:bi_datasource_id/",
+            "params": [
+              {
+                "name": "bi_datasource_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "It can only update the schedule. Returns the integration with changed fields."
+        },
+        {
+          "info": {
+            "name": "Create a Power BI integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/powerbi/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Power BI integration"
+        },
+        {
+          "info": {
+            "name": "Update a Power BI integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/powerbi/:bi_datasource_id/",
+            "params": [
+              {
+                "name": "bi_datasource_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the integration configuration. Returns the integration with changed fields."
+        },
+        {
+          "info": {
+            "name": "Create a Tableau integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/tableau/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Tableau integration"
+        },
+        {
+          "info": {
+            "name": "Update a Tableau integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/tableau/:bi_datasource_id/",
+            "params": [
+              {
+                "name": "bi_datasource_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "It can only update the schedule. Returns the integration with changed fields."
+        },
+        {
+          "info": {
+            "name": "Get an integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/:bi_datasource_id/",
+            "params": [
+              {
+                "name": "bi_datasource_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the integration for Mode/Tableau/Looker/HighTouch by its id."
+        },
+        {
+          "info": {
+            "name": "Remove an integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/:bi_datasource_id/",
+            "params": [
+              {
+                "name": "bi_datasource_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove an integration"
+        },
+        {
+          "info": {
+            "name": "Sync a BI integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/:bi_datasource_id/sync/",
+            "params": [
+              {
+                "name": "bi_datasource_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Start an unscheduled synchronization of the integration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

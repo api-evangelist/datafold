@@ -1,0 +1,178 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Datafold Audit Logs Data diffs API",
+    "version": "latest"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data diffs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List data diffs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.datafold.com/api/v1/datadiffs",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "accessible_only",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "All fields support multiple items, using just comma delimiter\nDate fields also support ranges using the following syntax:\n\n- ``<DATETIME`` = before DATETIME\n- ``>DATETIME`` = after DATETIME\n- ``DATETIME`` = between DATETIME and DATETIME + 1 MINUTE\n- ``DATE`` = start of that DATE until DATE + 1 DAY\n- ``DATETIME1<<DATETIME2`` = between DATETIME1 and DATETIME2\n- ``DATE1<<DATE2`` = between DATE1 and DATE2"
+        },
+        {
+          "info": {
+            "name": "Create a data diff",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/datadiffs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Launches a new data diff to compare two datasets (tables or queries).\n\nA data diff identifies differences between two datasets by comparing:\n- Row-level changes (added, removed, modified rows)\n- Schema differences\n- Column-level statistics\n\nThe diff runs asynchronously. Use the returned diff ID to poll for status and retrieve results."
+        },
+        {
+          "info": {
+            "name": "Get a data diff",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.datafold.com/api/v1/datadiffs/:datadiff_id",
+            "params": [
+              {
+                "name": "datadiff_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "poll",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a data diff"
+        },
+        {
+          "info": {
+            "name": "Update a data diff",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://app.datafold.com/api/v1/datadiffs/:datadiff_id",
+            "params": [
+              {
+                "name": "datadiff_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a data diff"
+        },
+        {
+          "info": {
+            "name": "Cancel a running data diff",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/datadiffs/:datadiff_id/cancel",
+            "params": [
+              {
+                "name": "datadiff_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancels a data diff that is currently queued or running.\n\nThis operation stops the diff execution and marks it as cancelled. If the diff has already\ncompleted or been cancelled, this operation has no effect and returns the current status.\n\nUse this to stop long-running diffs that are no longer needed or were started with incorrect parameters."
+        },
+        {
+          "info": {
+            "name": "Get a human-readable summary of a DataDiff comparison",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.datafold.com/api/v1/datadiffs/:datadiff_id/summary",
+            "params": [
+              {
+                "name": "datadiff_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a comprehensive, human-readable summary of a completed data diff.\n\nThis endpoint provides the most useful information for understanding diff results:\n- Overall status and result (success/failure)\n- Human-readable feedback explaining the differences found\n- Key statistics (row counts, differences, match rates)\n- Configuration details (tables compared, primary keys used)\n- Error messages if the diff failed\n\nUse this after a diff completes to get actionable insights. For diffs still runni"
+        },
+        {
+          "info": {
+            "name": "Get a data diff summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.datafold.com/api/v1/datadiffs/:datadiff_id/summary_results",
+            "params": [
+              {
+                "name": "datadiff_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a data diff summary"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

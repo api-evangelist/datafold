@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Datafold Audit Logs bi_added API",
+    "version": "latest"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "bi_added",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a DBT BI integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/dbt/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a DBT BI integration"
+        },
+        {
+          "info": {
+            "name": "Create a Hightouch integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/hightouch/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Hightouch integration"
+        },
+        {
+          "info": {
+            "name": "Create a Looker integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/looker/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Looker integration"
+        },
+        {
+          "info": {
+            "name": "Create a Mode Analytics integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/mode/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Mode Analytics integration"
+        },
+        {
+          "info": {
+            "name": "Create a Power BI integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/powerbi/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Power BI integration"
+        },
+        {
+          "info": {
+            "name": "Create a Tableau integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.datafold.com/api/v1/lineage/bi/tableau/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Tableau integration"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
