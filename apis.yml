@@ -24,6 +24,16 @@ tags:
   - Data Diff
   - Data Quality
   - Column-Level Lineage
+  - Data Pipeline
+  - CI/CD Integration
+  - Anomaly Detection
+  - Data Observability
+  - Data Migrations
+tags_raw:
+  - Data Reliability
+  - Data Diff
+  - Data Quality
+  - Column-Level Lineage
   - Data Pipelines
   - CI/CD Integration
   - Anomaly Detection
@@ -50,7 +60,8 @@ apis:
   description: The bi_added API from Datafold — 6 operation(s) for bi_added.
   humanURL: https://docs.datafold.com/developer/datafold-api
   baseURL: https://app.datafold.com/api/v1/
-  tags:
+  tags: []
+  tags_raw:
   - bi_added
   properties:
   - type: OpenAPI
@@ -78,7 +89,8 @@ apis:
   description: The bi_deleted API from Datafold — 1 operation(s) for bi_deleted.
   humanURL: https://docs.datafold.com/developer/datafold-api
   baseURL: https://app.datafold.com/api/v1/
-  tags:
+  tags: []
+  tags_raw:
   - bi_deleted
   properties:
   - type: OpenAPI
@@ -92,7 +104,8 @@ apis:
   description: The bi_modified API from Datafold — 6 operation(s) for bi_modified.
   humanURL: https://docs.datafold.com/developer/datafold-api
   baseURL: https://app.datafold.com/api/v1/
-  tags:
+  tags: []
+  tags_raw:
   - bi_modified
   properties:
   - type: OpenAPI
@@ -107,6 +120,8 @@ apis:
   humanURL: https://docs.datafold.com/developer/datafold-api
   baseURL: https://app.datafold.com/api/v1/
   tags:
+  - Bolt
+  tags_raw:
   - bolt
   properties:
   - type: OpenAPI
@@ -148,7 +163,8 @@ apis:
   description: The data_source_added API from Datafold — 1 operation(s) for data_source_added.
   humanURL: https://docs.datafold.com/developer/datafold-api
   baseURL: https://app.datafold.com/api/v1/
-  tags:
+  tags: []
+  tags_raw:
   - data_source_added
   properties:
   - type: OpenAPI
@@ -163,6 +179,8 @@ apis:
   humanURL: https://docs.datafold.com/developer/datafold-api
   baseURL: https://app.datafold.com/api/v1/
   tags:
+  - Data Sources
+  tags_raw:
   - Data sources
   properties:
   - type: OpenAPI
@@ -176,7 +194,8 @@ apis:
   description: The diff_created API from Datafold — 1 operation(s) for diff_created.
   humanURL: https://docs.datafold.com/developer/datafold-api
   baseURL: https://app.datafold.com/api/v1/
-  tags:
+  tags: []
+  tags_raw:
   - diff_created
   properties:
   - type: OpenAPI
