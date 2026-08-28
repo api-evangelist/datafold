@@ -1,6 +1,18 @@
 aid: datafold
 name: Datafold
 description: Datafold is a data reliability platform providing a REST API for running data diffs, monitoring column-level lineage, validating data pipelines, and detecting data regressions before deployment. It supports CI/CD integration, automated anomaly detection, schema change alerts, and cross-database comparison across major cloud data warehouses.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free-trial
   onboarding: self-serve
