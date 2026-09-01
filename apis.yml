@@ -132,7 +132,7 @@ apis:
   humanURL: https://docs.datafold.com/developer/datafold-api
   baseURL: https://app.datafold.com/api/v1/
   tags:
-  - bolt
+  - Bolt
   tags_raw:
   - bolt
   properties:
@@ -191,7 +191,7 @@ apis:
   humanURL: https://docs.datafold.com/developer/datafold-api
   baseURL: https://app.datafold.com/api/v1/
   tags:
-  - Data sources
+  - Data Sources
   tags_raw:
   - Data sources
   properties:
