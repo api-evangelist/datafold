@@ -88,6 +88,8 @@ apis:
   humanURL: https://docs.datafold.com/developer/datafold-api
   baseURL: https://app.datafold.com/api/v1/
   tags:
+  - Business Intelligence
+  tags_raw:
   - BI
   properties:
   - type: OpenAPI
