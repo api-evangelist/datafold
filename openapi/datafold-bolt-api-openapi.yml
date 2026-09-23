@@ -1,10 +1,23 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: support@datafold.com
     name: API Support
-  description: "The Datafold API reference is a guide to our available endpoints and authentication methods.\nIf you're just getting started with Datafold, we recommend first checking out our [documentation](https://docs.datafold.com).\n\n:::info\n  To use the Datafold API, you should first create a Datafold API Key,\n  which should be stored as a local environment variable named DATAFOLD_API_KEY.\n  This can be set in your Datafold Cloud's Settings under the Account page.\n:::"
-  title: Datafold Audit Logs bolt API
+  description: 'The Datafold API reference is a guide to our available endpoints and authentication methods.
+
+    If you''re just getting started with Datafold, we recommend first checking out our documentation.
+
+
+    :::info
+
+    To use the Datafold API, you should first create a Datafold API Key,
+
+    which should be stored as a local environment variable named DATAFOLD_API_KEY.
+
+    This can be set in your Datafold Cloud''s Settings under the Account page.
+
+    :::'
+  title: Datafold Bolt API
   version: latest
 servers:
 - description: Default server

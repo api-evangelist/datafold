@@ -1,10 +1,23 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: support@datafold.com
     name: API Support
-  description: "The Datafold API reference is a guide to our available endpoints and authentication methods.\nIf you're just getting started with Datafold, we recommend first checking out our [documentation](https://docs.datafold.com).\n\n:::info\n  To use the Datafold API, you should first create a Datafold API Key,\n  which should be stored as a local environment variable named DATAFOLD_API_KEY.\n  This can be set in your Datafold Cloud's Settings under the Account page.\n:::"
-  title: Datafold Audit Logs Data diffs API
+  description: 'The Datafold API reference is a guide to our available endpoints and authentication methods.
+
+    If you''re just getting started with Datafold, we recommend first checking out our documentation.
+
+
+    :::info
+
+    To use the Datafold API, you should first create a Datafold API Key,
+
+    which should be stored as a local environment variable named DATAFOLD_API_KEY.
+
+    This can be set in your Datafold Cloud''s Settings under the Account page.
+
+    :::'
+  title: Datafold Data diffs API
   version: latest
 servers:
 - description: Default server
@@ -21,9 +34,7 @@ paths:
         Date fields also support ranges using the following syntax:
 
 
-        - ``<DATETIME`` = before DATETIME
-
-        - ``>DATETIME`` = after DATETIME
+        - ``DATETIME`` = after DATETIME
 
         - ``DATETIME`` = between DATETIME and DATETIME + 1 MINUTE
 
@@ -294,65 +305,246 @@ paths:
       - Data diffs
 components:
   schemas:
+    ApiMaterializedResult:
+      properties:
+        data_source_id:
+          description: Id of the DataSource where the table is located
+          title: Data Source Id
+          type: integer
+        is_sampled:
+          description: If sampling was applied
+          title: Is Sampled
+          type: boolean
+        path:
+          description: Path segments of the table
+          items:
+            type: string
+          title: Path
+          type: array
+      required:
+      - data_source_id
+      - path
+      - is_sampled
+      title: ApiMaterializedResult
+      type: object
     TableModifiers:
       enum:
       - case_insensitive_strings
       - null_equals_empty_string
       title: TableModifiers
       type: string
-    ApiDataDiffCancelled:
+    CSVFileOptions:
       properties:
+        delimiter:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Delimiter
+        file_type:
+          const: csv
+          default: csv
+          title: File Type
+          type: string
+        skip_head_rows:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Skip Head Rows
+        skip_tail_rows:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Skip Tail Rows
+      title: CSVFileOptions
+      type: object
+    JobSource:
+      enum:
+      - interactive
+      - demo_signup
+      - manual
+      - api
+      - ci
+      - schedule
+      - auto
+      title: JobSource
+      type: string
+    ApiDataDiffSummaryForRunning:
+      properties:
+        status:
+          enum:
+          - running
+          - pending
+          title: Status
+          type: string
+      required:
+      - status
+      title: ApiDataDiffSummaryForRunning
+      type: object
+    ApiDataDiffSummary:
+      description: Summary of a DataDiff comparison with human-readable feedback.
+      properties:
+        algorithm:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Algorithm
+        created_at:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Created At
+        data_source1_id:
+          title: Data Source1 Id
+          type: integer
+        data_source1_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Data Source1 Name
+        data_source2_id:
+          title: Data Source2 Id
+          type: integer
+        data_source2_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Data Source2 Name
+        diff_stats:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Diff Stats
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+        feedback:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Feedback
+        finished_at:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Finished At
         id:
           title: Id
           type: integer
+        include_columns:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include Columns
+        pk_columns:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Pk Columns
+        result:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Result
+        result_status:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Result Status
+        results_count:
+          default: 0
+          title: Results Count
+          type: integer
+        sampling_ratio:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Sampling Ratio
         status:
           $ref: '#/components/schemas/JobStatus'
+        table1:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Table1
+        table2:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Table2
       required:
       - id
       - status
-      title: ApiDataDiffCancelled
+      - data_source1_id
+      - data_source2_id
+      title: ApiDataDiffSummary
       type: object
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          title: Location
-          type: array
-        msg:
-          title: Message
-          type: string
-        type:
-          title: Error Type
-          type: string
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-      type: object
-    ApiCrossDataDiffSummaryForDone:
-      properties:
-        pks:
-          anyOf:
-          - $ref: '#/components/schemas/ApiDataDiffSummaryPKs'
-          - type: 'null'
-        status:
-          enum:
-          - done
-          - success
-          title: Status
-          type: string
-        values:
-          anyOf:
-          - $ref: '#/components/schemas/ApiDataDiffSummaryValues'
-          - type: 'null'
-      required:
+    ApiSortFilters:
+      enum:
+      - id
+      - user_id
+      - user_name
+      - data_source1_id
+      - data_source2_id
+      - table1
+      - table2
+      - query1
+      - query2
+      - pk_columns
+      - include_columns
+      - exclude_columns
+      - time_column
+      - time_aggregate
+      - filter1
+      - filter2
+      - done
+      - time_interval_start
+      - time_interval_end
+      - created_at
+      - updated_at
+      - diff_stats_pks
+      - diff_stats_rows
+      - diff_stats_values
+      - stats.match_ratio
+      - tags
+      - source
       - status
-      title: ApiCrossDataDiffSummaryForDone
-      type: object
+      - bisection_factor
+      - bisection_threshold
+      - ci_type
+      - ci_run_id
+      - pr_user_id
+      - pr_username
+      - pr_user_email
+      - pr_user_display_name
+      - pr_num
+      - pr_branch
+      - monitor_id
+      - data_app_type
+      - data_app_data_source_id
+      - data_app_model1_id
+      - data_app_model2_id
+      - data_app_model1_name
+      - data_app_model2_name
+      - user_ref
+      - result
+      - archived
+      - purged
+      - kind
+      title: ApiSortFilters
+      type: string
     ApiColumnDiffStat:
       properties:
         column_name:
@@ -377,44 +569,62 @@ components:
       - values_different
       title: ApiColumnDiffStat
       type: object
-    TDataDiffDataAppMetadata:
+    ApiDataDiffCancelled:
       properties:
-        data_app_id:
-          title: Data App Id
+        id:
+          title: Id
           type: integer
-        data_app_model1_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Data App Model1 Id
-        data_app_model1_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Data App Model1 Name
-        data_app_model2_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Data App Model2 Id
-        data_app_model2_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Data App Model2 Name
-        data_app_model_type:
-          title: Data App Model Type
-          type: string
-        meta_data:
-          additionalProperties: true
-          title: Meta Data
-          type: object
+        status:
+          $ref: '#/components/schemas/JobStatus'
       required:
-      - data_app_id
-      - data_app_model_type
-      - meta_data
-      title: TDataDiffDataAppMetadata
+      - id
+      - status
+      title: ApiDataDiffCancelled
       type: object
+    ApiMaterializedResults:
+      properties:
+        diff:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ApiMaterializedResult'
+            type: array
+          - type: 'null'
+          description: Results of row-to-row comparison between dataset A and B. Semantics is the same as for `exclusive_pks1` field.
+          title: Diff
+        duplicates1:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ApiMaterializedResult'
+            type: array
+          - type: 'null'
+          description: Rows with duplicate primary keys detected in dataset A. Semantics is the same as for `exclusive_pks1` field.
+          title: Duplicates1
+        duplicates2:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ApiMaterializedResult'
+            type: array
+          - type: 'null'
+          description: Rows with duplicate primary keys detected in dataset B. Semantics is the same as for `exclusive_pks1` field.
+          title: Duplicates2
+        exclusives:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ApiMaterializedResult'
+            type: array
+          - type: 'null'
+          description: Rows with exclusive primary keys detected in dataset A and B. `None` if table is not ready yet or if materialization wasn't requested. If materialization is completed, for a diff inside a single database the field will contain a list with one element. If diff compares tables in different databases, the list may contain one or two entries.
+          title: Exclusives
+      title: ApiMaterializedResults
+      type: object
+    DiffAlgorithm:
+      enum:
+      - join
+      - hash
+      - hash_v2_alpha
+      - fetch_and_join
+      title: DiffAlgorithm
+      type: string
     HTTPValidationError:
       properties:
         detail:
@@ -423,6 +633,592 @@ components:
           title: Detail
           type: array
       title: HTTPValidationError
+      type: object
+    ApiColumnProfileStats:
+      properties:
+        distinct:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Approximate distinct value count
+          title: Distinct
+        histogram_bins:
+          default: 0
+          description: Number of histogram bins available (0 if no histogram)
+          title: Histogram Bins
+          type: integer
+        max:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Maximum value (formatted as string)
+          title: Max
+        min:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Minimum value (formatted as string)
+          title: Min
+        nulls:
+          description: Number of NULL values
+          title: Nulls
+          type: integer
+        top_values_count:
+          default: 0
+          description: Number of top enum values available (0 if no enums)
+          title: Top Values Count
+          type: integer
+        total:
+          description: Total number of rows in exclusive set
+          title: Total
+          type: integer
+      required:
+      - total
+      - nulls
+      title: ApiColumnProfileStats
+      type: object
+    ApiDataDiffPage:
+      properties:
+        count:
+          title: Count
+          type: integer
+        page:
+          title: Page
+          type: integer
+        page_size:
+          title: Page Size
+          type: integer
+        results:
+          items:
+            $ref: '#/components/schemas/ApiDataDiffFull'
+          title: Results
+          type: array
+        total_pages:
+          title: Total Pages
+          type: integer
+      required:
+      - page
+      - page_size
+      - count
+      - total_pages
+      - results
+      title: ApiDataDiffPage
+      type: object
+    QueryError:
+      properties:
+        error_type:
+          title: Error Type
+          type: string
+        error_value:
+          title: Error Value
+          type: string
+      required:
+      - error_type
+      - error_value
+      title: QueryError
+      type: object
+    DatatypeName:
+      enum:
+      - boolean
+      - integer
+      - float
+      - decimal
+      - unbounded_decimal
+      - money
+      - string
+      - fixed_length_string
+      - varbinary
+      - binary
+      - date
+      - super
+      - time
+      - time_interval
+      - timestamp
+      - year
+      - uuid
+      - array
+      - struct
+      - json
+      - xml
+      - map
+      - void
+      - unsupported
+      title: DatatypeName
+      type: string
+    ApiDataDiffData:
+      properties:
+        archived:
+          default: false
+          title: Archived
+          type: boolean
+        bisection_factor:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Bisection Factor
+        bisection_threshold:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Bisection Threshold
+        column_mapping:
+          anyOf:
+          - items:
+              maxItems: 2
+              minItems: 2
+              prefixItems:
+              - type: string
+              - type: string
+              type: array
+            type: array
+          - type: 'null'
+          description: Map columns with different names between datasets. List of [column_in_A, column_in_B] pairs.
+          title: Column Mapping
+        column_rules:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ApiColumnRule'
+            type: array
+          - type: 'null'
+          description: Extra equality clauses that extend the in-memory diff value comparator. Useful for treating specific value pairs (e.g. legacy sentinels vs NULL) as non-differences. See `ApiColumnRule` for entry shape.
+          title: Column Rules
+        columns_to_compare:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          description: Columns to compare between datasets. If set, only these columns are diffed (primary key columns are always included). Column names must match the dataset schema.
+          title: Columns To Compare
+        compare_duplicates:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Compare rows with duplicate primary keys. Defaults to true.
+          title: Compare Duplicates
+        data_source1_id:
+          description: ID of the first data source (Dataset A).
+          title: Data Source1 Id
+          type: integer
+        data_source1_session_parameters:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          description: 'Snowflake session parameters for Dataset A, e.g. {"QUERY_TAG": "datadiff", "WAREHOUSE": "COMPUTE_WH"}.'
+          title: Data Source1 Session Parameters
+        data_source2_id:
+          description: ID of the second data source (Dataset B). Can be the same as data_source1_id.
+          title: Data Source2 Id
+          type: integer
+        data_source2_session_parameters:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          description: Snowflake session parameters for Dataset B.
+          title: Data Source2 Session Parameters
+        datetime_tolerance:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Datetime precision for comparison. 0=seconds, 1=tenths, 2=hundredths, 3=milliseconds, 4=tenth-ms, 5=hundredth-ms, 6=microseconds.
+          title: Datetime Tolerance
+        diff_tolerance:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: 'Default tolerance for float comparisons. In absolute mode: values within this distance are equal. In relative mode: fraction of difference allowed.'
+          title: Diff Tolerance
+        diff_tolerances_per_column:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ColumnTolerance'
+            type: array
+          - type: 'null'
+          description: 'Per-column tolerance overrides. Each entry: {column_name, tolerance_value (>= 0), tolerance_mode: ''absolute''|''relative''}.'
+          title: Diff Tolerances Per Column
+        download_limit:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Download Limit
+        exclude_columns:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          description: Columns to exclude from comparison. Ignored if include_columns is set.
+          title: Exclude Columns
+        file1:
+          anyOf:
+          - format: uri
+            minLength: 1
+            type: string
+          - type: 'null'
+          description: File URL for Dataset A (s3://, gs://, abfss://, https://). Mutually exclusive with table1 and query1. Requires file1_options.
+          title: File1
+        file1_options:
+          anyOf:
+          - discriminator:
+              mapping:
+                csv: '#/components/schemas/CSVFileOptions'
+                excel: '#/components/schemas/ExcelFileOptions'
+                parquet: '#/components/schemas/ParquetFileOptions'
+              propertyName: file_type
+            oneOf:
+            - $ref: '#/components/schemas/CSVFileOptions'
+            - $ref: '#/components/schemas/ExcelFileOptions'
+            - $ref: '#/components/schemas/ParquetFileOptions'
+          - type: 'null'
+          description: File format options for file1 (file_type, delimiter, sheet, skip rows).
+          title: File1 Options
+        file2:
+          anyOf:
+          - format: uri
+            minLength: 1
+            type: string
+          - type: 'null'
+          description: File URL for Dataset B (s3://, gs://, abfss://, https://). Mutually exclusive with table2 and query2. Requires file2_options.
+          title: File2
+        file2_options:
+          anyOf:
+          - discriminator:
+              mapping:
+                csv: '#/components/schemas/CSVFileOptions'
+                excel: '#/components/schemas/ExcelFileOptions'
+                parquet: '#/components/schemas/ParquetFileOptions'
+              propertyName: file_type
+            oneOf:
+            - $ref: '#/components/schemas/CSVFileOptions'
+            - $ref: '#/components/schemas/ExcelFileOptions'
+            - $ref: '#/components/schemas/ParquetFileOptions'
+          - type: 'null'
+          description: File format options for file2 (file_type, delimiter, sheet, skip rows).
+          title: File2 Options
+        filter1:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: SQL WHERE clause for Dataset A (omit the WHERE keyword), e.g. 'status = 1'.
+          title: Filter1
+        filter2:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: SQL WHERE clause for Dataset B (omit the WHERE keyword), e.g. 'status = 1'.
+          title: Filter2
+        include_columns:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          description: Explicit list of columns to compare. If set, only these columns are diffed.
+          title: Include Columns
+        infer_pk:
+          default: false
+          description: 'Infer primary key columns automatically before running the diff. When true, pk_columns may be omitted; the inferred PK is stored back on the diff. Supported configurations: in-db diffs (all input types); cross-db diffs with query inputs on both sides (PK is inferred inside DuckDB after fetch). Not supported: cross-db with table inputs, or any file-based diff — use POST /api/v1/data_sources/{id}/guess_pk and pass pk_columns explicitly. For in-db query inputs, materialization is auto-forced.'
+          title: Infer Pk
+          type: boolean
+        infer_pk_avoid_names:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          description: Column names to skip during PK inference. Matched case-insensitively against actual column names (exact match, no glob/regex). Requires infer_pk=true and pk_columns empty; rejected with 422 otherwise.
+          title: Infer Pk Avoid Names
+        infer_pk_avoid_types:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          description: Extra column types to skip during PK inference, on top of the built-in defaults (float, timestamp, array, boolean, binary, unsupported). Use canonical type names (e.g. 'integer', 'text') or 'db:<RAW_TYPE>' to target a raw warehouse type (e.g. 'db:JSONB'). Requires infer_pk=true and pk_columns empty; rejected with 422 otherwise.
+          title: Infer Pk Avoid Types
+        materialization_destination_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Data source ID where materialized diff results are stored.
+          title: Materialization Destination Id
+        materialize_dataset1:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Materialize Dataset A before diffing. Improves speed for heavy queries, filtered non-indexed columns, or transformed primary keys.
+          title: Materialize Dataset1
+        materialize_dataset2:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Materialize Dataset B before diffing. Same use cases as materialize_dataset1.
+          title: Materialize Dataset2
+        materialize_without_sampling:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          default: false
+          description: Skip sampling when materializing results.
+          title: Materialize Without Sampling
+        per_column_diff_limit:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Per Column Diff Limit
+        pk_columns:
+          description: Column names that uniquely identify rows, e.g. ['id'] or ['tenant_id', 'order_id']. Must match actual column names in both datasets. Leave empty and set infer_pk=True to auto-detect.
+          items:
+            type: string
+          title: Pk Columns
+          type: array
+        purged:
+          default: false
+          title: Purged
+          type: boolean
+        query1:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: SQL query for Dataset A. Mutually exclusive with table1 and file1.
+          title: Query1
+        query2:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: SQL query for Dataset B. Mutually exclusive with table2 and file2.
+          title: Query2
+        run_profiles:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Run column profiling on diff results.
+          title: Run Profiles
+        sampling_confidence:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: 'Sampling confidence level, between 0 and 100 exclusive. Common values: 90, 95, 99, 99.5, 99.9. Use with sampling_tolerance.'
+          title: Sampling Confidence
+        sampling_max_rows:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Maximum number of rows to sample (absolute count). Alternative to tolerance+confidence and sampling_ratio.
+          title: Sampling Max Rows
+        sampling_ratio:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Sample this fraction of rows. Value between 0 and 1 exclusive (e.g. 0.1 = 10% of rows). Alternative to tolerance+confidence.
+          title: Sampling Ratio
+        sampling_threshold:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Minimum row count to activate sampling. Sampling is disabled if the largest table has fewer rows than this.
+          title: Sampling Threshold
+        sampling_tolerance:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: 'Sampling tolerance: max fraction of rows with PK errors before sampling is disabled. Value between 0 and 1 exclusive (e.g. 0.001 = 0.1%). Use with sampling_confidence.'
+          title: Sampling Tolerance
+        sort_array_columns:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Sort array elements before comparison to ignore insertion order differences.
+          title: Sort Array Columns
+        table1:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          description: Table path for Dataset A as a list of path components, e.g. ['schema', 'table'] or ['database', 'schema', 'table']. Mutually exclusive with query1 and file1.
+          title: Table1
+        table2:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          description: Table path for Dataset B as a list of path components, e.g. ['schema', 'table'] or ['database', 'schema', 'table']. Mutually exclusive with query2 and file2.
+          title: Table2
+        table_modifiers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/TableModifiers'
+            type: array
+          - type: 'null'
+          description: 'Table-level modifiers. Allowed values: ''case_insensitive_strings'' (ignore string case), ''null_equals_empty_string'' (treat NULL and empty string as equal when one warehouse uses NULL and another uses '''' for missing text).'
+          title: Table Modifiers
+        tags:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          description: Tags for organizing and filtering diffs.
+          title: Tags
+        time_aggregate:
+          anyOf:
+          - $ref: '#/components/schemas/TimeAggregateEnum'
+          - type: 'null'
+          description: Time aggregation level when using time_column.
+        time_column:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Column name used for time-based filtering or aggregation.
+          title: Time Column
+        time_interval_end:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Time Interval End
+        time_interval_start:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Time Interval Start
+        time_travel_point1:
+          anyOf:
+          - type: integer
+          - format: date-time
+            type: string
+          - type: string
+          - type: 'null'
+          description: 'Time travel point for Dataset A. Accepts: negative integer offset (e.g. -130), UTC timestamp (e.g. ''2024-01-15T00:00:00''), or a time point hash. Only supported by Snowflake and Databricks.'
+          title: Time Travel Point1
+        time_travel_point2:
+          anyOf:
+          - type: integer
+          - format: date-time
+            type: string
+          - type: string
+          - type: 'null'
+          description: Time travel point for Dataset B. Same format as time_travel_point1.
+          title: Time Travel Point2
+        tolerance_mode:
+          anyOf:
+          - $ref: '#/components/schemas/ToleranceModeEnum'
+          - type: 'null'
+          description: 'How diff_tolerance is applied: ''absolute'' or ''relative''.'
+      required:
+      - data_source1_id
+      - data_source2_id
+      title: ApiDataDiffData
+      type: object
+    ApiDataDiffSummaryPKs:
+      properties:
+        distincts:
+          maxItems: 2
+          minItems: 2
+          prefixItems:
+          - type: integer
+          - type: integer
+          title: Distincts
+          type: array
+        dupes:
+          maxItems: 2
+          minItems: 2
+          prefixItems:
+          - type: integer
+          - type: integer
+          title: Dupes
+          type: array
+        exclusives:
+          maxItems: 2
+          minItems: 2
+          prefixItems:
+          - type: integer
+          - type: integer
+          title: Exclusives
+          type: array
+        nulls:
+          maxItems: 2
+          minItems: 2
+          prefixItems:
+          - type: integer
+          - type: integer
+          title: Nulls
+          type: array
+        total_rows:
+          maxItems: 2
+          minItems: 2
+          prefixItems:
+          - type: integer
+          - type: integer
+          title: Total Rows
+          type: array
+      required:
+      - total_rows
+      - nulls
+      - dupes
+      - exclusives
+      - distincts
+      title: ApiDataDiffSummaryPKs
+      type: object
+    ApiEstimatedIntInterval:
+      properties:
+        max:
+          title: Max
+          type: integer
+        min:
+          title: Min
+          type: integer
+      required:
+      - min
+      - max
+      title: ApiEstimatedIntInterval
+      type: object
+    ApiEstimatedIntValue:
+      properties:
+        confidence:
+          description: Confidence level (e.g., 0.95)
+          title: Confidence
+          type: number
+        estimate:
+          description: Estimated value for full dataset
+          title: Estimate
+          type: integer
+        interval:
+          $ref: '#/components/schemas/ApiEstimatedIntInterval'
+          description: Confidence interval bounds
+        value:
+          description: Observed value in sample
+          title: Value
+          type: integer
+      required:
+      - value
+      - estimate
+      - confidence
+      - interval
+      title: ApiEstimatedIntValue
+      type: object
+    InternalApiDataDiffDependencies:
+      properties:
+        dependencies:
+          items:
+            $ref: '#/components/schemas/ApiCIDependency'
+          title: Dependencies
+          type: array
+        status:
+          enum:
+          - done
+          - success
+          title: Status
+          type: string
+      required:
+      - status
+      - dependencies
+      title: InternalApiDataDiffDependencies
       type: object
     ApiDataDiffFull:
       properties:
@@ -984,197 +1780,95 @@ components:
       - kind
       title: ApiDataDiffFull
       type: object
-    ApiDataDiffSummary:
-      description: Summary of a DataDiff comparison with human-readable feedback.
+    DiffProgress:
       properties:
-        algorithm:
+        completed_steps:
           anyOf:
-          - type: string
+          - type: integer
           - type: 'null'
-          title: Algorithm
-        created_at:
+          title: Completed Steps
+        total_steps:
           anyOf:
-          - format: date-time
-            type: string
+          - type: integer
           - type: 'null'
-          title: Created At
-        data_source1_id:
-          title: Data Source1 Id
-          type: integer
-        data_source1_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Data Source1 Name
-        data_source2_id:
-          title: Data Source2 Id
-          type: integer
-        data_source2_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Data Source2 Name
-        diff_stats:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Diff Stats
-        error:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Error
-        feedback:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Feedback
-        finished_at:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          title: Finished At
-        id:
-          title: Id
-          type: integer
-        include_columns:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Include Columns
-        pk_columns:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Pk Columns
-        result:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Result
-        result_status:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Result Status
-        results_count:
-          default: 0
-          title: Results Count
-          type: integer
-        sampling_ratio:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Sampling Ratio
-        status:
-          $ref: '#/components/schemas/JobStatus'
-        table1:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Table1
-        table2:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Table2
+          title: Total Steps
+        version:
+          title: Version
+          type: string
       required:
-      - id
-      - status
-      - data_source1_id
-      - data_source2_id
-      title: ApiDataDiffSummary
+      - version
+      title: DiffProgress
       type: object
-    ParquetFileOptions:
-      properties:
-        file_type:
-          const: parquet
-          default: parquet
-          title: File Type
-          type: string
-      title: ParquetFileOptions
-      type: object
-    ApiMaterializedResults:
-      properties:
-        diff:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/ApiMaterializedResult'
-            type: array
-          - type: 'null'
-          description: Results of row-to-row comparison between dataset A and B. Semantics is the same as for `exclusive_pks1` field.
-          title: Diff
-        duplicates1:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/ApiMaterializedResult'
-            type: array
-          - type: 'null'
-          description: Rows with duplicate primary keys detected in dataset A. Semantics is the same as for `exclusive_pks1` field.
-          title: Duplicates1
-        duplicates2:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/ApiMaterializedResult'
-            type: array
-          - type: 'null'
-          description: Rows with duplicate primary keys detected in dataset B. Semantics is the same as for `exclusive_pks1` field.
-          title: Duplicates2
-        exclusives:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/ApiMaterializedResult'
-            type: array
-          - type: 'null'
-          description: Rows with exclusive primary keys detected in dataset A and B. `None` if table is not ready yet or if materialization wasn't requested. If materialization is completed, for a diff inside a single database the field will contain a list with one element. If diff compares tables in different databases, the list may contain one or two entries.
-          title: Exclusives
-      title: ApiMaterializedResults
-      type: object
-    JobSource:
+    MonitorRunState:
       enum:
-      - interactive
-      - demo_signup
-      - manual
-      - api
-      - ci
-      - schedule
-      - auto
-      title: JobSource
+      - ok
+      - alert
+      - error
+      - learning
+      - checking
+      - created
+      - skipped
+      - cancelled
+      - queued
+      title: MonitorRunState
       type: string
-    CSVFileOptions:
+    TDataDiffDataAppMetadata:
       properties:
-        delimiter:
+        data_app_id:
+          title: Data App Id
+          type: integer
+        data_app_model1_id:
           anyOf:
           - type: string
           - type: 'null'
-          title: Delimiter
-        file_type:
-          const: csv
-          default: csv
-          title: File Type
+          title: Data App Model1 Id
+        data_app_model1_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Data App Model1 Name
+        data_app_model2_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Data App Model2 Id
+        data_app_model2_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Data App Model2 Name
+        data_app_model_type:
+          title: Data App Model Type
           type: string
-        skip_head_rows:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Skip Head Rows
-        skip_tail_rows:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Skip Tail Rows
-      title: CSVFileOptions
+        meta_data:
+          additionalProperties: true
+          title: Meta Data
+          type: object
+      required:
+      - data_app_id
+      - data_app_model_type
+      - meta_data
+      title: TDataDiffDataAppMetadata
       type: object
+    ApiTableProfile:
+      description: Profile statistics for exclusive rows in one table.
+      properties:
+        columns:
+          additionalProperties:
+            $ref: '#/components/schemas/ApiColumnProfileStats'
+          description: Map of column name to profile statistics. Only PK columns are included.
+          title: Columns
+          type: object
+      required:
+      - columns
+      title: ApiTableProfile
+      type: object
+    DiffKind:
+      enum:
+      - in_db
+      - cross_db
+      title: DiffKind
+      type: string
     ApiDataDiffSummarySchema:
       properties:
         column_counts:
@@ -1220,335 +1914,6 @@ components:
       - exclusive_columns
       title: ApiDataDiffSummarySchema
       type: object
-    ApiColumnRule:
-      properties:
-        column:
-          anyOf:
-          - minLength: 1
-            type: string
-          - type: 'null'
-          description: Column name the rule applies to. When column remapping is enabled, this refers to the dataset-A (canonical) column name — the same name the comparator operates on after remapping. Mutually exclusive with `type`. Exactly one of `column` or `type` must be set.
-          title: Column
-        equal_if:
-          description: SQL boolean expression OR-ed into the value comparator for the matching column(s). Use {a} and {b} as placeholders for the side-A and side-B column references. Multiple rules matching the same column are all OR-ed together.
-          title: Equal If
-          type: string
-        type:
-          anyOf:
-          - $ref: '#/components/schemas/DatatypeName'
-          - type: 'null'
-          description: Type-based selector — matches all columns whose Datatype.typename equals this value. The rule is applied to every column of that type after data lands in DuckDB post-fetch. Mutually exclusive with `column`.
-      required:
-      - equal_if
-      title: ApiColumnRule
-      type: object
-    ApiDataDiffSummaryForRunning:
-      properties:
-        status:
-          enum:
-          - running
-          - pending
-          title: Status
-          type: string
-      required:
-      - status
-      title: ApiDataDiffSummaryForRunning
-      type: object
-    InternalApiDataDiffDependencies:
-      properties:
-        dependencies:
-          items:
-            $ref: '#/components/schemas/ApiCIDependency'
-          title: Dependencies
-          type: array
-        status:
-          enum:
-          - done
-          - success
-          title: Status
-          type: string
-      required:
-      - status
-      - dependencies
-      title: InternalApiDataDiffDependencies
-      type: object
-    ExcelFileOptions:
-      properties:
-        file_type:
-          const: excel
-          default: excel
-          title: File Type
-          type: string
-        sheet:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Sheet
-        skip_head_rows:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Skip Head Rows
-        skip_tail_rows:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Skip Tail Rows
-      title: ExcelFileOptions
-      type: object
-    ApiDataDiffError:
-      properties:
-        error_type:
-          title: Error Type
-          type: string
-        error_value:
-          title: Error Value
-          type: string
-        is_retryable:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Is Retryable
-      required:
-      - error_type
-      - error_value
-      title: ApiDataDiffError
-      type: object
-    ToleranceModeEnum:
-      enum:
-      - absolute
-      - relative
-      title: ToleranceModeEnum
-      type: string
-    DiffAlgorithm:
-      enum:
-      - join
-      - hash
-      - hash_v2_alpha
-      - fetch_and_join
-      title: DiffAlgorithm
-      type: string
-    TimeAggregateEnum:
-      enum:
-      - minute
-      - hour
-      - day
-      - week
-      - month
-      - year
-      title: TimeAggregateEnum
-      type: string
-    ApiColumnProfileStats:
-      properties:
-        distinct:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          description: Approximate distinct value count
-          title: Distinct
-        histogram_bins:
-          default: 0
-          description: Number of histogram bins available (0 if no histogram)
-          title: Histogram Bins
-          type: integer
-        max:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Maximum value (formatted as string)
-          title: Max
-        min:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Minimum value (formatted as string)
-          title: Min
-        nulls:
-          description: Number of NULL values
-          title: Nulls
-          type: integer
-        top_values_count:
-          default: 0
-          description: Number of top enum values available (0 if no enums)
-          title: Top Values Count
-          type: integer
-        total:
-          description: Total number of rows in exclusive set
-          title: Total
-          type: integer
-      required:
-      - total
-      - nulls
-      title: ApiColumnProfileStats
-      type: object
-    MonitorRunState:
-      enum:
-      - ok
-      - alert
-      - error
-      - learning
-      - checking
-      - created
-      - skipped
-      - cancelled
-      - queued
-      title: MonitorRunState
-      type: string
-    QueryError:
-      properties:
-        error_type:
-          title: Error Type
-          type: string
-        error_value:
-          title: Error Value
-          type: string
-      required:
-      - error_type
-      - error_value
-      title: QueryError
-      type: object
-    DatatypeName:
-      enum:
-      - boolean
-      - integer
-      - float
-      - decimal
-      - unbounded_decimal
-      - money
-      - string
-      - fixed_length_string
-      - varbinary
-      - binary
-      - date
-      - super
-      - time
-      - time_interval
-      - timestamp
-      - year
-      - uuid
-      - array
-      - struct
-      - json
-      - xml
-      - map
-      - void
-      - unsupported
-      title: DatatypeName
-      type: string
-    ApiDataDiffPage:
-      properties:
-        count:
-          title: Count
-          type: integer
-        page:
-          title: Page
-          type: integer
-        page_size:
-          title: Page Size
-          type: integer
-        results:
-          items:
-            $ref: '#/components/schemas/ApiDataDiffFull'
-          title: Results
-          type: array
-        total_pages:
-          title: Total Pages
-          type: integer
-      required:
-      - page
-      - page_size
-      - count
-      - total_pages
-      - results
-      title: ApiDataDiffPage
-      type: object
-    ApiEstimatedIntValue:
-      properties:
-        confidence:
-          description: Confidence level (e.g., 0.95)
-          title: Confidence
-          type: number
-        estimate:
-          description: Estimated value for full dataset
-          title: Estimate
-          type: integer
-        interval:
-          $ref: '#/components/schemas/ApiEstimatedIntInterval'
-          description: Confidence interval bounds
-        value:
-          description: Observed value in sample
-          title: Value
-          type: integer
-      required:
-      - value
-      - estimate
-      - confidence
-      - interval
-      title: ApiEstimatedIntValue
-      type: object
-    ApiTableProfile:
-      description: Profile statistics for exclusive rows in one table.
-      properties:
-        columns:
-          additionalProperties:
-            $ref: '#/components/schemas/ApiColumnProfileStats'
-          description: Map of column name to profile statistics. Only PK columns are included.
-          title: Columns
-          type: object
-      required:
-      - columns
-      title: ApiTableProfile
-      type: object
-    ApiDataDiffSummaryPKs:
-      properties:
-        distincts:
-          maxItems: 2
-          minItems: 2
-          prefixItems:
-          - type: integer
-          - type: integer
-          title: Distincts
-          type: array
-        dupes:
-          maxItems: 2
-          minItems: 2
-          prefixItems:
-          - type: integer
-          - type: integer
-          title: Dupes
-          type: array
-        exclusives:
-          maxItems: 2
-          minItems: 2
-          prefixItems:
-          - type: integer
-          - type: integer
-          title: Exclusives
-          type: array
-        nulls:
-          maxItems: 2
-          minItems: 2
-          prefixItems:
-          - type: integer
-          - type: integer
-          title: Nulls
-          type: array
-        total_rows:
-          maxItems: 2
-          minItems: 2
-          prefixItems:
-          - type: integer
-          - type: integer
-          title: Total Rows
-          type: array
-      required:
-      - total_rows
-      - nulls
-      - dupes
-      - exclusives
-      - distincts
-      title: ApiDataDiffSummaryPKs
-      type: object
     ApiDataDiffSummaryForFailed:
       properties:
         error:
@@ -1566,6 +1931,22 @@ components:
       - error
       title: ApiDataDiffSummaryForFailed
       type: object
+    ToleranceModeEnum:
+      enum:
+      - absolute
+      - relative
+      title: ToleranceModeEnum
+      type: string
+    TimeAggregateEnum:
+      enum:
+      - minute
+      - hour
+      - day
+      - week
+      - month
+      - year
+      title: TimeAggregateEnum
+      type: string
     JobStatus:
       enum:
       - needs_confirmation
@@ -1578,188 +1959,49 @@ components:
       - cancelled
       title: JobStatus
       type: string
-    DiffProgress:
+    ParquetFileOptions:
       properties:
-        completed_steps:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Completed Steps
-        total_steps:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Total Steps
-        version:
-          title: Version
+        file_type:
+          const: parquet
+          default: parquet
+          title: File Type
           type: string
-      required:
-      - version
-      title: DiffProgress
+      title: ParquetFileOptions
       type: object
-    DiffStats:
+    ApiDataDiffSummaryValues:
       properties:
-        diff_duplicate_pks:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Diff Duplicate Pks
-        diff_null_pks:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Diff Null Pks
-        diff_pks:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Diff Pks
-        diff_rows:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Diff Rows
-        diff_rows_count:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Diff Rows Count
-        diff_rows_number:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Diff Rows Number
-        diff_schema:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Diff Schema
-        diff_values:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Diff Values
-        errors:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Errors
-        match_ratio:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Match Ratio
-        rows_added:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Rows Added
-        rows_removed:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Rows Removed
-        sampled:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Sampled
-        table_a_row_count:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Table A Row Count
-        table_b_row_count:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Table B Row Count
-        version:
-          title: Version
-          type: string
-      required:
-      - version
-      title: DiffStats
-      type: object
-    ColumnTolerance:
-      properties:
-        column_name:
-          description: Column name to apply tolerance to.
-          title: Column Name
-          type: string
-        tolerance_mode:
-          $ref: '#/components/schemas/ToleranceModeEnum'
-          description: '''absolute'' or ''relative''.'
-        tolerance_value:
-          description: Tolerance value. Must be >= 0.
-          title: Tolerance Value
-          type: number
-      required:
-      - column_name
-      - tolerance_value
-      - tolerance_mode
-      title: ColumnTolerance
-      type: object
-    ApiCIDependency:
-      properties:
-        data_source_id:
-          title: Data Source Id
-          type: integer
-        data_source_type:
-          title: Data Source Type
-          type: string
-        item_type:
-          title: Item Type
-          type: string
-        name:
-          title: Name
-          type: string
-        path:
+        columns_diff_stats:
           items:
-            type: string
-          title: Path
+            $ref: '#/components/schemas/ApiColumnDiffStat'
+          title: Columns Diff Stats
           type: array
-        popularity:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Popularity
-        primary_key:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Primary Key
-        query_type:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Query Type
-        raw_sql:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Raw Sql
-        remote_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Remote Id
-        table_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Table Name
-        uid:
-          title: Uid
-          type: string
+        columns_with_differences:
+          title: Columns With Differences
+          type: integer
+        compared_columns:
+          title: Compared Columns
+          type: integer
+        rows_with_differences:
+          title: Rows With Differences
+          type: integer
+        total_rows:
+          title: Total Rows
+          type: integer
+        total_values:
+          title: Total Values
+          type: integer
+        values_with_differences:
+          title: Values With Differences
+          type: integer
       required:
-      - uid
-      - item_type
-      - name
-      - path
-      - data_source_id
-      - data_source_type
-      title: ApiCIDependency
+      - total_rows
+      - rows_with_differences
+      - total_values
+      - values_with_differences
+      - compared_columns
+      - columns_with_differences
+      - columns_diff_stats
+      title: ApiDataDiffSummaryValues
       type: object
     ApiDataDiffSummaryForDone:
       properties:
@@ -1798,430 +2040,6 @@ components:
       - materialized_results
       title: ApiDataDiffSummaryForDone
       type: object
-    ApiSortFilters:
-      enum:
-      - id
-      - user_id
-      - user_name
-      - data_source1_id
-      - data_source2_id
-      - table1
-      - table2
-      - query1
-      - query2
-      - pk_columns
-      - include_columns
-      - exclude_columns
-      - time_column
-      - time_aggregate
-      - filter1
-      - filter2
-      - done
-      - time_interval_start
-      - time_interval_end
-      - created_at
-      - updated_at
-      - diff_stats_pks
-      - diff_stats_rows
-      - diff_stats_values
-      - stats.match_ratio
-      - tags
-      - source
-      - status
-      - bisection_factor
-      - bisection_threshold
-      - ci_type
-      - ci_run_id
-      - pr_user_id
-      - pr_username
-      - pr_user_email
-      - pr_user_display_name
-      - pr_num
-      - pr_branch
-      - monitor_id
-      - data_app_type
-      - data_app_data_source_id
-      - data_app_model1_id
-      - data_app_model2_id
-      - data_app_model1_name
-      - data_app_model2_name
-      - user_ref
-      - result
-      - archived
-      - purged
-      - kind
-      title: ApiSortFilters
-      type: string
-    ApiDataDiffData:
-      properties:
-        archived:
-          default: false
-          title: Archived
-          type: boolean
-        bisection_factor:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Bisection Factor
-        bisection_threshold:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Bisection Threshold
-        column_mapping:
-          anyOf:
-          - items:
-              maxItems: 2
-              minItems: 2
-              prefixItems:
-              - type: string
-              - type: string
-              type: array
-            type: array
-          - type: 'null'
-          description: Map columns with different names between datasets. List of [column_in_A, column_in_B] pairs.
-          title: Column Mapping
-        column_rules:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/ApiColumnRule'
-            type: array
-          - type: 'null'
-          description: Extra equality clauses that extend the in-memory diff value comparator. Useful for treating specific value pairs (e.g. legacy sentinels vs NULL) as non-differences. See `ApiColumnRule` for entry shape.
-          title: Column Rules
-        columns_to_compare:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          description: Columns to compare between datasets. If set, only these columns are diffed (primary key columns are always included). Column names must match the dataset schema.
-          title: Columns To Compare
-        compare_duplicates:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          description: Compare rows with duplicate primary keys. Defaults to true.
-          title: Compare Duplicates
-        data_source1_id:
-          description: ID of the first data source (Dataset A).
-          title: Data Source1 Id
-          type: integer
-        data_source1_session_parameters:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          description: 'Snowflake session parameters for Dataset A, e.g. {"QUERY_TAG": "datadiff", "WAREHOUSE": "COMPUTE_WH"}.'
-          title: Data Source1 Session Parameters
-        data_source2_id:
-          description: ID of the second data source (Dataset B). Can be the same as data_source1_id.
-          title: Data Source2 Id
-          type: integer
-        data_source2_session_parameters:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          description: Snowflake session parameters for Dataset B.
-          title: Data Source2 Session Parameters
-        datetime_tolerance:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          description: Datetime precision for comparison. 0=seconds, 1=tenths, 2=hundredths, 3=milliseconds, 4=tenth-ms, 5=hundredth-ms, 6=microseconds.
-          title: Datetime Tolerance
-        diff_tolerance:
-          anyOf:
-          - type: number
-          - type: 'null'
-          description: 'Default tolerance for float comparisons. In absolute mode: values within this distance are equal. In relative mode: fraction of difference allowed.'
-          title: Diff Tolerance
-        diff_tolerances_per_column:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/ColumnTolerance'
-            type: array
-          - type: 'null'
-          description: 'Per-column tolerance overrides. Each entry: {column_name, tolerance_value (>= 0), tolerance_mode: ''absolute''|''relative''}.'
-          title: Diff Tolerances Per Column
-        download_limit:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Download Limit
-        exclude_columns:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          description: Columns to exclude from comparison. Ignored if include_columns is set.
-          title: Exclude Columns
-        file1:
-          anyOf:
-          - format: uri
-            minLength: 1
-            type: string
-          - type: 'null'
-          description: File URL for Dataset A (s3://, gs://, abfss://, https://). Mutually exclusive with table1 and query1. Requires file1_options.
-          title: File1
-        file1_options:
-          anyOf:
-          - discriminator:
-              mapping:
-                csv: '#/components/schemas/CSVFileOptions'
-                excel: '#/components/schemas/ExcelFileOptions'
-                parquet: '#/components/schemas/ParquetFileOptions'
-              propertyName: file_type
-            oneOf:
-            - $ref: '#/components/schemas/CSVFileOptions'
-            - $ref: '#/components/schemas/ExcelFileOptions'
-            - $ref: '#/components/schemas/ParquetFileOptions'
-          - type: 'null'
-          description: File format options for file1 (file_type, delimiter, sheet, skip rows).
-          title: File1 Options
-        file2:
-          anyOf:
-          - format: uri
-            minLength: 1
-            type: string
-          - type: 'null'
-          description: File URL for Dataset B (s3://, gs://, abfss://, https://). Mutually exclusive with table2 and query2. Requires file2_options.
-          title: File2
-        file2_options:
-          anyOf:
-          - discriminator:
-              mapping:
-                csv: '#/components/schemas/CSVFileOptions'
-                excel: '#/components/schemas/ExcelFileOptions'
-                parquet: '#/components/schemas/ParquetFileOptions'
-              propertyName: file_type
-            oneOf:
-            - $ref: '#/components/schemas/CSVFileOptions'
-            - $ref: '#/components/schemas/ExcelFileOptions'
-            - $ref: '#/components/schemas/ParquetFileOptions'
-          - type: 'null'
-          description: File format options for file2 (file_type, delimiter, sheet, skip rows).
-          title: File2 Options
-        filter1:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: SQL WHERE clause for Dataset A (omit the WHERE keyword), e.g. 'status = 1'.
-          title: Filter1
-        filter2:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: SQL WHERE clause for Dataset B (omit the WHERE keyword), e.g. 'status = 1'.
-          title: Filter2
-        include_columns:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          description: Explicit list of columns to compare. If set, only these columns are diffed.
-          title: Include Columns
-        infer_pk:
-          default: false
-          description: 'Infer primary key columns automatically before running the diff. When true, pk_columns may be omitted; the inferred PK is stored back on the diff. Supported configurations: in-db diffs (all input types); cross-db diffs with query inputs on both sides (PK is inferred inside DuckDB after fetch). Not supported: cross-db with table inputs, or any file-based diff — use POST /api/v1/data_sources/{id}/guess_pk and pass pk_columns explicitly. For in-db query inputs, materialization is auto-forced.'
-          title: Infer Pk
-          type: boolean
-        infer_pk_avoid_names:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          description: Column names to skip during PK inference. Matched case-insensitively against actual column names (exact match, no glob/regex). Requires infer_pk=true and pk_columns empty; rejected with 422 otherwise.
-          title: Infer Pk Avoid Names
-        infer_pk_avoid_types:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          description: Extra column types to skip during PK inference, on top of the built-in defaults (float, timestamp, array, boolean, binary, unsupported). Use canonical type names (e.g. 'integer', 'text') or 'db:<RAW_TYPE>' to target a raw warehouse type (e.g. 'db:JSONB'). Requires infer_pk=true and pk_columns empty; rejected with 422 otherwise.
-          title: Infer Pk Avoid Types
-        materialization_destination_id:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          description: Data source ID where materialized diff results are stored.
-          title: Materialization Destination Id
-        materialize_dataset1:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          description: Materialize Dataset A before diffing. Improves speed for heavy queries, filtered non-indexed columns, or transformed primary keys.
-          title: Materialize Dataset1
-        materialize_dataset2:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          description: Materialize Dataset B before diffing. Same use cases as materialize_dataset1.
-          title: Materialize Dataset2
-        materialize_without_sampling:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          default: false
-          description: Skip sampling when materializing results.
-          title: Materialize Without Sampling
-        per_column_diff_limit:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Per Column Diff Limit
-        pk_columns:
-          description: Column names that uniquely identify rows, e.g. ['id'] or ['tenant_id', 'order_id']. Must match actual column names in both datasets. Leave empty and set infer_pk=True to auto-detect.
-          items:
-            type: string
-          title: Pk Columns
-          type: array
-        purged:
-          default: false
-          title: Purged
-          type: boolean
-        query1:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: SQL query for Dataset A. Mutually exclusive with table1 and file1.
-          title: Query1
-        query2:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: SQL query for Dataset B. Mutually exclusive with table2 and file2.
-          title: Query2
-        run_profiles:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          description: Run column profiling on diff results.
-          title: Run Profiles
-        sampling_confidence:
-          anyOf:
-          - type: number
-          - type: 'null'
-          description: 'Sampling confidence level, between 0 and 100 exclusive. Common values: 90, 95, 99, 99.5, 99.9. Use with sampling_tolerance.'
-          title: Sampling Confidence
-        sampling_max_rows:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          description: Maximum number of rows to sample (absolute count). Alternative to tolerance+confidence and sampling_ratio.
-          title: Sampling Max Rows
-        sampling_ratio:
-          anyOf:
-          - type: number
-          - type: 'null'
-          description: Sample this fraction of rows. Value between 0 and 1 exclusive (e.g. 0.1 = 10% of rows). Alternative to tolerance+confidence.
-          title: Sampling Ratio
-        sampling_threshold:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          description: Minimum row count to activate sampling. Sampling is disabled if the largest table has fewer rows than this.
-          title: Sampling Threshold
-        sampling_tolerance:
-          anyOf:
-          - type: number
-          - type: 'null'
-          description: 'Sampling tolerance: max fraction of rows with PK errors before sampling is disabled. Value between 0 and 1 exclusive (e.g. 0.001 = 0.1%). Use with sampling_confidence.'
-          title: Sampling Tolerance
-        sort_array_columns:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          description: Sort array elements before comparison to ignore insertion order differences.
-          title: Sort Array Columns
-        table1:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          description: Table path for Dataset A as a list of path components, e.g. ['schema', 'table'] or ['database', 'schema', 'table']. Mutually exclusive with query1 and file1.
-          title: Table1
-        table2:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          description: Table path for Dataset B as a list of path components, e.g. ['schema', 'table'] or ['database', 'schema', 'table']. Mutually exclusive with query2 and file2.
-          title: Table2
-        table_modifiers:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/TableModifiers'
-            type: array
-          - type: 'null'
-          description: 'Table-level modifiers. Allowed values: ''case_insensitive_strings'' (ignore string case), ''null_equals_empty_string'' (treat NULL and empty string as equal when one warehouse uses NULL and another uses '''' for missing text).'
-          title: Table Modifiers
-        tags:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          description: Tags for organizing and filtering diffs.
-          title: Tags
-        time_aggregate:
-          anyOf:
-          - $ref: '#/components/schemas/TimeAggregateEnum'
-          - type: 'null'
-          description: Time aggregation level when using time_column.
-        time_column:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Column name used for time-based filtering or aggregation.
-          title: Time Column
-        time_interval_end:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          title: Time Interval End
-        time_interval_start:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          title: Time Interval Start
-        time_travel_point1:
-          anyOf:
-          - type: integer
-          - format: date-time
-            type: string
-          - type: string
-          - type: 'null'
-          description: 'Time travel point for Dataset A. Accepts: negative integer offset (e.g. -130), UTC timestamp (e.g. ''2024-01-15T00:00:00''), or a time point hash. Only supported by Snowflake and Databricks.'
-          title: Time Travel Point1
-        time_travel_point2:
-          anyOf:
-          - type: integer
-          - format: date-time
-            type: string
-          - type: string
-          - type: 'null'
-          description: Time travel point for Dataset B. Same format as time_travel_point1.
-          title: Time Travel Point2
-        tolerance_mode:
-          anyOf:
-          - $ref: '#/components/schemas/ToleranceModeEnum'
-          - type: 'null'
-          description: 'How diff_tolerance is applied: ''absolute'' or ''relative''.'
-      required:
-      - data_source1_id
-      - data_source2_id
-      title: ApiDataDiffData
-      type: object
     Body_update_datadiff_api_v1_datadiffs__datadiff_id__patch:
       properties:
         archived:
@@ -2236,65 +2054,29 @@ components:
           title: Purged
       title: Body_update_datadiff_api_v1_datadiffs__datadiff_id__patch
       type: object
-    DiffKind:
-      enum:
-      - in_db
-      - cross_db
-      title: DiffKind
-      type: string
     ApiSortOrder:
       enum:
       - asc
       - desc
       title: ApiSortOrder
       type: string
-    ApiDataDiffSummaryValues:
+    ApiDataDiffError:
       properties:
-        columns_diff_stats:
-          items:
-            $ref: '#/components/schemas/ApiColumnDiffStat'
-          title: Columns Diff Stats
-          type: array
-        columns_with_differences:
-          title: Columns With Differences
-          type: integer
-        compared_columns:
-          title: Compared Columns
-          type: integer
-        rows_with_differences:
-          title: Rows With Differences
-          type: integer
-        total_rows:
-          title: Total Rows
-          type: integer
-        total_values:
-          title: Total Values
-          type: integer
-        values_with_differences:
-          title: Values With Differences
-          type: integer
+        error_type:
+          title: Error Type
+          type: string
+        error_value:
+          title: Error Value
+          type: string
+        is_retryable:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Is Retryable
       required:
-      - total_rows
-      - rows_with_differences
-      - total_values
-      - values_with_differences
-      - compared_columns
-      - columns_with_differences
-      - columns_diff_stats
-      title: ApiDataDiffSummaryValues
-      type: object
-    ApiEstimatedIntInterval:
-      properties:
-        max:
-          title: Max
-          type: integer
-        min:
-          title: Min
-          type: integer
-      required:
-      - min
-      - max
-      title: ApiEstimatedIntInterval
+      - error_type
+      - error_value
+      title: ApiDataDiffError
       type: object
     ApiExclusiveRowsProfile:
       properties:
@@ -2309,6 +2091,71 @@ components:
           - type: 'null'
           description: Profile for exclusive rows in table 2
       title: ApiExclusiveRowsProfile
+      type: object
+    ExcelFileOptions:
+      properties:
+        file_type:
+          const: excel
+          default: excel
+          title: File Type
+          type: string
+        sheet:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sheet
+        skip_head_rows:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Skip Head Rows
+        skip_tail_rows:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Skip Tail Rows
+      title: ExcelFileOptions
+      type: object
+    ColumnTolerance:
+      properties:
+        column_name:
+          description: Column name to apply tolerance to.
+          title: Column Name
+          type: string
+        tolerance_mode:
+          $ref: '#/components/schemas/ToleranceModeEnum'
+          description: '''absolute'' or ''relative''.'
+        tolerance_value:
+          description: Tolerance value. Must be >= 0.
+          title: Tolerance Value
+          type: number
+      required:
+      - column_name
+      - tolerance_value
+      - tolerance_mode
+      title: ColumnTolerance
+      type: object
+    ApiColumnRule:
+      properties:
+        column:
+          anyOf:
+          - minLength: 1
+            type: string
+          - type: 'null'
+          description: Column name the rule applies to. When column remapping is enabled, this refers to the dataset-A (canonical) column name — the same name the comparator operates on after remapping. Mutually exclusive with `type`. Exactly one of `column` or `type` must be set.
+          title: Column
+        equal_if:
+          description: SQL boolean expression OR-ed into the value comparator for the matching column(s). Use {a} and {b} as placeholders for the side-A and side-B column references. Multiple rules matching the same column are all OR-ed together.
+          title: Equal If
+          type: string
+        type:
+          anyOf:
+          - $ref: '#/components/schemas/DatatypeName'
+          - type: 'null'
+          description: Type-based selector — matches all columns whose Datatype.typename equals this value. The rule is applied to every column of that type after data lands in DuckDB post-fetch. Mutually exclusive with `column`.
+      required:
+      - equal_if
+      title: ApiColumnRule
       type: object
     ApiDataDiffWithProgressState:
       properties:
@@ -2874,27 +2721,191 @@ components:
       - kind
       title: ApiDataDiffWithProgressState
       type: object
-    ApiMaterializedResult:
+    DiffStats:
+      properties:
+        diff_duplicate_pks:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Diff Duplicate Pks
+        diff_null_pks:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Diff Null Pks
+        diff_pks:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Diff Pks
+        diff_rows:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Diff Rows
+        diff_rows_count:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Diff Rows Count
+        diff_rows_number:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Diff Rows Number
+        diff_schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Diff Schema
+        diff_values:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Diff Values
+        errors:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Errors
+        match_ratio:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Match Ratio
+        rows_added:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Rows Added
+        rows_removed:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Rows Removed
+        sampled:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Sampled
+        table_a_row_count:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Table A Row Count
+        table_b_row_count:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Table B Row Count
+        version:
+          title: Version
+          type: string
+      required:
+      - version
+      title: DiffStats
+      type: object
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          title: Location
+          type: array
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+      type: object
+    ApiCIDependency:
       properties:
         data_source_id:
-          description: Id of the DataSource where the table is located
           title: Data Source Id
           type: integer
-        is_sampled:
-          description: If sampling was applied
-          title: Is Sampled
-          type: boolean
+        data_source_type:
+          title: Data Source Type
+          type: string
+        item_type:
+          title: Item Type
+          type: string
+        name:
+          title: Name
+          type: string
         path:
-          description: Path segments of the table
           items:
             type: string
           title: Path
           type: array
+        popularity:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Popularity
+        primary_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Primary Key
+        query_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Query Type
+        raw_sql:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Raw Sql
+        remote_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Remote Id
+        table_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Table Name
+        uid:
+          title: Uid
+          type: string
       required:
-      - data_source_id
+      - uid
+      - item_type
+      - name
       - path
-      - is_sampled
-      title: ApiMaterializedResult
+      - data_source_id
+      - data_source_type
+      title: ApiCIDependency
+      type: object
+    ApiCrossDataDiffSummaryForDone:
+      properties:
+        pks:
+          anyOf:
+          - $ref: '#/components/schemas/ApiDataDiffSummaryPKs'
+          - type: 'null'
+        status:
+          enum:
+          - done
+          - success
+          title: Status
+          type: string
+        values:
+          anyOf:
+          - $ref: '#/components/schemas/ApiDataDiffSummaryValues'
+          - type: 'null'
+      required:
+      - status
+      title: ApiCrossDataDiffSummaryForDone
       type: object
   securitySchemes:
     ApiKeyAuth:

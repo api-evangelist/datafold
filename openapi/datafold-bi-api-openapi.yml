@@ -1,10 +1,23 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: support@datafold.com
     name: API Support
-  description: "The Datafold API reference is a guide to our available endpoints and authentication methods.\nIf you're just getting started with Datafold, we recommend first checking out our [documentation](https://docs.datafold.com).\n\n:::info\n  To use the Datafold API, you should first create a Datafold API Key,\n  which should be stored as a local environment variable named DATAFOLD_API_KEY.\n  This can be set in your Datafold Cloud's Settings under the Account page.\n:::"
-  title: Datafold Audit Logs BI API
+  description: 'The Datafold API reference is a guide to our available endpoints and authentication methods.
+
+    If you''re just getting started with Datafold, we recommend first checking out our documentation.
+
+
+    :::info
+
+    To use the Datafold API, you should first create a Datafold API Key,
+
+    which should be stored as a local environment variable named DATAFOLD_API_KEY.
+
+    This can be set in your Datafold Cloud''s Settings under the Account page.
+
+    :::'
+  title: Datafold BI API
   version: latest
 servers:
 - description: Default server
@@ -12,7 +25,7 @@ servers:
 security:
 - ApiKeyAuth: []
 tags:
-- name: BI
+- name: bi
 paths:
   /api/v1/lineage/bi/:
     get:
@@ -26,7 +39,7 @@ paths:
           description: Successful Response
       summary: List all integrations
       tags:
-      - BI
+      - bi
   /api/v1/lineage/bi/dbt/:
     post:
       operationId: create_dbt_integration_api_v1_lineage_bi_dbt__post
@@ -50,7 +63,7 @@ paths:
           description: Validation Error
       summary: Create a DBT BI integration
       tags:
-      - BI
+      - bi
   /api/v1/lineage/bi/dbt/{bi_datasource_id}/:
     put:
       description: Returns the integration with changed fields.
@@ -82,7 +95,7 @@ paths:
           description: Validation Error
       summary: Update a DBT BI integration
       tags:
-      - BI
+      - bi
   /api/v1/lineage/bi/hightouch/:
     post:
       operationId: create_hightouch_integration_api_v1_lineage_bi_hightouch__post
@@ -106,7 +119,7 @@ paths:
           description: Validation Error
       summary: Create a Hightouch integration
       tags:
-      - BI
+      - bi
   /api/v1/lineage/bi/hightouch/{bi_datasource_id}/:
     put:
       description: It can only update the schedule. Returns the integration with changed fields.
@@ -138,7 +151,7 @@ paths:
           description: Validation Error
       summary: Update a Hightouch integration
       tags:
-      - BI
+      - bi
   /api/v1/lineage/bi/looker/:
     post:
       operationId: create_looker_integration_api_v1_lineage_bi_looker__post
@@ -162,7 +175,7 @@ paths:
           description: Validation Error
       summary: Create a Looker integration
       tags:
-      - BI
+      - bi
   /api/v1/lineage/bi/looker/{bi_datasource_id}/:
     put:
       description: It can only update the schedule. Returns the integration with changed fields.
@@ -194,7 +207,7 @@ paths:
           description: Validation Error
       summary: Update a Looker integration
       tags:
-      - BI
+      - bi
   /api/v1/lineage/bi/mode/:
     post:
       operationId: create_mode_integration_api_v1_lineage_bi_mode__post
@@ -218,7 +231,7 @@ paths:
           description: Validation Error
       summary: Create a Mode Analytics integration
       tags:
-      - BI
+      - bi
   /api/v1/lineage/bi/mode/{bi_datasource_id}/:
     put:
       description: It can only update the schedule. Returns the integration with changed fields.
@@ -250,7 +263,7 @@ paths:
           description: Validation Error
       summary: Update a Mode Analytics integration
       tags:
-      - BI
+      - bi
   /api/v1/lineage/bi/powerbi/:
     post:
       operationId: create_powerbi_integration_api_v1_lineage_bi_powerbi__post
@@ -274,7 +287,7 @@ paths:
           description: Validation Error
       summary: Create a Power BI integration
       tags:
-      - BI
+      - bi
   /api/v1/lineage/bi/powerbi/{bi_datasource_id}/:
     put:
       description: Updates the integration configuration. Returns the integration with changed fields.
@@ -306,7 +319,7 @@ paths:
           description: Validation Error
       summary: Update a Power BI integration
       tags:
-      - BI
+      - bi
   /api/v1/lineage/bi/tableau/:
     post:
       operationId: create_tableau_integration_api_v1_lineage_bi_tableau__post
@@ -330,7 +343,7 @@ paths:
           description: Validation Error
       summary: Create a Tableau integration
       tags:
-      - BI
+      - bi
   /api/v1/lineage/bi/tableau/{bi_datasource_id}/:
     put:
       description: It can only update the schedule. Returns the integration with changed fields.
@@ -362,7 +375,7 @@ paths:
           description: Validation Error
       summary: Update a Tableau integration
       tags:
-      - BI
+      - bi
   /api/v1/lineage/bi/{bi_datasource_id}/:
     delete:
       operationId: remove_integration_api_v1_lineage_bi__bi_datasource_id___delete
@@ -387,7 +400,7 @@ paths:
           description: Validation Error
       summary: Remove an integration
       tags:
-      - BI
+      - bi
     get:
       description: Returns the integration for Mode/Tableau/Looker/HighTouch by its id.
       operationId: get_integration_api_v1_lineage_bi__bi_datasource_id___get
@@ -412,7 +425,7 @@ paths:
           description: Validation Error
       summary: Get an integration
       tags:
-      - BI
+      - bi
   /api/v1/lineage/bi/{bi_datasource_id}/sync/:
     get:
       description: Start an unscheduled synchronization of the integration.
@@ -438,9 +451,54 @@ paths:
           description: Validation Error
       summary: Sync a BI integration
       tags:
-      - BI
+      - bi
 components:
   schemas:
+    PowerBIDataSourceConfig:
+      description: Power BI data source parameters.
+      properties:
+        auth_type:
+          anyOf:
+          - $ref: '#/components/schemas/PowerBIAuthType'
+          - type: 'null'
+        client_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Client Id
+        client_secret:
+          anyOf:
+          - format: password
+            type: string
+            writeOnly: true
+          - type: 'null'
+          title: Client Secret
+        indexing_cron:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Indexing Cron
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        tenant_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tenant Id
+      title: PowerBIDataSourceConfig
+      type: object
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          title: Detail
+          type: array
+      title: HTTPValidationError
+      type: object
     HighTouchDataSourceConfig:
       properties:
         bindings:
@@ -472,6 +530,64 @@ components:
       - token
       - bindings
       title: HighTouchDataSourceConfig
+      type: object
+    DbtDataSourceConfig:
+      properties:
+        ci_config_id:
+          title: Ci Config Id
+          type: integer
+        indexing_cron:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Indexing Cron
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+      required:
+      - ci_config_id
+      title: DbtDataSourceConfig
+      type: object
+    PowerBIAuthType:
+      enum:
+      - delegated
+      - service_principal
+      title: PowerBIAuthType
+      type: string
+    TableauDataSourceConfig:
+      properties:
+        indexing_cron:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Indexing Cron
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        server_url:
+          title: Server Url
+          type: string
+        site_id:
+          title: Site Id
+          type: string
+        token_name:
+          title: Token Name
+          type: string
+        token_value:
+          format: password
+          title: Token Value
+          type: string
+          writeOnly: true
+      required:
+      - token_name
+      - token_value
+      - site_id
+      - server_url
+      title: TableauDataSourceConfig
       type: object
     LookerDataSourceConfig:
       properties:
@@ -539,73 +655,6 @@ components:
       - type
       title: ValidationError
       type: object
-    TableauDataSourceConfig:
-      properties:
-        indexing_cron:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Indexing Cron
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-        server_url:
-          title: Server Url
-          type: string
-        site_id:
-          title: Site Id
-          type: string
-        token_name:
-          title: Token Name
-          type: string
-        token_value:
-          format: password
-          title: Token Value
-          type: string
-          writeOnly: true
-      required:
-      - token_name
-      - token_value
-      - site_id
-      - server_url
-      title: TableauDataSourceConfig
-      type: object
-    PowerBIAuthType:
-      enum:
-      - delegated
-      - service_principal
-      title: PowerBIAuthType
-      type: string
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          title: Detail
-          type: array
-      title: HTTPValidationError
-      type: object
-    DbtDataSourceConfig:
-      properties:
-        ci_config_id:
-          title: Ci Config Id
-          type: integer
-        indexing_cron:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Indexing Cron
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-      required:
-      - ci_config_id
-      title: DbtDataSourceConfig
-      type: object
     DataSourceBinding:
       properties:
         boundIds:
@@ -620,42 +669,6 @@ components:
       - remoteId
       - boundIds
       title: DataSourceBinding
-      type: object
-    PowerBIDataSourceConfig:
-      description: Power BI data source parameters.
-      properties:
-        auth_type:
-          anyOf:
-          - $ref: '#/components/schemas/PowerBIAuthType'
-          - type: 'null'
-        client_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Client Id
-        client_secret:
-          anyOf:
-          - format: password
-            type: string
-            writeOnly: true
-          - type: 'null'
-          title: Client Secret
-        indexing_cron:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Indexing Cron
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-        tenant_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Tenant Id
-      title: PowerBIDataSourceConfig
       type: object
     ModeDataSourceConfig:
       properties:

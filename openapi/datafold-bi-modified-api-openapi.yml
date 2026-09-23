@@ -1,10 +1,23 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: support@datafold.com
     name: API Support
-  description: "The Datafold API reference is a guide to our available endpoints and authentication methods.\nIf you're just getting started with Datafold, we recommend first checking out our [documentation](https://docs.datafold.com).\n\n:::info\n  To use the Datafold API, you should first create a Datafold API Key,\n  which should be stored as a local environment variable named DATAFOLD_API_KEY.\n  This can be set in your Datafold Cloud's Settings under the Account page.\n:::"
-  title: Datafold Audit Logs bi_modified API
+  description: 'The Datafold API reference is a guide to our available endpoints and authentication methods.
+
+    If you''re just getting started with Datafold, we recommend first checking out our documentation.
+
+
+    :::info
+
+    To use the Datafold API, you should first create a Datafold API Key,
+
+    which should be stored as a local environment variable named DATAFOLD_API_KEY.
+
+    This can be set in your Datafold Cloud''s Settings under the Account page.
+
+    :::'
+  title: Datafold Bi Modified API
   version: latest
 servers:
 - description: Default server
@@ -208,6 +221,51 @@ paths:
       - bi_modified
 components:
   schemas:
+    PowerBIDataSourceConfig:
+      description: Power BI data source parameters.
+      properties:
+        auth_type:
+          anyOf:
+          - $ref: '#/components/schemas/PowerBIAuthType'
+          - type: 'null'
+        client_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Client Id
+        client_secret:
+          anyOf:
+          - format: password
+            type: string
+            writeOnly: true
+          - type: 'null'
+          title: Client Secret
+        indexing_cron:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Indexing Cron
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        tenant_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tenant Id
+      title: PowerBIDataSourceConfig
+      type: object
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          title: Detail
+          type: array
+      title: HTTPValidationError
+      type: object
     HighTouchDataSourceConfig:
       properties:
         bindings:
@@ -239,6 +297,64 @@ components:
       - token
       - bindings
       title: HighTouchDataSourceConfig
+      type: object
+    DbtDataSourceConfig:
+      properties:
+        ci_config_id:
+          title: Ci Config Id
+          type: integer
+        indexing_cron:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Indexing Cron
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+      required:
+      - ci_config_id
+      title: DbtDataSourceConfig
+      type: object
+    PowerBIAuthType:
+      enum:
+      - delegated
+      - service_principal
+      title: PowerBIAuthType
+      type: string
+    TableauDataSourceConfig:
+      properties:
+        indexing_cron:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Indexing Cron
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        server_url:
+          title: Server Url
+          type: string
+        site_id:
+          title: Site Id
+          type: string
+        token_name:
+          title: Token Name
+          type: string
+        token_value:
+          format: password
+          title: Token Value
+          type: string
+          writeOnly: true
+      required:
+      - token_name
+      - token_value
+      - site_id
+      - server_url
+      title: TableauDataSourceConfig
       type: object
     LookerDataSourceConfig:
       properties:
@@ -306,73 +422,6 @@ components:
       - type
       title: ValidationError
       type: object
-    TableauDataSourceConfig:
-      properties:
-        indexing_cron:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Indexing Cron
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-        server_url:
-          title: Server Url
-          type: string
-        site_id:
-          title: Site Id
-          type: string
-        token_name:
-          title: Token Name
-          type: string
-        token_value:
-          format: password
-          title: Token Value
-          type: string
-          writeOnly: true
-      required:
-      - token_name
-      - token_value
-      - site_id
-      - server_url
-      title: TableauDataSourceConfig
-      type: object
-    PowerBIAuthType:
-      enum:
-      - delegated
-      - service_principal
-      title: PowerBIAuthType
-      type: string
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          title: Detail
-          type: array
-      title: HTTPValidationError
-      type: object
-    DbtDataSourceConfig:
-      properties:
-        ci_config_id:
-          title: Ci Config Id
-          type: integer
-        indexing_cron:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Indexing Cron
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-      required:
-      - ci_config_id
-      title: DbtDataSourceConfig
-      type: object
     DataSourceBinding:
       properties:
         boundIds:
@@ -387,42 +436,6 @@ components:
       - remoteId
       - boundIds
       title: DataSourceBinding
-      type: object
-    PowerBIDataSourceConfig:
-      description: Power BI data source parameters.
-      properties:
-        auth_type:
-          anyOf:
-          - $ref: '#/components/schemas/PowerBIAuthType'
-          - type: 'null'
-        client_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Client Id
-        client_secret:
-          anyOf:
-          - format: password
-            type: string
-            writeOnly: true
-          - type: 'null'
-          title: Client Secret
-        indexing_cron:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Indexing Cron
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-        tenant_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Tenant Id
-      title: PowerBIDataSourceConfig
       type: object
     ModeDataSourceConfig:
       properties:
