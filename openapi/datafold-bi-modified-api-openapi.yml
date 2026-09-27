@@ -221,6 +221,74 @@ paths:
       - bi_modified
 components:
   schemas:
+    HighTouchDataSourceConfig:
+      properties:
+        bindings:
+          items:
+            $ref: '#/components/schemas/DataSourceBinding'
+          title: Bindings
+          type: array
+        indexing_cron:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Indexing Cron
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        token:
+          format: password
+          title: Token
+          type: string
+          writeOnly: true
+        workspace:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Workspace
+      required:
+      - token
+      - bindings
+      title: HighTouchDataSourceConfig
+      type: object
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          title: Location
+          type: array
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+      type: object
+    DataSourceBinding:
+      properties:
+        boundIds:
+          items:
+            type: integer
+          title: Boundids
+          type: array
+        remoteId:
+          title: Remoteid
+          type: string
+      required:
+      - remoteId
+      - boundIds
+      title: DataSourceBinding
+      type: object
     PowerBIDataSourceConfig:
       description: Power BI data source parameters.
       properties:
@@ -257,47 +325,12 @@ components:
           title: Tenant Id
       title: PowerBIDataSourceConfig
       type: object
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          title: Detail
-          type: array
-      title: HTTPValidationError
-      type: object
-    HighTouchDataSourceConfig:
-      properties:
-        bindings:
-          items:
-            $ref: '#/components/schemas/DataSourceBinding'
-          title: Bindings
-          type: array
-        indexing_cron:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Indexing Cron
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-        token:
-          format: password
-          title: Token
-          type: string
-          writeOnly: true
-        workspace:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Workspace
-      required:
-      - token
-      - bindings
-      title: HighTouchDataSourceConfig
-      type: object
+    PowerBIAuthType:
+      enum:
+      - delegated
+      - service_principal
+      title: PowerBIAuthType
+      type: string
     DbtDataSourceConfig:
       properties:
         ci_config_id:
@@ -317,44 +350,14 @@ components:
       - ci_config_id
       title: DbtDataSourceConfig
       type: object
-    PowerBIAuthType:
-      enum:
-      - delegated
-      - service_principal
-      title: PowerBIAuthType
-      type: string
-    TableauDataSourceConfig:
+    HTTPValidationError:
       properties:
-        indexing_cron:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Indexing Cron
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-        server_url:
-          title: Server Url
-          type: string
-        site_id:
-          title: Site Id
-          type: string
-        token_name:
-          title: Token Name
-          type: string
-        token_value:
-          format: password
-          title: Token Value
-          type: string
-          writeOnly: true
-      required:
-      - token_name
-      - token_value
-      - site_id
-      - server_url
-      title: TableauDataSourceConfig
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          title: Detail
+          type: array
+      title: HTTPValidationError
       type: object
     LookerDataSourceConfig:
       properties:
@@ -401,41 +404,38 @@ components:
       - client_secret
       title: LookerDataSourceConfig
       type: object
-    ValidationError:
+    TableauDataSourceConfig:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          title: Location
-          type: array
-        msg:
-          title: Message
+        indexing_cron:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Indexing Cron
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        server_url:
+          title: Server Url
           type: string
-        type:
-          title: Error Type
+        site_id:
+          title: Site Id
           type: string
+        token_name:
+          title: Token Name
+          type: string
+        token_value:
+          format: password
+          title: Token Value
+          type: string
+          writeOnly: true
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-      type: object
-    DataSourceBinding:
-      properties:
-        boundIds:
-          items:
-            type: integer
-          title: Boundids
-          type: array
-        remoteId:
-          title: Remoteid
-          type: string
-      required:
-      - remoteId
-      - boundIds
-      title: DataSourceBinding
+      - token_name
+      - token_value
+      - site_id
+      - server_url
+      title: TableauDataSourceConfig
       type: object
     ModeDataSourceConfig:
       properties:

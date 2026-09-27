@@ -31,6 +31,10 @@ url: https://raw.githubusercontent.com/api-evangelist/datafold/refs/heads/main/a
 created: '2026-06-13'
 modified: '2026-06-13'
 specificationVersion: '0.23'
+x-docs-platform: mintlify
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-09-25
+x-docs-hosting: vercel
 tags:
   - Data Reliability
   - Data Diff
@@ -68,7 +72,7 @@ apis:
   - type: Authentication
     url: https://docs.datafold.com/api-reference/introduction
 - aid: datafold:datafold-bi-added-api
-  name: Datafold bi_added API
+  name: Datafold Bi Added API
   description: The bi_added API from Datafold — 6 operation(s) for bi_added.
   humanURL: https://docs.datafold.com/developer/datafold-api
   baseURL: https://app.datafold.com/api/v1/
@@ -99,7 +103,7 @@ apis:
   - type: Authentication
     url: https://docs.datafold.com/api-reference/introduction
 - aid: datafold:datafold-bi-deleted-api
-  name: Datafold bi_deleted API
+  name: Datafold Bi Deleted API
   description: The bi_deleted API from Datafold — 1 operation(s) for bi_deleted.
   humanURL: https://docs.datafold.com/developer/datafold-api
   baseURL: https://app.datafold.com/api/v1/
@@ -114,7 +118,7 @@ apis:
   - type: Authentication
     url: https://docs.datafold.com/api-reference/introduction
 - aid: datafold:datafold-bi-modified-api
-  name: Datafold bi_modified API
+  name: Datafold Bi Modified API
   description: The bi_modified API from Datafold — 6 operation(s) for bi_modified.
   humanURL: https://docs.datafold.com/developer/datafold-api
   baseURL: https://app.datafold.com/api/v1/
@@ -129,7 +133,7 @@ apis:
   - type: Authentication
     url: https://docs.datafold.com/api-reference/introduction
 - aid: datafold:datafold-bolt-api
-  name: Datafold bolt API
+  name: Datafold Bolt API
   description: The bolt API from Datafold — 1 operation(s) for bolt.
   humanURL: https://docs.datafold.com/developer/datafold-api
   baseURL: https://app.datafold.com/api/v1/
@@ -173,7 +177,7 @@ apis:
   - type: Authentication
     url: https://docs.datafold.com/api-reference/introduction
 - aid: datafold:datafold-data-source-added-api
-  name: Datafold data_source_added API
+  name: Datafold Data Source Added API
   description: The data_source_added API from Datafold — 1 operation(s) for data_source_added.
   humanURL: https://docs.datafold.com/developer/datafold-api
   baseURL: https://app.datafold.com/api/v1/
@@ -204,7 +208,7 @@ apis:
   - type: Authentication
     url: https://docs.datafold.com/api-reference/introduction
 - aid: datafold:datafold-diff-created-api
-  name: Datafold diff_created API
+  name: Datafold Diff Created API
   description: The diff_created API from Datafold — 1 operation(s) for diff_created.
   humanURL: https://docs.datafold.com/developer/datafold-api
   baseURL: https://app.datafold.com/api/v1/

@@ -161,54 +161,6 @@ paths:
       - CI
 components:
   schemas:
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          title: Detail
-          type: array
-      title: HTTPValidationError
-      type: object
-    APIPrDetails:
-      properties:
-        base_branch:
-          title: Base Branch
-          type: string
-        base_sha:
-          title: Base Sha
-          type: string
-        pr_branch:
-          title: Pr Branch
-          type: string
-        pr_number:
-          title: Pr Number
-          type: integer
-        pr_sha:
-          title: Pr Sha
-          type: string
-      required:
-      - pr_number
-      - pr_branch
-      - base_branch
-      - pr_sha
-      - base_sha
-      title: APIPrDetails
-      type: object
-    SubmitCiJob:
-      properties:
-        ci_run_id:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Ci Run Id
-        run_id:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Run Id
-      title: SubmitCiJob
-      type: object
     CiDiff:
       properties:
         exclude_columns:
@@ -242,6 +194,31 @@ components:
       - pr
       title: CiDiff
       type: object
+    APIPrDetails:
+      properties:
+        base_branch:
+          title: Base Branch
+          type: string
+        base_sha:
+          title: Base Sha
+          type: string
+        pr_branch:
+          title: Pr Branch
+          type: string
+        pr_number:
+          title: Pr Number
+          type: integer
+        pr_sha:
+          title: Pr Sha
+          type: string
+      required:
+      - pr_number
+      - pr_branch
+      - base_branch
+      - pr_sha
+      - base_sha
+      title: APIPrDetails
+      type: object
     ValidationError:
       properties:
         loc:
@@ -262,6 +239,20 @@ components:
       - msg
       - type
       title: ValidationError
+      type: object
+    SubmitCiJob:
+      properties:
+        ci_run_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Ci Run Id
+        run_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Run Id
+      title: SubmitCiJob
       type: object
     ApiCiRun:
       properties:
@@ -299,6 +290,15 @@ components:
       - status
       - source
       title: ApiCiRun
+      type: object
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          title: Detail
+          type: array
+      title: HTTPValidationError
       type: object
   securitySchemes:
     ApiKeyAuth:
