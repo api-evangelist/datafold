@@ -161,39 +161,6 @@ paths:
       - CI
 components:
   schemas:
-    CiDiff:
-      properties:
-        exclude_columns:
-          default: []
-          items:
-            type: string
-          title: Exclude Columns
-          type: array
-        include_columns:
-          default: []
-          items:
-            type: string
-          title: Include Columns
-          type: array
-        pk:
-          anyOf:
-          - items:
-              type: string
-            type: array
-            uniqueItems: true
-          - type: 'null'
-          title: Pk
-        pr:
-          title: Pr
-          type: string
-        prod:
-          title: Prod
-          type: string
-      required:
-      - prod
-      - pr
-      title: CiDiff
-      type: object
     APIPrDetails:
       properties:
         base_branch:
@@ -254,6 +221,48 @@ components:
           title: Run Id
       title: SubmitCiJob
       type: object
+    CiDiff:
+      properties:
+        exclude_columns:
+          default: []
+          items:
+            type: string
+          title: Exclude Columns
+          type: array
+        include_columns:
+          default: []
+          items:
+            type: string
+          title: Include Columns
+          type: array
+        pk:
+          anyOf:
+          - items:
+              type: string
+            type: array
+            uniqueItems: true
+          - type: 'null'
+          title: Pk
+        pr:
+          title: Pr
+          type: string
+        prod:
+          title: Prod
+          type: string
+      required:
+      - prod
+      - pr
+      title: CiDiff
+      type: object
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          title: Detail
+          type: array
+      title: HTTPValidationError
+      type: object
     ApiCiRun:
       properties:
         base_branch:
@@ -290,15 +299,6 @@ components:
       - status
       - source
       title: ApiCiRun
-      type: object
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          title: Detail
-          type: array
-      title: HTTPValidationError
       type: object
   securitySchemes:
     ApiKeyAuth:

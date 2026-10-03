@@ -173,74 +173,6 @@ paths:
       - bi_added
 components:
   schemas:
-    HighTouchDataSourceConfig:
-      properties:
-        bindings:
-          items:
-            $ref: '#/components/schemas/DataSourceBinding'
-          title: Bindings
-          type: array
-        indexing_cron:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Indexing Cron
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-        token:
-          format: password
-          title: Token
-          type: string
-          writeOnly: true
-        workspace:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Workspace
-      required:
-      - token
-      - bindings
-      title: HighTouchDataSourceConfig
-      type: object
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          title: Location
-          type: array
-        msg:
-          title: Message
-          type: string
-        type:
-          title: Error Type
-          type: string
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-      type: object
-    DataSourceBinding:
-      properties:
-        boundIds:
-          items:
-            type: integer
-          title: Boundids
-          type: array
-        remoteId:
-          title: Remoteid
-          type: string
-      required:
-      - remoteId
-      - boundIds
-      title: DataSourceBinding
-      type: object
     PowerBIDataSourceConfig:
       description: Power BI data source parameters.
       properties:
@@ -277,17 +209,8 @@ components:
           title: Tenant Id
       title: PowerBIDataSourceConfig
       type: object
-    PowerBIAuthType:
-      enum:
-      - delegated
-      - service_principal
-      title: PowerBIAuthType
-      type: string
-    DbtDataSourceConfig:
+    ModeDataSourceConfig:
       properties:
-        ci_config_id:
-          title: Ci Config Id
-          type: integer
         indexing_cron:
           anyOf:
           - type: string
@@ -298,18 +221,77 @@ components:
           - type: string
           - type: 'null'
           title: Name
+        password:
+          format: password
+          title: Password
+          type: string
+          writeOnly: true
+        token:
+          format: password
+          title: Token
+          type: string
+          writeOnly: true
+        workspace:
+          default: ''
+          title: Workspace
+          type: string
       required:
-      - ci_config_id
-      title: DbtDataSourceConfig
+      - token
+      - password
+      title: ModeDataSourceConfig
       type: object
-    HTTPValidationError:
+    ValidationError:
       properties:
-        detail:
+        loc:
           items:
-            $ref: '#/components/schemas/ValidationError'
-          title: Detail
+            anyOf:
+            - type: string
+            - type: integer
+          title: Location
           type: array
-      title: HTTPValidationError
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+      type: object
+    HighTouchDataSourceConfig:
+      properties:
+        bindings:
+          items:
+            $ref: '#/components/schemas/DataSourceBinding'
+          title: Bindings
+          type: array
+        indexing_cron:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Indexing Cron
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        token:
+          format: password
+          title: Token
+          type: string
+          writeOnly: true
+        workspace:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Workspace
+      required:
+      - token
+      - bindings
+      title: HighTouchDataSourceConfig
       type: object
     LookerDataSourceConfig:
       properties:
@@ -356,6 +338,55 @@ components:
       - client_secret
       title: LookerDataSourceConfig
       type: object
+    PowerBIAuthType:
+      enum:
+      - delegated
+      - service_principal
+      title: PowerBIAuthType
+      type: string
+    DbtDataSourceConfig:
+      properties:
+        ci_config_id:
+          title: Ci Config Id
+          type: integer
+        indexing_cron:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Indexing Cron
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+      required:
+      - ci_config_id
+      title: DbtDataSourceConfig
+      type: object
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          title: Detail
+          type: array
+      title: HTTPValidationError
+      type: object
+    DataSourceBinding:
+      properties:
+        boundIds:
+          items:
+            type: integer
+          title: Boundids
+          type: array
+        remoteId:
+          title: Remoteid
+          type: string
+      required:
+      - remoteId
+      - boundIds
+      title: DataSourceBinding
+      type: object
     TableauDataSourceConfig:
       properties:
         indexing_cron:
@@ -388,37 +419,6 @@ components:
       - site_id
       - server_url
       title: TableauDataSourceConfig
-      type: object
-    ModeDataSourceConfig:
-      properties:
-        indexing_cron:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Indexing Cron
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-        password:
-          format: password
-          title: Password
-          type: string
-          writeOnly: true
-        token:
-          format: password
-          title: Token
-          type: string
-          writeOnly: true
-        workspace:
-          default: ''
-          title: Workspace
-          type: string
-      required:
-      - token
-      - password
-      title: ModeDataSourceConfig
       type: object
   securitySchemes:
     ApiKeyAuth:

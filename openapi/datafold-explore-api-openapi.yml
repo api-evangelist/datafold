@@ -259,21 +259,33 @@ paths:
       - Explore
 components:
   schemas:
-    TableReference:
-      description: Database table reference.
+    ColumnReference:
+      description: Database table column reference.
       properties:
         name:
-          title: Table name
+          title: Column name
           type: string
-        path:
-          items:
-            type: string
-          title: Table path
-          type: array
       required:
       - name
-      - path
-      title: TableReference
+      title: ColumnReference
+      type: object
+    Column:
+      description: Database table column.
+      properties:
+        name:
+          title: Name
+          type: string
+        table:
+          $ref: '#/components/schemas/TableReference'
+        type:
+          const: Column
+          default: Column
+          title: Type
+          type: string
+      required:
+      - name
+      - table
+      title: Column
       type: object
     ValidationError:
       properties:
@@ -295,16 +307,6 @@ components:
       - msg
       - type
       title: ValidationError
-      type: object
-    ColumnReference:
-      description: Database table column reference.
-      properties:
-        name:
-          title: Column name
-          type: string
-      required:
-      - name
-      title: ColumnReference
       type: object
     Table:
       description: Database table.
@@ -342,23 +344,21 @@ components:
           type: array
       title: HTTPValidationError
       type: object
-    Column:
-      description: Database table column.
+    TableReference:
+      description: Database table reference.
       properties:
         name:
-          title: Name
+          title: Table name
           type: string
-        table:
-          $ref: '#/components/schemas/TableReference'
-        type:
-          const: Column
-          default: Column
-          title: Type
-          type: string
+        path:
+          items:
+            type: string
+          title: Table path
+          type: array
       required:
       - name
-      - table
-      title: Column
+      - path
+      title: TableReference
       type: object
   securitySchemes:
     ApiKeyAuth:
