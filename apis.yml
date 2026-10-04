@@ -251,6 +251,9 @@ apis:
   - type: Authentication
     url: https://docs.datafold.com/api-reference/introduction
 common:
+  - type: CapabilityMap
+    url: capabilities/datafold-capability-edges.yml
+    name: Datafold Business Capability Map
   - type: AgenticAccess
     url: agentic-access/datafold-agentic-access.yml
   - type: TrustCenter

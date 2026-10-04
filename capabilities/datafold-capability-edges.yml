@@ -1,0 +1,44 @@
+slug: datafold
+provider: Datafold
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: CI
+  spec_file: datafold-ci-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.85
+  evidence: '"List CI runs", "Trigger a PR/MR run", "Upload PR/MR changes" with schema "SubmitCiJob"'
+  reason: Operations drive continuous-integration jobs against pull/merge requests, which is squarely
+    Continuous Integration Management within software release and deployment. Confidence below 0.95 only
+    because the CI runs are data-diff validations, a specialised pipeline check.
+- tag: Monitors
+  spec_file: datafold-monitors-api-openapi.yml
+  capability_id: BC-610.30
+  capability_id_l1: BC-610
+  capability_name: Data Quality Management
+  confidence: 0.85
+  evidence: '"Create a Schema Change Monitor"; "Create a Data Test Monitor"; schema AnomalyDetectionThreshold'
+  reason: Scheduled monitors running data tests, metric anomaly detection and schema-change alerting are
+    classic data quality monitoring and remediation triggers.
+- tag: Data diffs
+  spec_file: datafold-data-diffs-api-openapi.yml
+  capability_id: BC-610.30
+  capability_id_l1: BC-610
+  capability_name: Data Quality Management
+  confidence: 0.8
+  evidence: '"Create a data diff"; "Get a human-readable summary of a DataDiff comparison"; schemas ApiColumnDiffStat,
+    ApiColumnProfileStats'
+  reason: Diffing datasets across databases to surface row/column discrepancies and regressions is data
+    quality monitoring/profiling and remediation support.
