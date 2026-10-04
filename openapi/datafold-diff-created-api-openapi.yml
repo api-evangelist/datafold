@@ -67,61 +67,6 @@ paths:
       - diff_created
 components:
   schemas:
-    ColumnTolerance:
-      properties:
-        column_name:
-          description: Column name to apply tolerance to.
-          title: Column Name
-          type: string
-        tolerance_mode:
-          $ref: '#/components/schemas/ToleranceModeEnum'
-          description: '''absolute'' or ''relative''.'
-        tolerance_value:
-          description: Tolerance value. Must be >= 0.
-          title: Tolerance Value
-          type: number
-      required:
-      - column_name
-      - tolerance_value
-      - tolerance_mode
-      title: ColumnTolerance
-      type: object
-    DiffAlgorithm:
-      enum:
-      - join
-      - hash
-      - hash_v2_alpha
-      - fetch_and_join
-      title: DiffAlgorithm
-      type: string
-    DatatypeName:
-      enum:
-      - boolean
-      - integer
-      - float
-      - decimal
-      - unbounded_decimal
-      - money
-      - string
-      - fixed_length_string
-      - varbinary
-      - binary
-      - date
-      - super
-      - time
-      - time_interval
-      - timestamp
-      - year
-      - uuid
-      - array
-      - struct
-      - json
-      - xml
-      - map
-      - void
-      - unsupported
-      title: DatatypeName
-      type: string
     ApiDataDiffData:
       properties:
         archived:
@@ -492,16 +437,187 @@ components:
       - data_source2_id
       title: ApiDataDiffData
       type: object
-    TimeAggregateEnum:
+    DiffAlgorithm:
       enum:
-      - minute
-      - hour
-      - day
-      - week
-      - month
-      - year
-      title: TimeAggregateEnum
+      - join
+      - hash
+      - hash_v2_alpha
+      - fetch_and_join
+      title: DiffAlgorithm
       type: string
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          title: Detail
+          type: array
+      title: HTTPValidationError
+      type: object
+    ColumnTolerance:
+      properties:
+        column_name:
+          description: Column name to apply tolerance to.
+          title: Column Name
+          type: string
+        tolerance_mode:
+          $ref: '#/components/schemas/ToleranceModeEnum'
+          description: '''absolute'' or ''relative''.'
+        tolerance_value:
+          description: Tolerance value. Must be >= 0.
+          title: Tolerance Value
+          type: number
+      required:
+      - column_name
+      - tolerance_value
+      - tolerance_mode
+      title: ColumnTolerance
+      type: object
+    TDataDiffDataAppMetadata:
+      properties:
+        data_app_id:
+          title: Data App Id
+          type: integer
+        data_app_model1_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Data App Model1 Id
+        data_app_model1_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Data App Model1 Name
+        data_app_model2_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Data App Model2 Id
+        data_app_model2_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Data App Model2 Name
+        data_app_model_type:
+          title: Data App Model Type
+          type: string
+        meta_data:
+          additionalProperties: true
+          title: Meta Data
+          type: object
+      required:
+      - data_app_id
+      - data_app_model_type
+      - meta_data
+      title: TDataDiffDataAppMetadata
+      type: object
+    DiffKind:
+      enum:
+      - in_db
+      - cross_db
+      title: DiffKind
+      type: string
+    TableModifiers:
+      enum:
+      - case_insensitive_strings
+      - null_equals_empty_string
+      title: TableModifiers
+      type: string
+    MonitorRunState:
+      enum:
+      - ok
+      - alert
+      - error
+      - learning
+      - checking
+      - created
+      - skipped
+      - cancelled
+      - queued
+      title: MonitorRunState
+      type: string
+    JobSource:
+      enum:
+      - interactive
+      - demo_signup
+      - manual
+      - api
+      - ci
+      - schedule
+      - auto
+      title: JobSource
+      type: string
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          title: Location
+          type: array
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+      type: object
+    QueryError:
+      properties:
+        error_type:
+          title: Error Type
+          type: string
+        error_value:
+          title: Error Value
+          type: string
+      required:
+      - error_type
+      - error_value
+      title: QueryError
+      type: object
+    ParquetFileOptions:
+      properties:
+        file_type:
+          const: parquet
+          default: parquet
+          title: File Type
+          type: string
+      title: ParquetFileOptions
+      type: object
+    ToleranceModeEnum:
+      enum:
+      - absolute
+      - relative
+      title: ToleranceModeEnum
+      type: string
+    ApiColumnRule:
+      properties:
+        column:
+          anyOf:
+          - minLength: 1
+            type: string
+          - type: 'null'
+          description: Column name the rule applies to. When column remapping is enabled, this refers to the dataset-A (canonical) column name — the same name the comparator operates on after remapping. Mutually exclusive with `type`. Exactly one of `column` or `type` must be set.
+          title: Column
+        equal_if:
+          description: SQL boolean expression OR-ed into the value comparator for the matching column(s). Use {a} and {b} as placeholders for the side-A and side-B column references. Multiple rules matching the same column are all OR-ed together.
+          title: Equal If
+          type: string
+        type:
+          anyOf:
+          - $ref: '#/components/schemas/DatatypeName'
+          - type: 'null'
+          description: Type-based selector — matches all columns whose Datatype.typename equals this value. The rule is applied to every column of that type after data lands in DuckDB post-fetch. Mutually exclusive with `column`.
+      required:
+      - equal_if
+      title: ApiColumnRule
+      type: object
     DiffStats:
       properties:
         diff_duplicate_pks:
@@ -586,152 +702,45 @@ components:
       - version
       title: DiffStats
       type: object
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          title: Detail
-          type: array
-      title: HTTPValidationError
-      type: object
-    TDataDiffDataAppMetadata:
-      properties:
-        data_app_id:
-          title: Data App Id
-          type: integer
-        data_app_model1_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Data App Model1 Id
-        data_app_model1_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Data App Model1 Name
-        data_app_model2_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Data App Model2 Id
-        data_app_model2_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Data App Model2 Name
-        data_app_model_type:
-          title: Data App Model Type
-          type: string
-        meta_data:
-          additionalProperties: true
-          title: Meta Data
-          type: object
-      required:
-      - data_app_id
-      - data_app_model_type
-      - meta_data
-      title: TDataDiffDataAppMetadata
-      type: object
-    QueryError:
-      properties:
-        error_type:
-          title: Error Type
-          type: string
-        error_value:
-          title: Error Value
-          type: string
-      required:
-      - error_type
-      - error_value
-      title: QueryError
-      type: object
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          title: Location
-          type: array
-        msg:
-          title: Message
-          type: string
-        type:
-          title: Error Type
-          type: string
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-      type: object
-    TableModifiers:
+    DatatypeName:
       enum:
-      - case_insensitive_strings
-      - null_equals_empty_string
-      title: TableModifiers
+      - boolean
+      - integer
+      - float
+      - decimal
+      - unbounded_decimal
+      - money
+      - string
+      - fixed_length_string
+      - varbinary
+      - binary
+      - date
+      - super
+      - time
+      - time_interval
+      - timestamp
+      - year
+      - uuid
+      - array
+      - struct
+      - json
+      - xml
+      - map
+      - void
+      - unsupported
+      title: DatatypeName
       type: string
-    MonitorRunState:
+    JobStatus:
       enum:
-      - ok
-      - alert
-      - error
-      - learning
-      - checking
-      - created
-      - skipped
-      - cancelled
+      - needs_confirmation
+      - needs_authentication
+      - waiting
       - queued
-      title: MonitorRunState
-      type: string
-    ToleranceModeEnum:
-      enum:
-      - absolute
-      - relative
-      title: ToleranceModeEnum
-      type: string
-    CSVFileOptions:
-      properties:
-        delimiter:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Delimiter
-        file_type:
-          const: csv
-          default: csv
-          title: File Type
-          type: string
-        skip_head_rows:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Skip Head Rows
-        skip_tail_rows:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Skip Tail Rows
-      title: CSVFileOptions
-      type: object
-    JobSource:
-      enum:
-      - interactive
-      - demo_signup
-      - manual
-      - api
-      - ci
-      - schedule
-      - auto
-      title: JobSource
-      type: string
-    DiffKind:
-      enum:
-      - in_db
-      - cross_db
-      title: DiffKind
+      - processing
+      - done
+      - failed
+      - cancelled
+      title: JobStatus
       type: string
     ExcelFileOptions:
       properties:
@@ -757,6 +766,40 @@ components:
           title: Skip Tail Rows
       title: ExcelFileOptions
       type: object
+    CSVFileOptions:
+      properties:
+        delimiter:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Delimiter
+        file_type:
+          const: csv
+          default: csv
+          title: File Type
+          type: string
+        skip_head_rows:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Skip Head Rows
+        skip_tail_rows:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Skip Tail Rows
+      title: CSVFileOptions
+      type: object
+    TimeAggregateEnum:
+      enum:
+      - minute
+      - hour
+      - day
+      - week
+      - month
+      - year
+      title: TimeAggregateEnum
+      type: string
     ApiDataDiffFull:
       properties:
         affected_columns:
@@ -1317,49 +1360,6 @@ components:
       - kind
       title: ApiDataDiffFull
       type: object
-    ApiColumnRule:
-      properties:
-        column:
-          anyOf:
-          - minLength: 1
-            type: string
-          - type: 'null'
-          description: Column name the rule applies to. When column remapping is enabled, this refers to the dataset-A (canonical) column name — the same name the comparator operates on after remapping. Mutually exclusive with `type`. Exactly one of `column` or `type` must be set.
-          title: Column
-        equal_if:
-          description: SQL boolean expression OR-ed into the value comparator for the matching column(s). Use {a} and {b} as placeholders for the side-A and side-B column references. Multiple rules matching the same column are all OR-ed together.
-          title: Equal If
-          type: string
-        type:
-          anyOf:
-          - $ref: '#/components/schemas/DatatypeName'
-          - type: 'null'
-          description: Type-based selector — matches all columns whose Datatype.typename equals this value. The rule is applied to every column of that type after data lands in DuckDB post-fetch. Mutually exclusive with `column`.
-      required:
-      - equal_if
-      title: ApiColumnRule
-      type: object
-    ParquetFileOptions:
-      properties:
-        file_type:
-          const: parquet
-          default: parquet
-          title: File Type
-          type: string
-      title: ParquetFileOptions
-      type: object
-    JobStatus:
-      enum:
-      - needs_confirmation
-      - needs_authentication
-      - waiting
-      - queued
-      - processing
-      - done
-      - failed
-      - cancelled
-      title: JobStatus
-      type: string
   securitySchemes:
     ApiKeyAuth:
       description: Use the 'Authorization' header with the format 'Key <api-key>'
