@@ -1,0 +1,12 @@
+{
+ "url": "https://docs.datafold.com/openapi-public.json",
+ "requested_url": "https://docs.datafold.com/openapi-public.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 665116,
+ "sha256": "8ac72802c751131f5549c2245e895dccd4bd76e4ac9c08a7a0ffb6272e491911",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 0.981), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
