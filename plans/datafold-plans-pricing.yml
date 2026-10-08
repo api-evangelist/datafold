@@ -76,3 +76,27 @@ market_range:
   enterprise_range:
     can_exceed: 150000
     currency: USD
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models: []
+  units: []
+  plans:
+  - name: Datafold Cloud
+    access: paid
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Datafold Self-Hosted
+    access: paid
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Standalone Modules
+    access: paid
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
