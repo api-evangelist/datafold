@@ -67,6 +67,108 @@ paths:
       - diff_created
 components:
   schemas:
+    TDataDiffDataAppMetadata:
+      properties:
+        data_app_id:
+          title: Data App Id
+          type: integer
+        data_app_model1_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Data App Model1 Id
+        data_app_model1_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Data App Model1 Name
+        data_app_model2_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Data App Model2 Id
+        data_app_model2_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Data App Model2 Name
+        data_app_model_type:
+          title: Data App Model Type
+          type: string
+        meta_data:
+          additionalProperties: true
+          title: Meta Data
+          type: object
+      required:
+      - data_app_id
+      - data_app_model_type
+      - meta_data
+      title: TDataDiffDataAppMetadata
+      type: object
+    MonitorRunState:
+      enum:
+      - ok
+      - alert
+      - error
+      - learning
+      - checking
+      - created
+      - skipped
+      - cancelled
+      - queued
+      title: MonitorRunState
+      type: string
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          title: Location
+          type: array
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+      type: object
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          title: Detail
+          type: array
+      title: HTTPValidationError
+      type: object
+    TimeAggregateEnum:
+      enum:
+      - minute
+      - hour
+      - day
+      - week
+      - month
+      - year
+      title: TimeAggregateEnum
+      type: string
+    JobSource:
+      enum:
+      - interactive
+      - demo_signup
+      - manual
+      - api
+      - ci
+      - schedule
+      - auto
+      title: JobSource
+      type: string
     ApiDataDiffData:
       properties:
         archived:
@@ -437,311 +539,6 @@ components:
       - data_source2_id
       title: ApiDataDiffData
       type: object
-    DiffAlgorithm:
-      enum:
-      - join
-      - hash
-      - hash_v2_alpha
-      - fetch_and_join
-      title: DiffAlgorithm
-      type: string
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          title: Detail
-          type: array
-      title: HTTPValidationError
-      type: object
-    ColumnTolerance:
-      properties:
-        column_name:
-          description: Column name to apply tolerance to.
-          title: Column Name
-          type: string
-        tolerance_mode:
-          $ref: '#/components/schemas/ToleranceModeEnum'
-          description: '''absolute'' or ''relative''.'
-        tolerance_value:
-          description: Tolerance value. Must be >= 0.
-          title: Tolerance Value
-          type: number
-      required:
-      - column_name
-      - tolerance_value
-      - tolerance_mode
-      title: ColumnTolerance
-      type: object
-    TDataDiffDataAppMetadata:
-      properties:
-        data_app_id:
-          title: Data App Id
-          type: integer
-        data_app_model1_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Data App Model1 Id
-        data_app_model1_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Data App Model1 Name
-        data_app_model2_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Data App Model2 Id
-        data_app_model2_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Data App Model2 Name
-        data_app_model_type:
-          title: Data App Model Type
-          type: string
-        meta_data:
-          additionalProperties: true
-          title: Meta Data
-          type: object
-      required:
-      - data_app_id
-      - data_app_model_type
-      - meta_data
-      title: TDataDiffDataAppMetadata
-      type: object
-    DiffKind:
-      enum:
-      - in_db
-      - cross_db
-      title: DiffKind
-      type: string
-    TableModifiers:
-      enum:
-      - case_insensitive_strings
-      - null_equals_empty_string
-      title: TableModifiers
-      type: string
-    MonitorRunState:
-      enum:
-      - ok
-      - alert
-      - error
-      - learning
-      - checking
-      - created
-      - skipped
-      - cancelled
-      - queued
-      title: MonitorRunState
-      type: string
-    JobSource:
-      enum:
-      - interactive
-      - demo_signup
-      - manual
-      - api
-      - ci
-      - schedule
-      - auto
-      title: JobSource
-      type: string
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          title: Location
-          type: array
-        msg:
-          title: Message
-          type: string
-        type:
-          title: Error Type
-          type: string
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-      type: object
-    QueryError:
-      properties:
-        error_type:
-          title: Error Type
-          type: string
-        error_value:
-          title: Error Value
-          type: string
-      required:
-      - error_type
-      - error_value
-      title: QueryError
-      type: object
-    ParquetFileOptions:
-      properties:
-        file_type:
-          const: parquet
-          default: parquet
-          title: File Type
-          type: string
-      title: ParquetFileOptions
-      type: object
-    ToleranceModeEnum:
-      enum:
-      - absolute
-      - relative
-      title: ToleranceModeEnum
-      type: string
-    ApiColumnRule:
-      properties:
-        column:
-          anyOf:
-          - minLength: 1
-            type: string
-          - type: 'null'
-          description: Column name the rule applies to. When column remapping is enabled, this refers to the dataset-A (canonical) column name — the same name the comparator operates on after remapping. Mutually exclusive with `type`. Exactly one of `column` or `type` must be set.
-          title: Column
-        equal_if:
-          description: SQL boolean expression OR-ed into the value comparator for the matching column(s). Use {a} and {b} as placeholders for the side-A and side-B column references. Multiple rules matching the same column are all OR-ed together.
-          title: Equal If
-          type: string
-        type:
-          anyOf:
-          - $ref: '#/components/schemas/DatatypeName'
-          - type: 'null'
-          description: Type-based selector — matches all columns whose Datatype.typename equals this value. The rule is applied to every column of that type after data lands in DuckDB post-fetch. Mutually exclusive with `column`.
-      required:
-      - equal_if
-      title: ApiColumnRule
-      type: object
-    DiffStats:
-      properties:
-        diff_duplicate_pks:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Diff Duplicate Pks
-        diff_null_pks:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Diff Null Pks
-        diff_pks:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Diff Pks
-        diff_rows:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Diff Rows
-        diff_rows_count:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Diff Rows Count
-        diff_rows_number:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Diff Rows Number
-        diff_schema:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Diff Schema
-        diff_values:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Diff Values
-        errors:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Errors
-        match_ratio:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Match Ratio
-        rows_added:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Rows Added
-        rows_removed:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Rows Removed
-        sampled:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Sampled
-        table_a_row_count:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Table A Row Count
-        table_b_row_count:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Table B Row Count
-        version:
-          title: Version
-          type: string
-      required:
-      - version
-      title: DiffStats
-      type: object
-    DatatypeName:
-      enum:
-      - boolean
-      - integer
-      - float
-      - decimal
-      - unbounded_decimal
-      - money
-      - string
-      - fixed_length_string
-      - varbinary
-      - binary
-      - date
-      - super
-      - time
-      - time_interval
-      - timestamp
-      - year
-      - uuid
-      - array
-      - struct
-      - json
-      - xml
-      - map
-      - void
-      - unsupported
-      title: DatatypeName
-      type: string
-    JobStatus:
-      enum:
-      - needs_confirmation
-      - needs_authentication
-      - waiting
-      - queued
-      - processing
-      - done
-      - failed
-      - cancelled
-      title: JobStatus
-      type: string
     ExcelFileOptions:
       properties:
         file_type:
@@ -790,16 +587,34 @@ components:
           title: Skip Tail Rows
       title: CSVFileOptions
       type: object
-    TimeAggregateEnum:
+    DiffKind:
       enum:
-      - minute
-      - hour
-      - day
-      - week
-      - month
-      - year
-      title: TimeAggregateEnum
+      - in_db
+      - cross_db
+      title: DiffKind
       type: string
+    ApiColumnRule:
+      properties:
+        column:
+          anyOf:
+          - minLength: 1
+            type: string
+          - type: 'null'
+          description: Column name the rule applies to. When column remapping is enabled, this refers to the dataset-A (canonical) column name — the same name the comparator operates on after remapping. Mutually exclusive with `type`. Exactly one of `column` or `type` must be set.
+          title: Column
+        equal_if:
+          description: SQL boolean expression OR-ed into the value comparator for the matching column(s). Use {a} and {b} as placeholders for the side-A and side-B column references. Multiple rules matching the same column are all OR-ed together.
+          title: Equal If
+          type: string
+        type:
+          anyOf:
+          - $ref: '#/components/schemas/DatatypeName'
+          - type: 'null'
+          description: Type-based selector — matches all columns whose Datatype.typename equals this value. The rule is applied to every column of that type after data lands in DuckDB post-fetch. Mutually exclusive with `column`.
+      required:
+      - equal_if
+      title: ApiColumnRule
+      type: object
     ApiDataDiffFull:
       properties:
         affected_columns:
@@ -1360,6 +1175,191 @@ components:
       - kind
       title: ApiDataDiffFull
       type: object
+    ParquetFileOptions:
+      properties:
+        file_type:
+          const: parquet
+          default: parquet
+          title: File Type
+          type: string
+      title: ParquetFileOptions
+      type: object
+    DiffStats:
+      properties:
+        diff_duplicate_pks:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Diff Duplicate Pks
+        diff_null_pks:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Diff Null Pks
+        diff_pks:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Diff Pks
+        diff_rows:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Diff Rows
+        diff_rows_count:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Diff Rows Count
+        diff_rows_number:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Diff Rows Number
+        diff_schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Diff Schema
+        diff_values:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Diff Values
+        errors:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Errors
+        match_ratio:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Match Ratio
+        rows_added:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Rows Added
+        rows_removed:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Rows Removed
+        sampled:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Sampled
+        table_a_row_count:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Table A Row Count
+        table_b_row_count:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Table B Row Count
+        version:
+          title: Version
+          type: string
+      required:
+      - version
+      title: DiffStats
+      type: object
+    TableModifiers:
+      enum:
+      - case_insensitive_strings
+      - null_equals_empty_string
+      title: TableModifiers
+      type: string
+    DatatypeName:
+      enum:
+      - boolean
+      - integer
+      - float
+      - decimal
+      - unbounded_decimal
+      - money
+      - string
+      - fixed_length_string
+      - varbinary
+      - binary
+      - date
+      - super
+      - time
+      - time_interval
+      - timestamp
+      - year
+      - uuid
+      - array
+      - struct
+      - json
+      - xml
+      - map
+      - void
+      - unsupported
+      title: DatatypeName
+      type: string
+    QueryError:
+      properties:
+        error_type:
+          title: Error Type
+          type: string
+        error_value:
+          title: Error Value
+          type: string
+      required:
+      - error_type
+      - error_value
+      title: QueryError
+      type: object
+    ToleranceModeEnum:
+      enum:
+      - absolute
+      - relative
+      title: ToleranceModeEnum
+      type: string
+    ColumnTolerance:
+      properties:
+        column_name:
+          description: Column name to apply tolerance to.
+          title: Column Name
+          type: string
+        tolerance_mode:
+          $ref: '#/components/schemas/ToleranceModeEnum'
+          description: '''absolute'' or ''relative''.'
+        tolerance_value:
+          description: Tolerance value. Must be >= 0.
+          title: Tolerance Value
+          type: number
+      required:
+      - column_name
+      - tolerance_value
+      - tolerance_mode
+      title: ColumnTolerance
+      type: object
+    JobStatus:
+      enum:
+      - needs_confirmation
+      - needs_authentication
+      - waiting
+      - queued
+      - processing
+      - done
+      - failed
+      - cancelled
+      title: JobStatus
+      type: string
+    DiffAlgorithm:
+      enum:
+      - join
+      - hash
+      - hash_v2_alpha
+      - fetch_and_join
+      title: DiffAlgorithm
+      type: string
   securitySchemes:
     ApiKeyAuth:
       description: Use the 'Authorization' header with the format 'Key <api-key>'
